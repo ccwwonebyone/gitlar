@@ -24,7 +24,6 @@ class CreatCompanyInfoTable extends Migration
             $table->char('belong',255)->nullable();
             $table->date('create_time')->nullable();
             $table->text('recommend')->nullable();
-            $table->softDeletes();
         });
     }
 
