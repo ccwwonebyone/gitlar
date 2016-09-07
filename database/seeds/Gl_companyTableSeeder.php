@@ -1,23 +1,20 @@
 <?php
 
-use DB;
+/**
+ * Antvel - Seeder
+ * Comments Table.
+ *
+ * @author  Gustavo Ocanto <gustavoocanto@gmail.com>
+ */
 use Illuminate\Database\Seeder;
-use Illuminate\Database\Eloquent\Model;
-
 
 class Gl_companyTableSeeder extends Seeder
 {
-    /**
-     * Run the database seeds.
-     *
-     * @return void
-     */
     public function run()
     {
         DB::table('company')->insert([
             'name' => '最美不过你',
-            'create_time' => date('Y-m-d')
+            'create_time' => date('Y-m-d'),
         ]);
-
     }
 }

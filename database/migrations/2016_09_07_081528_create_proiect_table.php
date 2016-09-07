@@ -13,7 +13,7 @@ class CreateProiectTable extends Migration
      */
     public function up()
     {
-        Schema::create('gl_project', function (Blueprint $table) {
+        Schema::create('project', function (Blueprint $table) {
             $table->increments('id',8);
             $table->char('title',255);
             $table->text('content',20);
@@ -31,6 +31,6 @@ class CreateProiectTable extends Migration
      */
     public function down()
     {
-        Schema::drop('gl_project');
+        Schema::drop('project');
     }
 }

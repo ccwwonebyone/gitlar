@@ -13,13 +13,13 @@ class CreatCompanyInfoTable extends Migration
      */
     public function up()
     {
-        Schema::create('gl_company', function (Blueprint $table) {
+        Schema::create('company', function (Blueprint $table) {
             $table->increments('id',8);
-            $table->char('name',255);
-            $table->char('tel',20);
-            $table->char('address', 255);
+            $table->char('name',255)->nullable();
+            $table->char('tel',20)->nullable();
+            $table->char('address', 255)->nullable();
             $table->char('qq',255)->nullable();
-            $table->char('weixin',255)->nullable('');
+            $table->char('weixin',255)->nullable();
             $table->char('sina',255)->nullable();
             $table->char('belong',255)->nullable();
             $table->date('create_time')->nullable();
@@ -34,6 +34,6 @@ class CreatCompanyInfoTable extends Migration
      */
     public function down()
     {
-        Schema::drop('gl_company');
+        Schema::drop('company');
     }
 }
