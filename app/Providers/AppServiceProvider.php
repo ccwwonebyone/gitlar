@@ -14,6 +14,9 @@ class AppServiceProvider extends ServiceProvider
      */
     public function boot()
     {
+        view()->composer(
+            ['Composer','master'],'APP\Http\ViewComposers\CompanyComposer'
+        );
         $table = 'company';
         if(\Schema::hasTable($table)){
             try {
@@ -51,6 +54,6 @@ class AppServiceProvider extends ServiceProvider
      */
     public function register()
     {
-        //
+
     }
 }

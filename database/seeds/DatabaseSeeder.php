@@ -10,8 +10,8 @@ class DatabaseSeeder extends Seeder
      * @return void
      */
     public function run()
-    {
-        $this->call('Gl_companyTableSeeder');
-        $this->call('MenuTableSeeder');
+    {	
+    	$this->call('MenuTableSeeder');
+        $this->call('Gl_companyTableSeeder');        
     }
 }

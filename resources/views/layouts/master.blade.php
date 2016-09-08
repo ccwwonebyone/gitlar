@@ -18,5 +18,6 @@
 @include('layouts.hearder')
 @yield('content')
 @include('layouts.footer')
+{{$success}}
 </body>
 </html>
