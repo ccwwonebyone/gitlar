@@ -15,7 +15,7 @@ class AppServiceProvider extends ServiceProvider
     public function boot()
     {
         view()->composer(
-            ['Composer','master'],'APP\Http\ViewComposers\CompanyComposer'
+            ['layouts.master','index','profile','Company'],'APP\Http\ViewComposers\CompanyComposer'
         );
         $table = 'company';
         if(\Schema::hasTable($table)){
