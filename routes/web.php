@@ -16,3 +16,5 @@ Route::group(['prefix' => 'index'], function () {
 Route::get('/','IndexController@index');
 Route::get('album', 'AlbumController@index');
 Route::get('blog', 'BlogController@index');
+Route::get('single', 'SingleController@index');
+Route::get('typo', 'EventController@index');

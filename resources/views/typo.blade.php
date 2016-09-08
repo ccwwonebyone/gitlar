@@ -1,54 +1,9 @@
-<!DOCTYPE html>
-<html>
-<head>
-<title>Typo</title>
-<link href="css/bootstrap.css" rel="stylesheet" type="text/css" media="all" />
-<!-- jQuery (necessary for Bootstrap's JavaScript plugins) -->
-<script src="js/jquery.min.js"></script>
-<!-- Custom Theme files -->
-<!--theme-style-->
-<link href="css/style.css" rel="stylesheet" type="text/css" media="all" />	
-<!--//theme-style-->
-<meta name="viewport" content="width=device-width, initial-scale=1">
-<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
-<meta name="keywords" content="Music Club Responsive web template, Bootstrap Web Templates, Flat Web Templates, Andriod Compatible web template, 
-Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, SonyErricsson, Motorola web design" />
-<script type="application/x-javascript"> addEventListener("load", function() { setTimeout(hideURLbar, 0); }, false); function hideURLbar(){ window.scrollTo(0,1); } </script>
-<!--flexslider-->
-<link rel="stylesheet" href="css/flexslider.css" type="text/css" media="screen" />
-<!--//flexslider-->
-</head>
-<body>
-<!--header-->
-<div class="header header-main">
-	<div class="container">
-				<div class="header-top">
-				<div class="logo">
-					<h1><a href="index.html">Music Club</a></h1>
-				</div>
-				<div class="top-nav">
-					<span class="menu"><img src="images/menu.png" alt=""> </span>
-					<ul>
-						<li ><a href="index.html" class="hvr-sweep-to-bottom color"><i class="glyphicon glyphicon-home"></i>Home  </a> </li>
-						<li ><a href="album.html" class="hvr-sweep-to-bottom color1"><i class="glyphicon glyphicon-picture"></i>Albums  </a> </li>
-						<li><a href="blog.html"  class="hvr-sweep-to-bottom color2"><i class="glyphicon glyphicon-tags"></i>Blog</a></li>
-						<li><a href="typo.html" class="hvr-sweep-to-bottom color3"><i class="glyphicon glyphicon-calendar"></i>Events </a></li>
-						<li><a href="mail.html" class="hvr-sweep-to-bottom color4"><i class="glyphicon glyphicon-envelope"></i>Mail </a></li>
-					<div class="clearfix"> </div>
-					</ul>
-					<!--script-->
-				<script>
-					$("span.menu").click(function(){
-						$(".top-nav ul").slideToggle(500, function(){
-						});
-					});
-			</script>				
-				</div>
-			<div class="clearfix"> </div>
-		</div>
-	</div>
-</div>
-<!--//header-->
+@extends('layouts.master')
+@section('title','样式')
+@section('header-main')
+  header-main
+@endsection
+@section('content')
 <!--content-->
 	<div class="container">
 	<div class="page">
@@ -332,23 +287,4 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 	</div>
 
 <!--//content-->
-
-<!--footer-->
-<div class="footer">
-	<div class="container">
-		<h2><a href="index.html">Music Club</a></h2>
-		
-					<ul>
-						<li ><a href="index.html" >Home  </a> </li>
-						<li ><a href="album.html" >Albums  </a> </li>
-						<li><a href="blog.html"  >Blog</a></li>
-						<li><a href="typo.html" >Events </a></li>
-						<li><a href="mail.html" >Mail </a></li>
-						<div class="clearfix"> </div>
-					</ul>
-					<p >Copyright &copy; 2015.Company name All rights reserved.More Templates <a href="http://www.cssmoban.com/" target="_blank" title="模板之家">模板之家</a> - Collect from <a href="http://www.cssmoban.com/" title="网页模板" target="_blank">网页模板</a></p>
-	</div>
-</div>
-<!--//footer-->
-</body>
-</html>
+@endsection

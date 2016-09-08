@@ -16,7 +16,7 @@ class AppServiceProvider extends ServiceProvider
     {
         $table = 'company';
         if(\Schema::hasTable($table)){
-             try {
+            try {
                 $company = DB::table($table)->first();
                 $companyInfo = ['name'=>$company->name,'create_time'=>$company->create_time];
             } catch (ModelNotFoundException $e) {
@@ -25,10 +25,21 @@ class AppServiceProvider extends ServiceProvider
         }else{
             $companyInfo = ['name' => '最美不过你','create_time' => date('Y-m-d')];
         }
-        $menus = [
-            ['url' => 'index',
-             'menu' => '主页'],
-        ];
+        $menuTable = 'menu';
+        if(\Schema::hasTable($menuTable)){
+             try {
+                $menuc = DB::table($menuTable)->where('is_show',1)->get();
+                foreach ($menuc as $menu) {
+                    $menuss['name'] = $menu->name;
+                    $menuss['url']  = $menu->url;
+                    $menuss['icon']  = $menu->icon;
+                    $menus[] = $menuss;
+                    $menuss = '';
+                }
+            } catch (ModelNotFoundException $e) {
+                
+            }
+        }
         view()->share('companyInfo', $companyInfo);
         view()->share('menus', $menus);
     }

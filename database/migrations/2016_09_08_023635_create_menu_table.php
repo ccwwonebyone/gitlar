@@ -19,6 +19,7 @@ class CreateMenuTable extends Migration
             $table->string('url',255)->nullable();
             $table->string('icon')->nullable();
             $table->integer('pid')->default(0);
+            $table->integer('is_show')->default(1);
         });
     }
 
