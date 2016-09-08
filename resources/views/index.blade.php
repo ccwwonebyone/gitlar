@@ -1,49 +1,7 @@
-<!DOCTYPE html>
-<html>
-<head>
-<title>{{$companyInfo['name']}}</title>
-<link href="{{asset('css/bootstrap.css')}}" rel="stylesheet" type="text/css" media="all" />
-<!-- jQuery (necessary for Bootstrap's JavaScript plugins) -->
-<script src="{{asset('js/jquery.min.js')}}"></script>
-<!-- Custom Theme files -->
-<!--theme-style-->
-<link href="{{asset('css/style.css')}}" rel="stylesheet" type="text/css" media="all" />	
-<!--//theme-style-->
-<meta name="viewport" content="width=device-width, initial-scale=1">
-<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
-<script type="application/x-javascript"> 
-addEventListener("load", function() { setTimeout(hideURLbar, 0); }, false); function hideURLbar(){ window.scrollTo(0,1); } 
-</script>
-</head>
-<body>
-<!--header-->
-<div class="header">
-	<div class="container">
-			<div class="header-top">
-				<div class="logo">
-					<h1><a href="{{action('IndexController@index')}}">{{$companyInfo['name']}}</a></h1>
-				</div>
-				<div class="top-nav">
-					<span class="menu"><img src="{{asset('images/menu.png')}}" alt=""> </span>
-					<ul>
-						<li ><a href="{{$menus[0]['url']}}" class="hvr-sweep-to-bottom color"><i class="glyphicon glyphicon-home"></i>{{$menus[0]['menu']}}</a></li>
-						<li ><a href="album.html" class="hvr-sweep-to-bottom color1"><i class="glyphicon glyphicon-picture"></i>Albums  </a> </li>
-						<li><a href="blog.html"  class="hvr-sweep-to-bottom color2"><i class="glyphicon glyphicon-tags"></i>Blog</a></li>
-						<li><a href="typo.html" class="hvr-sweep-to-bottom color3"><i class="glyphicon glyphicon-calendar"></i>Events </a></li>
-						<li><a href="mail.html" class="hvr-sweep-to-bottom color4"><i class="glyphicon glyphicon-envelope"></i>Mail </a></li>
-					<div class="clearfix"> </div>
-					</ul>
-					<!--script-->
-				<script>
-					$("span.menu").click(function(){
-						$(".top-nav ul").slideToggle(500, function(){
-						});
-					});
-			</script>				
-				</div>
-			<div class="clearfix"> </div>
-		</div>
-		@if($slides)
+@extends('layouts.master')
+@section('title','主页')
+@section('slides')
+	@if($slides)
 			<div class="banner-main">
 				<section class="slider">
           	 		<div class="flexslider">
@@ -77,12 +35,9 @@ addEventListener("load", function() { setTimeout(hideURLbar, 0); }, false); func
 	    });
 	  </script>	
 		@endif
-
-
-	</div>
-</div>
-<!--//header-->
-<!--content-->
+@endsection
+@section('content')
+	<!--content-->
 <div class="content">
 	<div class="container">
 		<!--content-top-->
@@ -219,23 +174,4 @@ addEventListener("load", function() { setTimeout(hideURLbar, 0); }, false); func
 	</div>
 	<!---->
 </div>
-<!--//content-->
-<!--footer-->
-<div class="footer">
-	<div class="container">
-		<h2><a href="{{action('IndexController@index')}}">{{$companyInfo['name']}}</a></h2>
-		
-					<ul>
-						<li ><a href="{{action('IndexController@index')}}" >主页  </a> </li>
-						<li ><a href="album.html" >Albums  </a> </li>
-						<li><a href="blog.html"  >Blog</a></li>
-						<li><a href="typo.html" >Events </a></li>
-						<li><a href="mail.html" >Mail </a></li>
-						<div class="clearfix"> </div>
-					</ul>
-					<p >版权所有 &copy; {{$companyInfo['name']}}-{{$companyInfo['create_time']}} <a href="{{action('IndexController@index')}}" target="_blank" title="{{$companyInfo['name']}}">{{$companyInfo['name']}}</a></p>
-	</div>
-</div>
-<!--//footer-->
-</body>
-</html>
+@endsection

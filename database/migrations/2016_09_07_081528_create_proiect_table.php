@@ -16,11 +16,12 @@ class CreateProiectTable extends Migration
         Schema::create('project', function (Blueprint $table) {
             $table->increments('id',8);
             $table->char('title',255);
-            $table->text('content',20);
+            $table->text('content');
             $table->char('img', 255);
             $table->char('url',255)->nullable();
+            $table->string('belong',255);
             $table->datetime('create_time');
-            $table->tinyInteger('is_show')->nullable();
+            $table->integer('is_show')->default(1);
         });
     }
 
@@ -31,6 +32,6 @@ class CreateProiectTable extends Migration
      */
     public function down()
     {
-        Schema::drop('project');
+        Schema::dropIfExists('project');
     }
 }

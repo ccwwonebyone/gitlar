@@ -34,6 +34,6 @@ class CreatCompanyInfoTable extends Migration
      */
     public function down()
     {
-        Schema::drop('company');
+        Schema::dropIfExists('company');
     }
 }
