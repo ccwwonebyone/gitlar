@@ -18,3 +18,12 @@ Route::get('album', 'AlbumController@index');
 Route::get('blog', 'BlogController@index');
 Route::get('single', 'SingleController@index');
 Route::get('typo', 'EventController@index');
+
+//后台首页
+Route::get('support', 'AdminController@show');
+//后台其他页面
+Route::get('support/{need}', 'AdminController@show');
+/*Route::group(['as' => 'support::'], function () {
+    Route::get('support/{need}', 'AdminController@show');
+});
+*/
