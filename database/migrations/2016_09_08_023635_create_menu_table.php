@@ -17,7 +17,9 @@ class CreateMenuTable extends Migration
             $table->increments('id',8);
             $table->string('name', 10);
             $table->string('url',255)->nullable();
-            $table->string('icon')->nullable();
+            $table->string('icon',255)->nullable();
+            $table->integer('order')->nullable();
+            $table->integer('belong')->default(1);
             $table->integer('pid')->default(0);
             $table->integer('is_show')->default(1);
         });

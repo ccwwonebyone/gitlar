@@ -13,7 +13,13 @@
 <script src="{{asset('admin/js/html5shiv.js')}}"></script>
 <script src="{{asset('admin/js/respond.min.js')}}"></script>
 <![endif]-->
-
+<script src="{{asset('admin/js/jquery-1.11.1.min.js')}}"></script>
+<script src="{{asset('admin/js/bootstrap.min.js')}}"></script>
+<script src="{{asset('admin/js/chart.min.js')}}"></script>
+<script src="{{asset('admin/js/chart-data.js')}}"></script>
+<script src="{{asset('admin/js/easypiechart.js')}}"></script>
+<script src="{{asset('admin/js/easypiechart-data.js')}}"></script>
+<script src="{{asset('admin/js/bootstrap-datepicker.js')}}"></script>
 </head>
 
 <body>
@@ -86,14 +92,8 @@
 		@include($view)
 	</div>	<!--/.main-->
 
-	<script src="{{asset('admin/js/jquery-1.11.1.min.js')}}"></script>
-	<script src="{{asset('admin/js/bootstrap.min.js')}}"></script>
-	<script src="{{asset('admin/js/chart.min.js')}}"></script>
-	<script src="{{asset('admin/js/chart-data.js')}}"></script>
-	<script src="{{asset('admin/js/easypiechart.js')}}"></script>
-	<script src="{{asset('admin/js/easypiechart-data.js')}}"></script>
-	<script src="{{asset('admin/js/bootstrap-datepicker.js')}}"></script>
 	<script>
+	$(function(){
 		$('#calendar').datepicker({
 		});
 
@@ -110,6 +110,7 @@
 		$(window).on('resize', function () {
 		  if ($(window).width() <= 767) $('#sidebar-collapse').collapse('hide')
 		})
+	})		
 	</script>	
 </body>
 

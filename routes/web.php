@@ -10,20 +10,23 @@
 | to using a Closure or controller method. Build something great!
 |
 */
-Route::group(['prefix' => 'index'], function () {
+/*Route::group(['prefix' => 'index'], function () {
     Route::get('/', 'IndexController@index');
-});
+});*/
 Route::get('/','IndexController@index');
 Route::get('album', 'AlbumController@index');
 Route::get('blog', 'BlogController@index');
 Route::get('single', 'SingleController@index');
 Route::get('typo', 'EventController@index');
+/*Route::resource('menu', 'MenuController');*/
 
-//后台首页
-Route::get('support', 'AdminController@show');
 //后台其他页面
-Route::get('support/{need}', 'AdminController@show');
-/*Route::group(['as' => 'support::'], function () {
-    Route::get('support/{need}', 'AdminController@show');
+Route::get('support/{need}', 'AdminController@show')->name('support');
+
+Route::get('support', function () {
+    return redirect()->route('support',['need' => 'home']);
 });
-*/
+Route::group(['prefix' => 'menu'], function () {
+    Route::get('getallData', 'MenuController@getallData');
+});
+
