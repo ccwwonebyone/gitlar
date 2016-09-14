@@ -17,67 +17,36 @@
 				<div class="panel panel-default">
 					<div class="panel-heading">菜单</div>
 					<div class="panel-body">
-						<table data-toggle="table" data-url="{{url('menu/getallData')}}"  data-show-refresh="true" data-show-toggle="true" data-show-columns="true" data-search="true" data-select-item-name="toolbar1" data-pagination="true" data-sort-name="name" data-sort-order="desc">
-						    <thead>
-						    <tr>
-						        <!-- <th data-field="state" data-checkbox="true" >Item ID</th> -->
-						        <th data-field="id" data-sortable="true">菜单id</th>
-						        <th data-field="name"  data-sortable="true">菜单名</th>
-						        <th data-field="url" data-sortable="true">菜单链接</th>
-						    </tr>
-						    </thead>
-						</table>
+						<table id="menuTable"></table>
 					</div>
 				</div>
 			</div>
-		</div><!--/.row-->	
-		<div class="row">
-			<div class="col-md-6">
-				<div class="panel panel-default">
-					<div class="panel-heading">Basic Table</div>
-					<div class="panel-body">
-						<table data-toggle="table" data-url="tables/data2.json" >
-						    <thead>
-						    <tr>
-						        <th data-field="id" data-align="right">Item ID</th>
-						        <th data-field="name">Item Name</th>
-						        <th data-field="price">Item Price</th>
-						    </tr>
-						    </thead>
-						</table>
-					</div>
-				</div>
-			</div>
-			<div class="col-md-6">
-				<div class="panel panel-default">
-					<div class="panel-heading">Styled Table</div>
-					<div class="panel-body">
-						<table data-toggle="table" id="table-style" data-url="tables/data2.json" data-row-style="rowStyle">
-						    <thead>
-						    <tr>
-						        <th data-field="id" data-align="right" >Item ID</th>
-						        <th data-field="name" >Item Name</th>
-						        <th data-field="price" >Item Price</th>
-						    </tr>
-						    </thead>
-						</table>
+		</div><!--/.row-->
+<link rel="stylesheet" href="{{asset('git-lar/bootstrap-table/dist/bootstrap-table.min.css')}}">
+<script src="{{asset('git-lar/bootstrap-table/dist/bootstrap-table.min.js')}}" type="text/javascript" charset="utf-8" async defer></script>
+<script src="{{asset('git-lar/bootstrap-table/dist/locale/bootstrap-table-zh-CN.min.js')}}" type="text/javascript" charset="utf-8" async defer></script>
+
 						<script>
 						    $(function () {
-						        $('#hover, #striped, #condensed').click(function () {
-						            var classes = 'table';
-						
-						            if ($('#hover').prop('checked')) {
-						                classes += ' table-hover';
-						            }
-						            if ($('#condensed').prop('checked')) {
-						                classes += ' table-condensed';
-						            }
-						            $('#table-style').bootstrapTable('destroy')
-						                .bootstrapTable({
-						                    classes: classes,
-						                    striped: $('#striped').prop('checked')
-						                });
-						        });
+    							$('#menuTable').bootstrapTable({
+        							url:"{{url('menu/getallData')}}",
+        							showToggle:true,
+        							showRefresh:true,
+        							sortName:'id',
+        							sortOrder:'asc',
+        							showColumns:true,
+        							search:true,
+        							rowStyle:'rowStyle',
+        							selectItemName:'toolbar1',
+        							pagination:true,
+        							pageList:"[10,20,30,all]",
+        							columns:[
+        								{field:'id',title:'菜单id'},
+        								{field:'name',title:'名称'},
+        								{field:'url',title:'链接'},
+        								{field:'order',title:'排序'}
+        							]
+    							});
 						    });
 						
 						    function rowStyle(row, index) {
@@ -90,8 +59,23 @@
 						        }
 						        return {};
 						    }
+
+						    $('#hover, #striped, #condensed').click(function () {
+						         var classes = 'table';			
+						         if ($('#hover').prop('checked')) {
+						             classes += ' table-hover';
+						         }
+						         if ($('#condensed').prop('checked')) {
+						             classes += ' table-condensed';
+						         }
+						         $('#table-style').bootstrapTable('destroy')
+						             .bootstrapTable({
+						                 classes: classes,
+						                 striped: $('#striped').prop('checked')
+						         });
+						    });
 						</script>
 					</div>
 				</div>
 			</div>
-		</div><!--/.row-->			
+		</div><!--/.row-->
