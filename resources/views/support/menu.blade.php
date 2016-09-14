@@ -1,7 +1,7 @@
 		<div class="row">
 			<ol class="breadcrumb">
 				<li><a href="#"><span class="glyphicon glyphicon-home"></span></a></li>
-				<li class="active">Tables</li>
+				<li class="active">菜单</li>
 			</ol>
 		</div><!--/.row-->
 		

@@ -20,13 +20,17 @@ Route::get('single', 'SingleController@index');
 Route::get('typo', 'EventController@index');
 /*Route::resource('menu', 'MenuController');*/
 
-//后台其他页面
+//后台页面
 Route::get('support/{need}', 'AdminController@show')->name('support');
 
 Route::get('support', function () {
     return redirect()->route('support',['need' => 'home']);
 });
+
 Route::group(['prefix' => 'menu'], function () {
     Route::get('getallData', 'MenuController@getallData');
 });
 
+Route::get('sup', function(){
+	return view('sup.index');
+});

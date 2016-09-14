@@ -10,8 +10,12 @@ class AdminController extends Controller
 {
     public function show($need='home')
     {
-    	$view = 'support.'.$need;
-    	return view('support.common',compact('view'));
+    	if($need!='support'){
+    		$view = 'support.'.$need;
+    		return view('support.common',compact('view'));
+    	}else{
+    		return view('support.login');
+    	}
     	
     }
 }
