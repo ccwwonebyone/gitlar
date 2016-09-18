@@ -33,7 +33,7 @@ class CompanyComposer
      */
     public function getMenu()
     {
-        $menuData = DB::table('menu')->where('is_show',1)->get();
+        $menuData = DB::table('menu')->where('is_show',1)->where('belong',1)->get();
         $menus = [];
         foreach ($menuData as $data) {
             $menu['name'] = $data->name;

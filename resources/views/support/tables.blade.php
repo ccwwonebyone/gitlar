@@ -23,8 +23,8 @@
 			</div>
 		</div><!--/.row-->
 <link rel="stylesheet" href="{{asset('git-lar/bootstrap-table/dist/bootstrap-table.min.css')}}">
-<script src="{{asset('git-lar/bootstrap-table/dist/bootstrap-table.min.js')}}" type="text/javascript" charset="utf-8" async defer></script>
-<script src="{{asset('git-lar/bootstrap-table/dist/locale/bootstrap-table-zh-CN.min.js')}}" type="text/javascript" charset="utf-8" async defer></script>
+<script src="{{asset('git-lar/bootstrap-table/dist/bootstrap-table.min.js')}}" type="text/javascript" charset="utf-8"></script>
+<script src="{{asset('git-lar/bootstrap-table/dist/locale/bootstrap-table-zh-CN.min.js')}}" type="text/javascript" charset="utf-8" ></script>
 
 						<script>
 						    $(function () {
@@ -39,7 +39,7 @@
         							rowStyle:'rowStyle',
         							selectItemName:'toolbar1',
         							pagination:true,
-        							pageList:"[10,20,30,all]",
+        							pageList:"[10,20,30]",
         							columns:[
         								{field:'id',title:'菜单id'},
         								{field:'name',title:'名称'},
@@ -75,6 +75,7 @@
 						         });
 						    });
 						</script>
+
 					</div>
 				</div>
 			</div>

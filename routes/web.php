@@ -29,6 +29,7 @@ Route::get('support', function () {
 
 Route::group(['prefix' => 'menu'], function () {
     Route::get('getallData', 'MenuController@getallData');
+    Route::get('getPid', 'MenuController@getPid');
 });
 
 Route::get('sup', function(){

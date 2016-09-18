@@ -3,7 +3,7 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<title>GITLAR - ADMIN</title>
+<title>gitlar-admin</title>
 
 <link href="{{asset('git-lar/bootstrap/dist/css/bootstrap.min.css')}}" rel="stylesheet">
 <link href="{{asset('admin/css/datepicker3.css')}}" rel="stylesheet">
@@ -57,8 +57,8 @@
 			<li class="active"><a href="home"><span class="glyphicon glyphicon-dashboard"></span> 后台首页</a></li>
 			<li><a href="widgets"><span class="glyphicon glyphicon-th"></span> 滑块管理</a></li>
 			<li><a href="charts"><span class="glyphicon glyphicon-stats"></span> 内容管理</a></li>
-			<li><a href="tables"><span class="glyphicon glyphicon-list-alt"></span> 细节管理</a></li>
-			<li><a href="forms"><span class="glyphicon glyphicon-list"></span> 菜单管理</a></li>
+			<li><a href="menu"><span class="glyphicon glyphicon-list-alt"></span> 菜单管理</a></li>
+			<li><a href="forms"><span class="glyphicon glyphicon-list"></span> 细节管理</a></li>
 			<li><a href="panels"><span class="glyphicon glyphicon-info-sign"></span> Alerts &amp; Panels</a></li>
 			<li class="parent ">
 				<a href="#">

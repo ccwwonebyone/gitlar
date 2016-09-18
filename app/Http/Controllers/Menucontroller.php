@@ -11,26 +11,43 @@ class Menucontroller extends Controller
 	private $table = 'menu';
 	/**
 	 * 获取需要的菜单数据
-	 * @param  array $is_show 是否显示 0,1 0隐藏 1显示
-	 * @param  array $belong  归属0,1  1前端 0后台
-	 * @return object           数据集合
+	 * @param  string/array $where 查询条件
+	 * @param  array $data  分页请求数据
+	 * @return array           数据集合
 	 */
-    public function menuData($belong=array(0,1),$is_show=array(0,1))
+    public function menuData($where='',$data)
     {
-
-    	$menuData = DB::table($this->table)
-    					 ->whereBetween('belong',$belong)
-    					 ->whereBetween('is_show',$is_show)
+        if($where!=''){
+            $total = DB::table($this->table)->where($where)->count();
+            $rows = DB::table($this->table)
+                         ->where($where)
+                         ->orderBy($data['sort'],$data['order'])
+                         ->skip($data['offset'])->take($data['limit'])
     					 ->get()->toArray();
+        }else{
+            $total = DB::table($this->table)->count();
+            $rows = DB::table($this->table)
+                         ->orderBy($data['sort'],$data['order'])
+                         ->skip($data['offset'])->take($data['limit'])
+                         ->get()->toArray();          
+        }
+        foreach ($rows as $key => $row) {
+            if($row['pid']==0){
+                $rows[$key]['pid_name'] = '主菜单';
+            }else{
+                $pid_name = DB::table($this->table)->select('name')->where('id',$row['pid'])->get()->toArray();
+                $rows[$key]['pid_name'] = $pid_name;
+            }           
+        } 
+        $menuData['total'] = $total? $total : 0;
+        $menuData['rows'] = $rows? $rows :'';
     	return $menuData;
+       
     	//return json_encode($menuDatas);
     }
     public function getallData()
     {
-    	echo json_encode($this->menuData());
+        $data = $_GET;
+    	echo json_encode($this->menuData('',$data));
     }
-   /* public function index()
-    {
-    	
-    }*/
 }
