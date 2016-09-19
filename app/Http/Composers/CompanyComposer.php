@@ -37,7 +37,7 @@ class CompanyComposer
         $menus = [];
         foreach ($menuData as $data) {
             $menu['name'] = $data->name;
-            $menu['url']  = $data->url;
+            $menu['url']  = url($data->url);
             $menu['icon']  = $data->icon;
             $menus[] = $menu;
             $menu = '';
@@ -46,4 +46,3 @@ class CompanyComposer
     }
  
 }
-

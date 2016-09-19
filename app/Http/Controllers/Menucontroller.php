@@ -31,14 +31,14 @@ class Menucontroller extends Controller
                          ->skip($data['offset'])->take($data['limit'])
                          ->get()->toArray();          
         }
-        foreach ($rows as $key => $row) {
-            if($row['pid']==0){
-                $rows[$key]['pid_name'] = '主菜单';
+        foreach ($rows as $key=>$row) {
+            if($row->pid ==0){
+                $rows[$key]->pid_name = '主菜单';
             }else{
-                $pid_name = DB::table($this->table)->select('name')->where('id',$row['pid'])->get()->toArray();
-                $rows[$key]['pid_name'] = $pid_name;
+                $pid_name = DB::table($this->table)->where('id',$row->pid)->value('name');
+                $rows[$key]->pid_name = $pid_name;
             }           
-        } 
+        }
         $menuData['total'] = $total? $total : 0;
         $menuData['rows'] = $rows? $rows :'';
     	return $menuData;

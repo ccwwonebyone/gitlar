@@ -3,6 +3,7 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="csrf-token" content="{{ csrf_token() }}">
 <title>gitlar-admin</title>
 
 <link href="{{asset('git-lar/bootstrap/dist/css/bootstrap.min.css')}}" rel="stylesheet">
@@ -55,7 +56,8 @@
 		</form>
 		<ul class="nav menu">
 			<li class="active"><a href="home"><span class="glyphicon glyphicon-dashboard"></span> 后台首页</a></li>
-			<li><a href="widgets"><span class="glyphicon glyphicon-th"></span> 滑块管理</a></li>
+			<li><a href="widgets"><span class="glyphicon glyphicon-th"></span> 统计管理</a></li>
+			<li><a href="slider"><span class="glyphicon glyphicon-film"></span> 滑块管理</a></li>
 			<li><a href="charts"><span class="glyphicon glyphicon-stats"></span> 内容管理</a></li>
 			<li><a href="menu"><span class="glyphicon glyphicon-list-alt"></span> 菜单管理</a></li>
 			<li><a href="forms"><span class="glyphicon glyphicon-list"></span> 细节管理</a></li>
