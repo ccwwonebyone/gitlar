@@ -19,6 +19,7 @@ class AppServiceProvider extends ServiceProvider
             ['index','blog','album','typo','admin'],
             'App\Http\Composers\CompanyComposer'
         );
+        View::share('status',['default','primary','success','warning','info','danger']);
     }
 
     /**

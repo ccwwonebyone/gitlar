@@ -30,6 +30,15 @@
 	<ol class="breadcrumb">
 		<li><a href="{{url('support/home')}}"><span class="glyphicon glyphicon-home"></span></a></li>
 		<li class="active">滑块</li>
+		@if (count($errors) > 0)
+    		<div class="alert alert-danger">
+       			<ul>
+            		@foreach ($errors->all() as $error)
+                <span>{{ $error }}</span>
+            		@endforeach
+        		</ul>
+    		</div>
+		@endif
 	</ol>
 </div><!--/.row-->
 <div class="row">
@@ -38,11 +47,7 @@
 	</div>
 
 	<div class="col-md-8 text-right" style="margin: 30px 0 0 0;">
-		<div class="btn-group">
-		    <button type="button" class="btn btn-success" id="add"><span class="glyphicon glyphicon-plus"></span> 增加</button>
-		    <button type="button" class="btn btn-info"><span class="glyphicon glyphicon-edit"> 修改</button>
-		    <button type="button" class="btn btn-danger"><span class="glyphicon glyphicon-remove"> 删除</button>
-		</div>
+		<button type="button" class="btn btn-success" id="add" style="float: right;"><span class="glyphicon glyphicon-plus"></span> 增加</button>	
 		<div class="col-md-4" style="float: right;">
 			<form>
         		 <div class="input-group">
@@ -53,48 +58,31 @@
         		 </div><!-- /input-group -->
     		</form>			
 		</div>
-		
 	</div>
 </div><!--/.row-->
-<div class="col-md-4">
-	<div class="panel panel-success">
+@foreach($info as $slider)
+<div class="showSlider">
+	@include('projectHideForm')
+	<div class="col-md-4">
+		<div class="panel panel-{{$status[rand(0,5)]}}">
     	<div class="panel-heading">
     	    <div class="panel-title">
-    	       <h3>滑块标题</h3>
+    	       <h3 class="col-md-6">{{$slider->title}}</h3>
+    	       <div style="float: right;margin: 17px 0 0 0;">   	       	   	
+    	       		<small class="btn btn-xs btn-warning is_show" title="点击切换">{{$slider->is_show?'显示':'隐藏'}}</small>&nbsp&nbsp   	       	
+    	       		<span class="btn btn-xs btn-info glyphicon glyphicon-edit edit" title="编辑"></span>
+    	       		<span class="btn btn-xs btn-danger glyphicon glyphicon-remove remove" title="删除"></span> 
+    	       </div>	           	       
     	    </div>
     	</div>
     	<div class="panel-body">
-    	    滑块内容
+    	    {{$slider->content}}
     	</div>
-    	<div class="panel-footer">滑块图片</div>
+    	<div class="panel-footer"><img src="{{asset($slider->img)}}" class="img-responsive" alt="{{$slider->title}}" ></div>
+		</div>
 	</div>
 </div>
-<div class="col-md-4">
-	<div class="panel panel-warning">
-    	<div class="panel-heading">
-    	    <div class="panel-title">
-    	       滑块标题
-    	    </div>
-    	</div>
-    	<div class="panel-body">
-    	    滑块内容
-    	</div>
-    	<div class="panel-footer">滑块图片</div>
-	</div>
-</div>
-<div class="col-md-4">
-	<div class="panel panel-info">
-    	<div class="panel-heading">
-    	    <div class="panel-title">
-    	       滑块标题
-    	    </div>
-    	</div>
-    	<div class="panel-body">
-    	    滑块内容
-    	</div>
-    	<div class="panel-footer">滑块图片</div>
-	</div>
-</div>
+@endforeach
 
 <!-- 模态框（Modal） -->
 <div class="modal fade" id="addModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
@@ -102,10 +90,10 @@
         <div class="modal-content">
             <div class="modal-header">
                 <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
-                <h4 class="modal-title " id="myModalLabel"><span class="label label-info"><i class="glyphicon glyphicon-plus"></i>菜单</span></h4>
+                <h4 class="modal-title " id="myModalLabel"><span class="label label-info"><i class="glyphicon glyphicon-plus"></i>滑块</span></h4>
             </div>
             <div class="modal-body">
-            	<form action="{{url('project/addSlider')}}" class="form-horizontal" id="sliderform" role="form" method="post">
+            	<form action="{{url('project/addSlider')}}" class="form-horizontal" id="sliderform" role="form" method="post" enctype="multipart/form-data">
             		{!! csrf_field() !!}
             		  <div class="form-group">
    	 					<label for="name" class="col-md-2 control-label">标题：</label>
@@ -126,9 +114,19 @@
     							<input type="file" class="form-control" name="image" id="image">
 							</a>
    	 					</div>
-   	 					<div class="col-md-2">
-   	 						<span class="btn btn-primary">确定</span>
-   	 					</div>    	 						
+   	 					</div>
+					  <div class="form-group">
+   	 					<label for="name" class="col-md-2 control-label">显示：</label>
+   	 					<div class="radio col-md-2">
+							<label>
+								<input type="radio" name="is_show" value="1" checked>显示
+							</label>
+						</div>
+						<div class="radio col-md-2">
+							<label>
+								<input type="radio" name="is_show" value="0">隐藏
+							</label>
+						</div>  	 						
   					  </div>
             	</form>
             </div>
@@ -147,6 +145,26 @@ $(function(){
 	});
 	$('#sure').click(function () {
 		 $('#sliderform').submit();
+	});
+	$('.is_show').click(function(){
+		var project_id = $(this).parents('.showSlider').find('.project_id').val();
+		var is_show = $(this).parents('.showSlider').find('.project_is_show').val();
+		$.ajax({
+			headers: {
+        		'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+    		},
+			url:"{{url('project/editSlider')}}",
+			type:'post',
+			data:{
+				id:project_id,
+				is_show:is_show,
+				action:'changeShow'
+			},
+			success:function(data){
+				alert(data);
+			}
+		});
+		
 	})
 });
 </script>

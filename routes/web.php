@@ -36,6 +36,7 @@ Route::group(['prefix' => 'menu'], function () {
 
 Route::group(['prefix' => 'project'], function () {
     Route::any('addSlider', 'ProjectController@addSlider');
+    Route::post('editSlider', 'ProjectController@editSlider');
 });
 
 Route::get('sup', function(){
