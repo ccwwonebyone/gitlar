@@ -55,13 +55,11 @@ class ProjectController extends Controller
 
     public function editSlider(Request $request)
     {
-    	$where['id'] = $request->input['id'];
-    	$update = $request->all();
-    	if($update['action']=='changeShow'){
-    		$update['is_show'] = $update['is_show']==1?0:1;
-    		unset($update['action']);
-    		unset($update['id']);
-    	}
-    	
+    	$data = $request->all();
+        $where['id'] = $data['id'];
+    	unset($data['id']);
+    	if(DB::table($this->db)->where($where)->update($data)){
+            return response()->json($data);
+        }
     }
 }

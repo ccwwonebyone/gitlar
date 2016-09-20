@@ -147,8 +147,10 @@ $(function(){
 		 $('#sliderform').submit();
 	});
 	$('.is_show').click(function(){
-		var project_id = $(this).parents('.showSlider').find('.project_id').val();
-		var is_show = $(this).parents('.showSlider').find('.project_is_show').val();
+    var thisObiect = $(this);
+		var project_id = thisObiect.parents('.showSlider').find('.project_id').val();
+		var is_show = thisObiect.parents('.showSlider').find('.project_is_show').val();
+    is_show = is_show==1?0:1;
 		$.ajax({
 			headers: {
         		'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
@@ -157,11 +159,13 @@ $(function(){
 			type:'post',
 			data:{
 				id:project_id,
-				is_show:is_show,
-				action:'changeShow'
+				is_show:is_show
 			},
 			success:function(data){
-				alert(data);
+       data = eval(data);
+       thisObiect.parents('.showSlider').find('.project_is_show').val(data.is_show);
+       var changeInfo = data.is_show==0?'隐藏':'显示';				
+       thisObiect.text(changeInfo);
 			}
 		});
 		
