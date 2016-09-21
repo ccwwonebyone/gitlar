@@ -9,8 +9,8 @@
              				@foreach($slides as $slide)
 							<li>
 								<div class="banner-matter">
-									<h3>{{$slide['title']}}</h3>
-									<p>{{$slide['content']}}</p>
+									<h3>{{$slide->title}}</h3>
+									<p>{{$slide->content}}</p>
 								</div>
 							</li>
 							@endforeach

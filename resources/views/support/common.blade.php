@@ -55,13 +55,13 @@
 			</div>
 		</form>
 		<ul class="nav menu">
-			<li class="active"><a href="home"><span class="glyphicon glyphicon-dashboard"></span> 后台首页</a></li>
-			<li><a href="widgets"><span class="glyphicon glyphicon-th"></span> 统计管理</a></li>
-			<li><a href="slider"><span class="glyphicon glyphicon-film"></span> 滑块管理</a></li>
-			<li><a href="charts"><span class="glyphicon glyphicon-stats"></span> 内容管理</a></li>
-			<li><a href="menu"><span class="glyphicon glyphicon-list-alt"></span> 菜单管理</a></li>
-			<li><a href="forms"><span class="glyphicon glyphicon-list"></span> 细节管理</a></li>
-			<li><a href="panels"><span class="glyphicon glyphicon-info-sign"></span> Alerts &amp; Panels</a></li>
+			<li id="support_home"><a href="{{url('support/home')}}"><span class="glyphicon glyphicon-dashboard"></span> 后台首页</a></li>
+			<li id="support_widgets"><a href="{{url('support/widgets')}}"><span class="glyphicon glyphicon-th"></span> 统计管理</a></li>
+			<li id="support_slider"><a href="{{url('support/slider')}}"><span class="glyphicon glyphicon-film"></span> 滑块管理</a></li>
+			<li id="support_charts"><a href="{{url('support/charts')}}"><span class="glyphicon glyphicon-stats"></span> 内容管理</a></li>
+			<li id="support_menu"><a href="{{url('support/menu')}}"><span class="glyphicon glyphicon-list-alt"></span> 菜单管理</a></li>
+			<li id="support_forms"><a href="{{url('support/forms')}}"><span class="glyphicon glyphicon-list"></span> 细节管理</a></li>
+			<li class="panels"><a href="{{url('support/panels')}}"><span class="glyphicon glyphicon-info-sign"></span> Alerts &amp; Panels</a></li>
 			<li class="parent ">
 				<a href="#">
 					<span class="glyphicon glyphicon-list"></span> Dropdown <span data-toggle="collapse" href="#sub-item-1" class="icon pull-right"><em class="glyphicon glyphicon-s glyphicon-plus"></em></span> 
@@ -85,7 +85,7 @@
 				</ul>
 			</li>
 			<li role="presentation" class="divider"></li>
-			<li><a href="login.html"><span class="glyphicon glyphicon-user"></span> Login Page</a></li>
+			<li><a href="{{url('support/login')}}"><span class="glyphicon glyphicon-user"></span> Login Page</a></li>
 		</ul>
 		<div class="attribution">版权所有© <a href="http://gitlar.com/support" target="_blank" title="模板之家">gitlar</a> - 详情联系 <a href="http://gitlar.com/support" title="gitlar" target="_blank">gitlar</a></div>
 	</div><!--/.sidebar-->
@@ -111,6 +111,7 @@
 		$(window).on('resize', function () {
 		  if ($(window).width() <= 767) $('#sidebar-collapse').collapse('hide')
 		})
+		$('#'+"{{str_replace('.','_',$view)}}").addClass('active');
 	})		
 	</script>	
 </body>
