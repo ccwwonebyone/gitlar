@@ -1,31 +1,3 @@
-<style>
-.file {
-    position: relative;
-    display: inline-block;
-    background: #D0EEFF;
-    border: 1px solid #99D3F5;
-    border-radius: 4px;
-    padding: 4px 12px;
-    overflow: hidden;
-    color: #1E88C7;
-    text-decoration: none;
-    text-indent: 0;
-    line-height: 20px;
-}
-.file input {
-    position: absolute;
-    font-size: 100px;
-    right: 0;
-    top: 0;
-    opacity: 0;
-}
-.file:hover {
-    background: #AADFFD;
-    border-color: #78C3F3;
-    color: #004974;
-    text-decoration: none;
-}
-</style>
 <div class="row">
 	<ol class="breadcrumb">
 		<li><a href="{{url('support/home')}}"><span class="glyphicon glyphicon-home"></span></a></li>
@@ -61,7 +33,7 @@
 			<form action="{{url('support/slider')}}" id="searchSlider" method="get">
 			{!! csrf_field() !!}
         		 <div class="input-group">
-        		     <input type="text" id="search_content" class="form-control" name="search_content" placeholder="标题,内容,图片名">
+        		     <input type="text" id="search_content" class="form-control" name="search_content" value="{{session('search')}}" placeholder="标题,内容,图片名">
         		     <span class="input-group-btn">
         		         <button class="btn btn-primary" type="button" id="search"><span class="glyphicon glyphicon-search"></span> 搜索</button>
         		     </span>

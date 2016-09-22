@@ -41,6 +41,10 @@ Route::group(['prefix' => 'project'], function () {
     Route::post('remove', 'ProjectController@remove');
 });
 
+Route::group(['prefix' => 'company'], function () {
+	Route::post('store', 'CompanyController@store');
+});
+
 Route::get('sup', function(){
 	return view('sup.index');
 });

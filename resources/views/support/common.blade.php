@@ -9,7 +9,7 @@
 <link href="{{asset('git-lar/bootstrap/dist/css/bootstrap.min.css')}}" rel="stylesheet">
 <link href="{{asset('admin/css/datepicker3.css')}}" rel="stylesheet">
 <link href="{{asset('admin/css/styles.css')}}" rel="stylesheet">
-
+<link rel="stylesheet" href="{{asset('admin/css/file.css')}}">
 <!--[if lt IE 9]>
 <script src="{{asset('admin/js/html5shiv.js')}}"></script>
 <script src="{{asset('admin/js/respond.min.js')}}"></script>
@@ -56,6 +56,8 @@
 		</form>
 		<ul class="nav menu">
 			<li id="support_home"><a href="{{url('support/home')}}"><span class="glyphicon glyphicon-dashboard"></span> 后台首页</a></li>
+			<li id="support_webset"><a href="{{url('support/webset')}}"><span class="glyphicon glyphicon-cog"></span> 前端配置</a></li>
+			<li id="support_company"><a href="{{url('support/company')}}"><span class="glyphicon glyphicon-chevron-right"></span> 公司信息</a></li>
 			<li id="support_widgets"><a href="{{url('support/widgets')}}"><span class="glyphicon glyphicon-th"></span> 统计管理</a></li>
 			<li id="support_slider"><a href="{{url('support/slider')}}"><span class="glyphicon glyphicon-film"></span> 滑块管理</a></li>
 			<li id="support_charts"><a href="{{url('support/charts')}}"><span class="glyphicon glyphicon-stats"></span> 内容管理</a></li>
@@ -91,6 +93,17 @@
 	</div><!--/.sidebar-->
 		
 	<div class="col-sm-9 col-sm-offset-3 col-lg-10 col-lg-offset-2 main">
+		<div class="row">
+		<ol class="breadcrumb">
+			<li><a href="{{url('support/home')}}"><span class="glyphicon glyphicon-home"></span></a></li>
+			<li class="active">公司信息</li>
+			@if (count($errors) > 0)
+    	        @foreach ($errors->all() as $error)
+    	            <li class="text-danger">{{ $error }}</li>
+    	        @endforeach
+			@endif
+		</ol>
+		</div><!--/.row-->
 		@include($view)
 	</div>	<!--/.main-->
 	<script>

@@ -49,7 +49,7 @@ class ProjectController extends Controller
      * @param   string $search 搜索内容
      * @return object         所有属于模块的数据
      */
-    public function getInfo($view,$is_show='',$search)
+    public function getInfo($view,$is_show='',$search=null)
     {
     	$where['belong'] = $view;
     	if($is_show!=''){
@@ -69,7 +69,7 @@ class ProjectController extends Controller
     }
     /**
      * 修改滑块 点击按钮/修改内容/修改图片内容
-     * @param  Request $request 
+     * @param  Request $request 表单数据
      * @return  json/重定向/重定向
      */
     public function editSlider(Request $request)
