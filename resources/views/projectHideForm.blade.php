@@ -1,12 +1,12 @@
 <div class="pshow" style="display:none;">
 	<form class="showInfo">
-		<input type="text"	class="project_id" value="{{$slider->id}}">
-		<input type="text"	class="project_title" value="{{$slider->title}}">
-		<input type="text"	class="project_content" value="{{$slider->content}}">
-		<input type="text"	class="project_img" value="{{$slider->img}}">
-		<input type="text"	class="project_url" value="{{$slider->url}}">
-		<input type="text"	class="project_belong" value="{{$slider->belong}}">
-		<input type="text"	class="project_creat_time" value="{{$slider->create_time}}">
-		<input type="text"	class="project_is_show" value="{{$slider->is_show}}">
+		<input type="text"	class="project_id" value="{{$project->id}}">
+		<input type="text"	class="project_title" value="{{$project->title}}">
+		<input type="text"	class="project_content" value="{{$project->content}}">
+		<input type="text"	class="project_img" value="{{$project->img}}">
+		<input type="text"	class="project_url" value="{{$project->url}}">
+		<input type="text"	class="project_belong" value="{{$project->belong}}">
+		<input type="text"	class="project_creat_time" value="{{$project->create_time}}">
+		<input type="text"	class="project_is_show" value="{{$project->is_show}}">
 	</form>
 </div>

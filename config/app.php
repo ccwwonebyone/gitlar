@@ -168,7 +168,8 @@ return [
          */
         
         Orangehill\Iseed\IseedServiceProvider::class,
-
+        Way\Generators\GeneratorsServiceProvider::class,
+        Xethron\MigrationsGenerator\MigrationsGeneratorServiceProvider::class,
         /*
          * Application Service Providers...
          */

@@ -8,34 +8,38 @@ use DB;
 
 class ProjectController extends Controller
 {
-	private $sliderRule = [												//验证规则
+	private $projectRule = [												//验证规则
 					'title' =>'required|between:1,10',
     				'content' => 'required',
             		'image' => 'required|image|mimes:jpeg,png,jpg,gif,svg|max:20480',
         		  ];
-    private $slider = 'slider';											//滑块栏
+    private $projectPro = [
+                            'slider'=>'slider',                         //滑块栏
+                            'wonder'=>'wonder'
+                            ];								
     private $db = 'project';											//数据表
     /**
     * 添加滑块
     *form表单post的值
     * @return void
     */
-    public function addSlider(Request $request)
+    public function add(Request $request)
     {
     		
     	if ($request->hasFile('image')) {
     		$file = $request->file('image');
     		if ($file->isValid()){
     			$filename = $file -> getClientOriginalName();
-    			$this->validate($request,$this->sliderRule);   			
+    			$this->validate($request,$this->projectRule);   			
     			$fileName = date('YmdHis').$file->getClientOriginalName();
     			$request->file('image')->move(public_path().'/images\/silder\/', $fileName);
     			$data['title'] = $request->input('title');
     			$data['content'] = $request->input('content');
-    			$data['is_show'] = $request->input('is_show'); 
+    			$data['is_show'] = $request->input('is_show');
+                $data['is_show'] = $request->input('is_show'); 
     			$data['img'] = 'images/silder/'.$fileName;
     			$data['create_time'] = date('Y-m-d H:i:s');
-    			$data['belong'] = $this->slider;
+    			$data['belong'] = $request->input('belong');
     			if(DB::table($this->db)->insert($data)){
     				return redirect()->back()->withErrors(['保存','成功']);
     			}   			
@@ -72,7 +76,7 @@ class ProjectController extends Controller
      * @param  Request $request 表单数据
      * @return  json/重定向/重定向
      */
-    public function editSlider(Request $request)
+    public function edit(Request $request)
     {
     	$data = $request->all();
     	unset($data['image']);
@@ -84,13 +88,13 @@ class ProjectController extends Controller
     		$file = $request->file('image');
     		if ($file->isValid()){
     			$filename = $file -> getClientOriginalName();
-    			$this->validate($request,$this->sliderRule);   			
+    			$this->validate($request,$this->projectRule);   			
     			$fileName = date('YmdHis').$file->getClientOriginalName();
     			$request->file('image')->move(public_path().'/images\/silder\/', $fileName);
     			$data['img'] = 'images/silder/'.$fileName;
     		}
     	}else{
-    		$newRule = $this->sliderRule;
+    		$newRule = $this->projectRule;
     		if(isset($data['title'])){
     			unset($newRule['image']);
     			$this->validate($request,$newRule);
@@ -116,10 +120,10 @@ class ProjectController extends Controller
     	}
 
     }
-    public function searchSlider(Request $request)
+    /*public function search(Request $request)
     {
     	$search = $request->input('search_content');
-    	$where['belong'] = $this->slider;
+    	$where['belong'] = $this->projectPro[$view];
     	DB::table($this->db)
     			->where($where)->Where(function ($query) {
                 $query->orwhere('content', 'like', '%'.$search.'%')
@@ -128,5 +132,5 @@ class ProjectController extends Controller
             })
 			->get();
     	return redirect()->back()->withErrors($where.':');
-    }
+    }*/
 }

@@ -32,12 +32,16 @@ Route::get('support', function () {
 Route::group(['prefix' => 'menu'], function () {
     Route::get('getallData', 'MenuController@getallData');
     Route::get('getPid', 'MenuController@getPid');
+    Route::get('getOrder', 'MenuController@getOrder');
+    Route::post('add', 'MenuController@add');
+    Route::post('remove', 'MenuController@remove');
+    Route::post('edit', 'MenuController@edit');
 });
 
 Route::group(['prefix' => 'project'], function () {
-    Route::any('addSlider', 'ProjectController@addSlider');
-    Route::post('editSlider', 'ProjectController@editSlider');
-    Route::get('searchSlider', 'ProjectController@searchSlider');
+    Route::any('add', 'ProjectController@add');
+    Route::post('edit', 'ProjectController@edit');
+    Route::get('search', 'ProjectController@search');
     Route::post('remove', 'ProjectController@remove');
 });
 

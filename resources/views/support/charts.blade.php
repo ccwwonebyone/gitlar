@@ -1,10 +1,5 @@
-			
-		<div class="row">
-			<ol class="breadcrumb">
-				<li><a href="#"><span class="glyphicon glyphicon-home"></span></a></li>
-				<li class="active">Charts</li>
-			</ol>
-		</div><!--/.row-->
+<script src="{{asset('admin/js/chart.min.js')}}"></script>
+<script src="{{asset('admin/js/chart-data.js')}}"></script>			
 		
 		<div class="row">
 			<div class="col-lg-12">

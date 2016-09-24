@@ -9,8 +9,8 @@
 					<span class="menu"><img src="{{asset('images/menu.png')}}" alt=""> </span>
 					<ul>
 						@foreach($menus as $menu)
-						<li ><a href="{{$menu['url']}}" class="hvr-sweep-to-bottom color">
-						<i class="glyphicon glyphicon-{{$menu['icon']}}"></i>{{$menu['name']}}</a></li>
+							<li ><a href="{{$menu['url']}}" class="hvr-sweep-to-bottom color">
+							<i class="glyphicon glyphicon-{{$menu['icon']}}"></i>{{$menu['name']}}</a></li>
 						@endforeach
 					<div class="clearfix"> </div>
 					</ul>
