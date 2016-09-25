@@ -143,6 +143,15 @@
         							showRefresh:true,
         							sortName:'id',
         							sortOrder:'asc',
+                      queryParams:function(params) {        //不知道出了什么问题发送没有请求参数 要自己配置
+                                    var paramsc = {};
+                                    paramsc.limit =  params.pageSize;
+                                    paramsc.offset =  (params.pageNumber-1)*(params.pageSize);
+                                    paramsc.search =  params.searchText;
+                                    paramsc.sort =  params.sortName;
+                                    paramsc.order =  params.sortOrder;
+                                    return paramsc;
+                                  },
         							showColumns:true,
         							search:true,
         							showPaginationSwitch:true,
@@ -154,7 +163,7 @@
         							url:"{{url('menu/getallData')}}",
         							columns:[
         								{field: 'state',checkbox: true,align: 'center',valign: 'middle'},
-        								{field:'id',title:'菜单id',sortable: true,align:'center','visible':false},
+        								{field:'id',title:'菜单id',sortable: true,align:'center',visible:false},
         								{field:'name',title:'名称',align:'center'},
         								{field:'url',title:'链接',align:'center'},
         								{field:'order',title:'排序',sortable: true,align:'center'},

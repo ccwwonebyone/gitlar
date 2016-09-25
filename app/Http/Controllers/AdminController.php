@@ -5,7 +5,7 @@ namespace App\Http\Controllers;
 use DB;
 use App\Http\Requests;
 use Illuminate\Http\Request;
-use App\Http\Controllers\MenuController as menu;
+use App\Http\Controllers\MenuController as Menu;
 use App\Http\Controllers\ProjectController as Project;
 use App\Http\Controllers\CompanyController as Company;
 
@@ -19,42 +19,47 @@ class AdminController extends Controller
      */
     public function show(Request $request,$need='home')
     {
-        $show_tables = $this->getTables();
+        $menu = new Menu;
+        $project = new Project;
 
-        $projectMenu = ['slider','wonder'];                     //属于project的菜单
-        //return url('menu/getallData');
-        
-        $menu = new menu;
+        $show_tables = $this->getTables();
+        $projectMenu = $this->getProMenu();                     //属于project的菜单
         $menus = $menu->getMenu('0','1','asc');
         $menuName = [];
         foreach ($menus as $value) {
             $menuName[$value->url] = $value->name;          //菜单链接=>菜单名
+        }        
+        $view = $need;
+        if($need=='login') 
+            return view('support.login');
+                                                  
+        if(in_array($need, $projectMenu)){
+            $view = 'project';             //需要显示的页面
+            $data = $request->all();
+            $search = isset($data['search_content'])?$data['search_content']:'';
+            session(['search' => $search]);
+            $is_show = isset($data['is_show'])?$data['is_show']:'';
+            $info = $project->getInfo($need,$is_show,$search);
         }
 
-        $project = new Project;
-        $view = $need;                                          //需要显示的页面
-    	if($need!='login'){
-            if(in_array($need, $projectMenu)){
-                $view = 'project';             
-                $data = $request->all();
-                $search = isset($data['search_content'])?$data['search_content']:'';
-                session(['search' => $search]);
-                $is_show = isset($data['is_show'])?$data['is_show']:'';
-                $info = $project->getInfo($need,$is_show,$search);
-            }
-            if($need=='company'){
-                $company = new Company;
-                $info = $company -> edit();
-            }
-            if(isset($search) && $search!=''){
-                return view('support.common',compact('view','info','menuName','need','show_tables','menus'))->withErrors(['搜索',$search]);
-            }else{
-                return view('support.common',compact('view','info','menuName','need','show_tables','menus'));
-            }
-    		
-    	}else{
-    		return view('support.login');
-    	}
+        if($need=='company'){
+            $company = new Company;
+            $info = $company -> edit();
+        }
+        
+        if(isset($search) && $search!=''){
+            //传到common视图数据 
+            //view 包含的视图文件    由于project 视图的复用 不能使view等同于need
+            //info project 显示数据
+            //menuName 菜单url=>name
+            //need 菜单中文名,project视图设置归属项
+            //show_tables 所有数据表名 用于菜单管理的选择项
+            //menus 菜单列表用于生成菜单 common
+            return view('support.common',compact('view','info','menuName','need','show_tables','menus'))
+                    ->withErrors(['搜索',$search]);
+        }else{
+            return view('support.common',compact('view','info','menuName','need','show_tables','menus'));
+        }
     	
     }
     /**
@@ -72,5 +77,18 @@ class AdminController extends Controller
             $show_tables[] = str_replace($prefix,'',$table['Tables_in_'.$database]);
         }
         return $show_tables;
+    }
+    /**
+     * 获取属于project数据表的菜单
+     * @return array 
+     */
+    public function getProMenu()
+    {
+        $proMenus = DB::table('menu')->select('url')->where('table','project')->get();
+        $proMenu = array();
+        foreach ($proMenus as $value) {
+            $proMenu[] = $value->url;
+        }
+        return $proMenu;
     }
 }

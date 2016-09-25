@@ -12,7 +12,7 @@ class CreateGlProvinceTable extends Migration {
 	 */
 	public function up()
 	{
-		Schema::create('gl_province', function(Blueprint $table)
+		Schema::create('province', function(Blueprint $table)
 		{
 			$table->bigInteger('ProvinceID')->primary();
 			$table->string('ProvinceName', 50)->nullable();
@@ -29,7 +29,7 @@ class CreateGlProvinceTable extends Migration {
 	 */
 	public function down()
 	{
-		Schema::drop('gl_province');
+		Schema::drop('province');
 	}
 
 }
