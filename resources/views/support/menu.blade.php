@@ -139,7 +139,7 @@
 						    $(function () {
     							$('#menuTable').bootstrapTable({
     								toolbar:"#toolbar",
-        							showToggle:true,
+        							//showToggle:true,
         							showRefresh:true,
         							sortName:'id',
         							sortOrder:'asc',
@@ -158,7 +158,7 @@
         							// rowStyle:"rowStyle",
         							striped:true,
         							pagination:true,
-        							pageList:"[10,20,30,'所有']",
+        							pageList:"[10,20,30,40]",
         							sidePagination:'server',
         							url:"{{url('menu/getallData')}}",
         							columns:[

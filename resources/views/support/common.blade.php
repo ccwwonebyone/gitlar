@@ -3,25 +3,32 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
+<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1"/>
 <meta name="csrf-token" content="{{ csrf_token() }}">
 <title>gitlar-admin</title>
 
 <link href="{{asset('git-lar/bootstrap/dist/css/bootstrap.min.css')}}" rel="stylesheet">
 <link href="{{asset('admin/css/datepicker3.css')}}" rel="stylesheet">
 <link href="{{asset('admin/css/styles.css')}}" rel="stylesheet">
-<link rel="stylesheet" href="{{asset('admin/css/file.css')}}">
-
+<!-- <link rel="stylesheet" href="{{asset('admin/css/file.css')}}"> -->
+<link href="{{asset('git-lar/bootstrap-tagsinput/dist/bootstrap-tagsinput.css')}}" rel="stylesheet">
+<link href="{{asset('git-lar/bootstrap-fileinput/css/fileinput.min.css')}}" rel="stylesheet">
 <!--[if lt IE 9]>
 <script src="{{asset('admin/js/html5shiv.js')}}"></script>
 <script src="{{asset('admin/js/respond.min.js')}}"></script>
 <![endif]-->
 <script src="{{asset('git-lar/jquery/dist/jquery.min.js')}}"></script>
-<script src="{{asset('git-lar/bootstrap/dist/js/bootstrap.min.js')}}"></script>
-<script src="{{asset('admin/js/bootstrap-datepicker.js')}}"></script>
 
+<script src="{{asset('git-lar/bootstrap/dist/js/bootstrap.min.js')}}"></script>
+<!-- 日期插件-->
+<script src="{{asset('admin/js/bootstrap-datepicker.js')}}"></script>
+<!-- 图表插件-->
 <script src="{{asset('admin/js/easypiechart.js')}}"></script>
 <script src="{{asset('admin/js/easypiechart-data.js')}}"></script>
-
+<!--tagsinput -->
+<script src="{{asset('git-lar/bootstrap-tagsinput/dist/bootstrap-tagsinput.min.js')}}"></script>
+<!-- 文件上传 -->
+<script src="{{asset('git-lar/bootstrap-fileinput/js/fileinput.js')}}"></script>
 </head>
 
 <body>

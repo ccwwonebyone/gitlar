@@ -30,6 +30,8 @@
   ],
   "dependencies": {
 	"bootstrap": "~3.3.4",
-	"bootstrap-table":"~1.1.5"
+	"bootstrap-table":"~1.1.5",
+	"bootstrap-tagsinput":"~0.8.*",
+	"bootstrap-fileinput":"~4.3.5"
   }
 }

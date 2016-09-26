@@ -28,7 +28,7 @@ Route::get('support/{need}', 'AdminController@show')->name('support');
 Route::get('support', function () {
     return redirect()->route('support',['need' => 'home']);
 });
-
+//菜单页面
 Route::group(['prefix' => 'menu'], function () {
     Route::get('getallData', 'MenuController@getallData');
     Route::get('getPid', 'MenuController@getPid');
@@ -37,14 +37,14 @@ Route::group(['prefix' => 'menu'], function () {
     Route::post('remove', 'MenuController@remove');
     Route::post('edit', 'MenuController@edit');
 });
-
+//project页面
 Route::group(['prefix' => 'project'], function () {
     Route::any('add', 'ProjectController@add');
     Route::post('edit', 'ProjectController@edit');
     Route::get('search', 'ProjectController@search');
     Route::post('remove', 'ProjectController@remove');
 });
-
+//公司页面
 Route::group(['prefix' => 'company'], function () {
 	Route::post('store', 'CompanyController@store');
 });

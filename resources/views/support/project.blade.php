@@ -104,11 +104,10 @@
    	 					<!--  <div class="formRight">
    	 					                        	<input type="file" id="file" name="file" />
    	 					                        </div><div class="clear"></div> -->
-   	 					<div class="col-md-2">
-   	 						<a href="javascript:;" class="file">浏览
-   	 					    							<input type="file" class="form-control" name="image" id="image">
-   	 												</a>
-   	 					</div>
+   	 					    <div class="col-md-10">
+   	 					    	<input type="file" class="form-control" name="image" id="image">
+   	 					    </div>  	 						
+   	 					    
    	 					</div>
 					  <div class="form-group">
    	 					<label for="name" class="col-md-2 control-label">显示：</label>
@@ -132,9 +131,11 @@
         </div><!-- /.modal-content -->
     </div><!-- /.modal -->
 </div>
-
 <script>
 $(function(){
+	$("#image").fileinput({
+		showUpload:false
+	});
 	//增加滑块
 	$('#add').click(function(){
 		$('#id').val('');
