@@ -1,25 +1,33 @@
 <div class="row">
-<div class="panel panel-info col-xs-12">
-    <div class="panel-heading">前端配置</div>
-    <div class="panel-body">
-		<form action="{{url('company/store')}}" id="form" role="form" method="POST">
-		{!! csrf_field() !!}
-			<div class="row">
-				<div class="form-group">
-              <label for="name" class="col-md-1 control-label">标题：</label>
-              <div class="col-md-10">
-                <input type="text" class="form-control" name="profile" id="profile">
-              </div>                
-        </div>
-			</div>
-		</form>
-    </div>
-    <div class="panel-footer">
-    	<span class="btn btn-success" id="save">保存</span>
-    </div>
-
-</div>
+<div class="row">
+  <div class="col-md-4">
+    <h1 class="page-header">
+      <div class="btn-group">
+          <button type="button" class="btn btn-primary btn-lg dropdown-toggle" data-toggle="dropdown">
+            首页配置 <span class="caret"></span>
+          </button>
+        <ul class="dropdown-menu" role="menu">
+            @foreach($getProset as $key=>$value)
+              <li><a href="{{url('support/'.$key)}}">{{$value}}</a></li>
+            @endforeach
+          </ul>
+      </div>
+    </h1>
+  </div>
 </div>
 <script>
-  $('#profile').tagsinput();
+  $('#profile').tagsinput({
+      itemValue: 'value',
+      itemText: 'text'
+  });
+  $('#profile').tagsinput('add', { "value": 1 , "text": "Amsterdam"   , "continent": "Europe"    });
+
+  $('#save').click(function(){
+    console.log($("#profile").tagsinput('items'));
+
+  });
+
+  $('#profile').on('beforeItemAdd',function(event){
+      console.log(event);
+  });
 </script>

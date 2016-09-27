@@ -28,7 +28,7 @@ Route::get('support/{need}', 'AdminController@show')->name('support');
 Route::get('support', function () {
     return redirect()->route('support',['need' => 'home']);
 });
-//菜单页面
+//菜单请求
 Route::group(['prefix' => 'menu'], function () {
     Route::get('getallData', 'MenuController@getallData');
     Route::get('getPid', 'MenuController@getPid');
@@ -37,7 +37,14 @@ Route::group(['prefix' => 'menu'], function () {
     Route::post('remove', 'MenuController@remove');
     Route::post('edit', 'MenuController@edit');
 });
-//project页面
+//栏目请求
+Route::group(['prefix' => 'proset'], function () {
+    Route::get('getallData', 'ProsetController@getallData');
+    Route::post('add', 'ProsetController@add');
+    Route::post('remove', 'ProsetController@remove');
+    Route::post('edit', 'ProsetController@edit');
+});
+//project请求
 Route::group(['prefix' => 'project'], function () {
     Route::any('add', 'ProjectController@add');
     Route::post('edit', 'ProjectController@edit');

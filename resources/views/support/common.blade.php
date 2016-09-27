@@ -5,7 +5,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1"/>
 <meta name="csrf-token" content="{{ csrf_token() }}">
-<title>gitlar-admin</title>
+<title>gitlar</title>
 
 <link href="{{asset('git-lar/bootstrap/dist/css/bootstrap.min.css')}}" rel="stylesheet">
 <link href="{{asset('admin/css/datepicker3.css')}}" rel="stylesheet">
@@ -102,13 +102,16 @@
 			<li role="presentation" class="divider"></li>
 			<li><a href="{{url('support/login')}}"><span class="glyphicon glyphicon-user"></span>登陆界面</a></li>
 		</ul>
-		<div class="attribution">版权所有© <a href="http://gitlar.com/support" target="_blank" title="模板之家">gitlar</a> - 详情联系 <a href="http://gitlar.com/support" title="gitlar" target="_blank">gitlar</a></div>
+		<div class="attribution">版权所有© <a href="http://gitlar.com/support" target="_blank" title="gitlar">gitlar</a> - 详情联系 <a href="http://gitlar.com/support" title="gitlar" target="_blank">gitlar</a></div>
 	</div><!--/.sidebar-->
 		
 	<div class="col-sm-9 col-sm-offset-3 col-lg-10 col-lg-offset-2 main">
 		<div class="row">
 		<ol class="breadcrumb">
 			<li><a href="{{url('support/home')}}"><span class="glyphicon glyphicon-home"></span></a></li>
+			@if(in_array($need,array_keys($getProset)))
+				<li class="active">{{$menuName[$view]}}</li>
+			@endif
 			<li class="active">{{$menuName[$need]}}</li>
 			@if (count($errors) > 0)
     	        @foreach ($errors->all() as $error)

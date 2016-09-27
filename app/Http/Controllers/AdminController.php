@@ -6,6 +6,7 @@ use DB;
 use App\Http\Requests;
 use Illuminate\Http\Request;
 use App\Http\Controllers\MenuController as Menu;
+use App\Http\Controllers\ProsetController as Proset;
 use App\Http\Controllers\ProjectController as Project;
 use App\Http\Controllers\CompanyController as Company;
 
@@ -23,19 +24,27 @@ class AdminController extends Controller
         $project = new Project;
 
         $show_tables = $this->getTables();
-        $projectMenu = $this->getProMenu();                     //属于project的菜单
+        $getProset = $this->getProset();                     //属于project的菜单
+
+        $projectUrl = array_keys($getProset);
+
         $menus = $menu->getMenu('0','1','asc');
         $menuName = [];
         foreach ($menus as $value) {
             $menuName[$value->url] = $value->name;          //菜单链接=>菜单名
-        }        
+        }
+        $menuName = array_merge($menuName,$getProset);     
         $view = $need;
         if($need=='login') 
             return view('support.login');
                                                   
-        if(in_array($need, $projectMenu)){
-            $view = 'project';             //需要显示的页面
+        if(in_array($need, $projectUrl) || $need == 'project'){
+            $view = 'project';          //需要显示的页面            
             $data = $request->all();
+            if($need == 'project'){
+                $need = $projectUrl[0];
+            }
+
             $search = isset($data['search_content'])?$data['search_content']:'';
             session(['search' => $search]);
             $is_show = isset($data['is_show'])?$data['is_show']:'';
@@ -55,10 +64,10 @@ class AdminController extends Controller
             //need 菜单中文名,project视图设置归属项
             //show_tables 所有数据表名 用于菜单管理的选择项
             //menus 菜单列表用于生成菜单 common
-            return view('support.common',compact('view','info','menuName','need','show_tables','menus'))
+            return view('support.common',compact('view','info','menuName','need','show_tables','menus','getProset'))
                     ->withErrors(['搜索',$search]);
         }else{
-            return view('support.common',compact('view','info','menuName','need','show_tables','menus'));
+            return view('support.common',compact('view','info','menuName','need','show_tables','menus','getProset'));
         }
     	
     }
@@ -90,5 +99,18 @@ class AdminController extends Controller
             $proMenu[] = $value->url;
         }
         return $proMenu;
+    }
+    /**
+     * 获取proset的菜单
+     * @return array 
+     */
+    public function getProset()
+    {
+         $prosets = DB::table('proset')->where('is_show',1)->get();
+         $proset = array();
+         foreach ($prosets as $value) {
+             $proset[$value->url] = $value->name;
+         }
+         return $proset;
     }
 }

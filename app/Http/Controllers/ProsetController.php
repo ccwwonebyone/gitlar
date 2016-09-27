@@ -6,22 +6,21 @@ use Illuminate\Http\Request;
 use App\Http\Requests;
 use DB;
 
-class Menucontroller extends Controller
+class ProsetController extends Controller
 {
-    private $menuRule = [                                                //验证规则
-                    'name' =>'required|between:1,10',
-                    'url' => 'required',
-                  ];
+	private $prosetRule = [												//验证规则
+					'name' =>'required',
+    				'url' => 'required',
+        		  ];
 
-	private $table = 'menu';
-
+    private $table = 'proset';
 	/**
 	 * 获取需要的菜单数据
 	 * @param  string/array $where 查询条件
 	 * @param  array $data  分页请求数据
 	 * @return array           数据集合
 	 */
-    public function menuData($where='',$data,$search)
+    public function prosetData($where='',$data,$search)
     {
         if($where!=''){
             $total = DB::table($this->table)->where($where)->count();
@@ -43,17 +42,9 @@ class Menucontroller extends Controller
                          })
                          ->get()->toArray();          
         }
-/*        foreach ($rows as $key=>$row) {
-            if($row->pid ==0){
-                $rows[$key]->pid_name = '主菜单';
-            }else{
-                $pid_name = DB::table($this->table)->where('id',$row->pid)->value('name');
-                $rows[$key]->pid_name = $pid_name;
-            }           
-        }*/
-        $menuData['total'] = $total? $total : 0;
-        $menuData['rows'] = $rows? $rows :'';
-    	return $menuData;
+        $prosetData['total'] = $total? $total : 0;
+        $prosetData['rows'] = $rows? $rows :'';
+    	return $prosetData;
        
     	//return json_encode($menuDatas);
     }
@@ -66,32 +57,30 @@ class Menucontroller extends Controller
     {
         $data = $request->all();
         $search = isset($data['search'])?$data['search']:'';
-    	echo json_encode($this->menuData('',$data,$search));
+    	echo json_encode($this->prosetData('',$data,$search));
     }
-    /**
-     * 获取所属平台的最大排序
-     * @param  Request $request 请求参数
-     * @return int           排序
-     */
-    public function getOrder(Request $request)
-    {
-        $data = $request->all();
-        $belong = $data['belong'];
-        $order = DB::table($this->table)->where('belong',$belong)->max('order');
-        echo $order+1;
-    }
+	/**
+	 * 增加proset
+	 * @param Request $request 请求参数
+	 * @return void           
+	 */
     public function add(Request $request)
     {
         $data = $request->all();
         unset($data['_token']);
         unset($data['id']);
-        $this->validate($request,$this->menuRule);
+        $this->validate($request,$this->prosetRule);
         if(DB::table($this->table)->insert($data)){
             return redirect()->back()->withErrors(['保存','成功']);
         }else{
              return redirect()->back()->withErrors(['保存','失败']);
         }
     }
+    /**
+     * 删除proset
+     * @param  Request $request 请求参数
+     * @return void           
+     */
     public function remove(Request $request)
     {
         $data = $request->all();
@@ -103,25 +92,22 @@ class Menucontroller extends Controller
             return 'fail';
         }
     }
-
+    /**
+     * 编辑proset
+     * @param  Request $request 请求参数
+     * @return void           
+     */
     public function edit(Request $request)
     {
         $data = $request->all();
         $where['id'] = $data['id'];
         unset($data['id']);
         unset($data['_token']);
-        $this->validate($request,$this->menuRule);
+        $this->validate($request,$this->prosetRule);
         if(DB::table($this->table)->where($where)->update($data)){
             return redirect()->back()->withErrors(['修改','成功']);
         }else{
             return redirect()->back()->withErrors(['修改','失败']);
         }
-    }
-    public function getMenu($belong,$is_show,$order)
-    {
-        $where['belong'] = $belong;
-        $where['is_show'] = $is_show;
-        $data = DB::table($this->table)->where($where)->orderBy('order',$order)->get();
-        return $data;
     }
 }

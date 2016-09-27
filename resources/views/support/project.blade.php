@@ -1,6 +1,17 @@
 <div class="row">
 	<div class="col-md-4">
-		<h1 class="page-header"><a href="{{url('support/'.$need)}}">{{$menuName[$need]}}</a></h1>
+		<h1 class="page-header">
+			<div class="btn-group">
+  				<button type="button" class="btn btn-primary btn-lg dropdown-toggle" data-toggle="dropdown">
+    				{{$getProset[$need]}} <span class="caret"></span>
+  				</button>
+ 				<ul class="dropdown-menu" role="menu">
+  					@foreach($getProset as $key=>$value)
+    					<li><a href="{{url('support/'.$key)}}">{{$value}}</a></li>
+    				@endforeach
+  				</ul>
+			</div>
+		</h1>
 	</div>
 	<div class="col-md-8 text-right" style="margin: 30px 0 0 0;">
 		<div class="dropdown pull-right">
@@ -35,11 +46,11 @@
 	@foreach($info as $project)
 	<div class="showProject">
 		@include('projectHideForm')
-		<div class="col-md-6">
+		<div class="col-md-4">
 			<div class="panel panel-{{$status[rand(0,5)]}}">
 	    	<div class="panel-heading">
 	    	    <div class="panel-title">
-	    	       <h3 class="col-md-6">{{$project->title}}</h3>
+	    	       <h4 class="col-md-6">{{$project->title}}</h4>
 	    	       <div style="float: right;margin: 17px 0 0 0;">   	       	   	
 	    	       		<small class="btn btn-xs btn-warning is_show" title="点击切换">{{$project->is_show?'显示':'隐藏'}}</small>&nbsp&nbsp   	       	
 	 	  	       		<span class="btn btn-xs btn-info glyphicon glyphicon-edit edit" title="编辑"></span>
@@ -56,11 +67,9 @@
 	</div>
 	@endforeach
 @else	
-	<div class="container">
-	   <div class="jumbotron">
-	        <h1>目前没有这类型信息</h1>
-	        <p>点击增加添加</p>
-	   </div>
+	<div class="jumbotron">
+	     <h1 class="text-center">目前没有这类型信息</h1>
+	     <p class="text-center">点击<span class="btn btn-success btn-md" id="oadd">增加</span>添加</p>
 	</div>
 @endif
 
@@ -137,7 +146,7 @@ $(function(){
 		showUpload:false
 	});
 	//增加滑块
-	$('#add').click(function(){
+	$('#add,#oadd').click(function(){
 		$('#id').val('');
 		$('input:radio[name=is_show]')[0].checked = true;			
 		$('#content').val('');

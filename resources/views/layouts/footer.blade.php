@@ -1,7 +1,7 @@
 <!--footer-->
 <div class="footer">
 	<div class="container">
-		<h2><a href="{{action('IndexController@index')}}">{{$companyInfo['name']}}</a></h2>
+		<h2><a href="#">{{$companyInfo['name']}}</a></h2>
 		
 					<ul>
 						@foreach($menus as $menu)
