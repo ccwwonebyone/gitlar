@@ -7,8 +7,8 @@
             首页配置 <span class="caret"></span>
           </button>
         <ul class="dropdown-menu" role="menu">
-            @foreach($getProset as $key=>$value)
-              <li><a href="{{url('support/'.$key)}}">{{$value}}</a></li>
+            @foreach($fontMenus as $value)
+              <li><a href="{{url('support/'.$value->url)}}">{{$value->name}}</a></li>
             @endforeach
           </ul>
       </div>

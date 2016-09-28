@@ -1,3 +1,9 @@
+@if($need=='project')
+	<div class="jumbotron">
+	     <h1 class="text-center">目前没有栏目或已被隐藏</h1>
+	     <p class="text-center">点击<span class="btn btn-success btn-md">栏位管理</span>添加或修改</p>
+	</div>
+@else
 <div class="row">
 	<div class="col-md-4">
 		<h1 class="page-header">
@@ -140,6 +146,7 @@
         </div><!-- /.modal-content -->
     </div><!-- /.modal -->
 </div>
+@endif
 <script>
 $(function(){
 	$("#image").fileinput({

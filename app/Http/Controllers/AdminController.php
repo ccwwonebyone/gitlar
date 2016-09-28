@@ -29,6 +29,7 @@ class AdminController extends Controller
         $projectUrl = array_keys($getProset);
 
         $menus = $menu->getMenu('0','1','asc');
+        $fontMenus = $menu->getMenu('1','1','asc');
         $menuName = [];
         foreach ($menus as $value) {
             $menuName[$value->url] = $value->name;          //菜单链接=>菜单名
@@ -41,10 +42,9 @@ class AdminController extends Controller
         if(in_array($need, $projectUrl) || $need == 'project'){
             $view = 'project';          //需要显示的页面            
             $data = $request->all();
-            if($need == 'project'){
+            if($need == 'project' && !empty($projectUrl)){
                 $need = $projectUrl[0];
             }
-
             $search = isset($data['search_content'])?$data['search_content']:'';
             session(['search' => $search]);
             $is_show = isset($data['is_show'])?$data['is_show']:'';
@@ -55,7 +55,6 @@ class AdminController extends Controller
             $company = new Company;
             $info = $company -> edit();
         }
-        
         if(isset($search) && $search!=''){
             //传到common视图数据 
             //view 包含的视图文件    由于project 视图的复用 不能使view等同于need
@@ -64,10 +63,11 @@ class AdminController extends Controller
             //need 菜单中文名,project视图设置归属项
             //show_tables 所有数据表名 用于菜单管理的选择项
             //menus 菜单列表用于生成菜单 common
-            return view('support.common',compact('view','info','menuName','need','show_tables','menus','getProset'))
+            //fontMenus 前端菜单
+            return view('support.common',compact('view','info','menuName','need','show_tables','menus','getProset','fontMenus'))
                     ->withErrors(['搜索',$search]);
         }else{
-            return view('support.common',compact('view','info','menuName','need','show_tables','menus','getProset'));
+            return view('support.common',compact('view','info','menuName','need','show_tables','menus','getProset','fontMenus'));
         }
     	
     }

@@ -29,17 +29,18 @@ class ProjectController extends Controller
     	if ($request->hasFile('image')) {
     		$file = $request->file('image');
     		if ($file->isValid()){
+                $belong = $request->input('belong');
     			$filename = $file -> getClientOriginalName();
     			$this->validate($request,$this->projectRule);   			
     			$fileName = date('YmdHis').$file->getClientOriginalName();
-    			$request->file('image')->move(public_path().'/images\/silder\/', $fileName);
+    			$request->file('image')->move(public_path().'/images\/'.$belong.'\/', $fileName);
     			$data['title'] = $request->input('title');
     			$data['content'] = $request->input('content');
     			$data['is_show'] = $request->input('is_show');
                 $data['is_show'] = $request->input('is_show'); 
-    			$data['img'] = 'images/silder/'.$fileName;
+    			$data['img'] = 'images/'.$belong.'/'.$fileName;
     			$data['create_time'] = date('Y-m-d H:i:s');
-    			$data['belong'] = $request->input('belong');
+    			$data['belong'] = $belong;
     			if(DB::table($this->db)->insert($data)){
     				return redirect()->back()->withErrors(['保存','成功']);
     			}   			
@@ -87,11 +88,12 @@ class ProjectController extends Controller
     	if ($request->hasFile('image')) {
     		$file = $request->file('image');
     		if ($file->isValid()){
+                $belong = $request->input('belong');
     			$filename = $file -> getClientOriginalName();
     			$this->validate($request,$this->projectRule);   			
     			$fileName = date('YmdHis').$file->getClientOriginalName();
-    			$request->file('image')->move(public_path().'/images\/silder\/', $fileName);
-    			$data['img'] = 'images/silder/'.$fileName;
+    			$request->file('image')->move(public_path().'/images\/'.$belong.'\/', $fileName);
+    			$data['img'] = 'images/'.$belong.'/'.$fileName;
     		}
     	}else{
     		$newRule = $this->projectRule;
