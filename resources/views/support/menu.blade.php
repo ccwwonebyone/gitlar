@@ -162,7 +162,7 @@
         							sidePagination:'server',
         							url:"{{url('menu/getallData')}}",
         							columns:[
-        								{field: 'state',checkbox: true,align: 'center',valign: 'middle'},
+        								{field:'state',checkbox: true,align: 'center',valign: 'middle'},
         								{field:'id',title:'菜单id',sortable: true,align:'center',visible:false},
         								{field:'name',title:'名称',align:'center'},
         								{field:'url',title:'链接',align:'center'},

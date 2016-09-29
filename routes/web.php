@@ -23,7 +23,7 @@ Route::get('typo', 'EventController@index');
 /*Route::resource('menu', 'MenuController');*/
 
 //后台页面
-Route::get('support/{need}', 'AdminController@show')->name('support');
+Route::get('support/{need}/{subColumn?}', 'AdminController@show')->name('support');
 
 Route::get('support', function () {
     return redirect()->route('support',['need' => 'home']);

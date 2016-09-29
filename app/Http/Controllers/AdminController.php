@@ -18,7 +18,7 @@ class AdminController extends Controller
      * @param  menu  $need    需要请求的链接
      * @return void           view
      */
-    public function show(Request $request,$need='home')
+    public function show(Request $request,$need='home',$subColumn='')
     {
         $menu = new Menu;
         $project = new Project;
@@ -27,24 +27,43 @@ class AdminController extends Controller
         $getProset = $this->getProset();                     //属于project的菜单
 
         $projectUrl = array_keys($getProset);
-
+        //后端菜单
         $menus = $menu->getMenu('0','1','asc');
-        $fontMenus = $menu->getMenu('1','1','asc');
         $menuName = [];
         foreach ($menus as $value) {
             $menuName[$value->url] = $value->name;          //菜单链接=>菜单名
         }
+
+        //前端启用菜单
+        $fontMenu = $menu->getMenu('1','1','asc');
+        $fontMenus = [];
+        foreach ($fontMenu as $value) {
+            $fontMenus[$value->url] = $value->name;          //菜单链接=>菜单名
+        }
+
         $menuName = array_merge($menuName,$getProset);     
         $view = $need;
-        if($need=='login') 
-            return view('support.login');
-                                                  
+        
+        //栏目配置页面
+        if($need == 'project'){
+            if(!empty($projectUrl)&&$subColumn==''){
+                $subColumn = $projectUrl[0];
+            }
+        }
+        //前端菜单页面
+        if($need == 'webset'){
+            if(!empty($fontMenus)&&$subColumn==''){
+                 $subColumn = $fontMenus[0];
+            }
+        }
+
         if(in_array($need, $projectUrl) || $need == 'project'){
-            $view = 'project';          //需要显示的页面            
-            $data = $request->all();
+            $view = 'project';          //需要显示的页面                        
             if($need == 'project' && !empty($projectUrl)){
                 $need = $projectUrl[0];
             }
+
+            $data = $request->all();
             $search = isset($data['search_content'])?$data['search_content']:'';
             session(['search' => $search]);
             $is_show = isset($data['is_show'])?$data['is_show']:'';
@@ -69,7 +88,9 @@ class AdminController extends Controller
         }else{
             return view('support.common',compact('view','info','menuName','need','show_tables','menus','getProset','fontMenus'));
         }
-    	
+        //登陆界面
+        if($need=='login') 
+            return view('support.login');   	
     }
     /**
      * 获取当前数据库中的所有表 除去数据库,数据表前缀的影响
