@@ -1,4 +1,4 @@
-@if($need=='project')
+@if($subColumn=='')
 	<div class="jumbotron">
 	     <h1 class="text-center">目前没有栏目或已被隐藏</h1>
 	     <p class="text-center">点击<span class="btn btn-success btn-md">栏位管理</span>添加或修改</p>
@@ -9,11 +9,11 @@
 		<h1 class="page-header">
 			<div class="btn-group">
   				<button type="button" class="btn btn-primary btn-lg dropdown-toggle" data-toggle="dropdown">
-    				{{$getProset[$need]}} <span class="caret"></span>
+    				{{$getProset[$subColumn]}} <span class="caret"></span>
   				</button>
  				<ul class="dropdown-menu" role="menu">
   					@foreach($getProset as $key=>$value)
-    					<li><a href="{{url('support/'.$key)}}">{{$value}}</a></li>
+    					<li><a href="{{url('support/'.$view.'/'.$key)}}">{{$value}}</a></li>
     				@endforeach
   				</ul>
 			</div>
@@ -26,17 +26,17 @@
 		    </button>
 		    <ul class="dropdown-menu" role="menu" aria-labelledby="dropdownMenu1">
 		        <li role="presentation">
-		            <a role="menuitem" class="btn-sm" tabindex="-1" href="{{url('support/'.$need)}}?is_show=1">显示</a>
+		            <a role="menuitem" class="btn-sm" tabindex="-1" href="{{url('support/'.$view.'/'.$subColumn)}}?is_show=1">显示</a>
 		        </li>
 		        <li role="presentation">
-		            <a role="menuitem"  tabindex="-1" href="{{url('support/'.$need)}}?is_show=0">隐藏</a>
+		            <a role="menuitem"  tabindex="-1" href="{{url('support/'.$view.'/'.$subColumn)}}?is_show=0">隐藏</a>
 		        </li>
 		    </ul>
 		</div>
 
 		<button type="button" class="btn btn-success" id="add" style="float: right;"><span class="glyphicon glyphicon-plus"></span> 增加</button>	
 		<div class="col-md-4" style="float: right;">
-			<form action="{{url('support/'.$need)}}" id="searchProject" method="get">
+			<form action="{{url('support/'.$view.'/'.$subColumn)}}" id="searchProject" method="get">
 			{!! csrf_field() !!}
         		 <div class="input-group">
         		     <input type="text" id="search_content" class="form-control" name="search_content" value="{{session('search')}}" placeholder="标题,内容,图片名">
@@ -99,7 +99,7 @@
   					  <div class="form-group" style="display: none;">
    	 					<label for="name" class="col-md-2 control-label">属于：</label>
    	 					<div class="col-md-10">
-   	 						<input type="text" class="form-control" name="belong" id="belong" value="{{$need}}">
+   	 						<input type="text" class="form-control" name="belong" id="belong" value="{{$subColumn}}">
    	 					</div>   	 						
   					  </div>
             		  <div class="form-group">

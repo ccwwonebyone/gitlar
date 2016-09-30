@@ -55,7 +55,10 @@ Route::group(['prefix' => 'project'], function () {
 Route::group(['prefix' => 'company'], function () {
 	Route::post('store', 'CompanyController@store');
 });
-
+//公司页面
+Route::group(['prefix' => 'webset'], function () {
+    Route::post('edit', 'WebsetController@edit');
+});
 Route::get('sup', function(){
 	return view('sup.index');
 });

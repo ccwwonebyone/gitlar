@@ -17,7 +17,7 @@ class ProjectController extends Controller
                             'slider'=>'slider',                         //滑块栏
                             'wonder'=>'wonder'
                             ];								
-    private $db = 'project';											//数据表
+    private $table = 'project';											//数据表
     /**
     * 添加滑块
     *form表单post的值
@@ -33,15 +33,15 @@ class ProjectController extends Controller
     			$filename = $file -> getClientOriginalName();
     			$this->validate($request,$this->projectRule);   			
     			$fileName = date('YmdHis').$file->getClientOriginalName();
-    			$request->file('image')->move(public_path().'/images\/'.$belong.'\/', $fileName);
+    			$request->file('image')->move(public_path().'/images\/project\/'.$belong.'\/', $fileName);
     			$data['title'] = $request->input('title');
     			$data['content'] = $request->input('content');
     			$data['is_show'] = $request->input('is_show');
                 $data['is_show'] = $request->input('is_show'); 
-    			$data['img'] = 'images/'.$belong.'/'.$fileName;
+    			$data['img'] = 'images/project/'.$belong.'/'.$fileName;
     			$data['create_time'] = date('Y-m-d H:i:s');
     			$data['belong'] = $belong;
-    			if(DB::table($this->db)->insert($data)){
+    			if(DB::table($this->table)->insert($data)){
     				return redirect()->back()->withErrors(['保存','成功']);
     			}   			
 			}
@@ -61,14 +61,14 @@ class ProjectController extends Controller
     		$where['is_show'] = $is_show;
     	}
     	if(!empty($search)){
-    		$data = DB::table($this->db)->where($where)->where(function($query) use ($search){
+    		$data = DB::table($this->table)->where($where)->where(function($query) use ($search){
     			$query->orWhere('content','like','%'.$search.'%')
     				  ->orWhere('title','like','%'.$search.'%')
     				  ->orWhere('img','like','%'.$search.'%');
     		})->get();
 
     	}else{
-    		$data = DB::table($this->db)->where($where)->get();
+    		$data = DB::table($this->table)->where($where)->get();
     	}    	
     	return $data;
     }
@@ -92,8 +92,8 @@ class ProjectController extends Controller
     			$filename = $file -> getClientOriginalName();
     			$this->validate($request,$this->projectRule);   			
     			$fileName = date('YmdHis').$file->getClientOriginalName();
-    			$request->file('image')->move(public_path().'/images\/'.$belong.'\/', $fileName);
-    			$data['img'] = 'images/'.$belong.'/'.$fileName;
+    			$request->file('image')->move(public_path().'/images\/project\/'.$belong.'\/', $fileName);
+    			$data['img'] = 'images/project/'.$belong.'/'.$fileName;
     		}
     	}else{
     		$newRule = $this->projectRule;
@@ -104,7 +104,7 @@ class ProjectController extends Controller
     	}
     	unset($data['_token']);
     	$data['create_time'] = date('Y-m-d H:i:s');
-    	if(DB::table($this->db)->where($where)->update($data)){
+    	if(DB::table($this->table)->where($where)->update($data)){
     		if(isset($data['title'])){
     			return redirect()->back()->withErrors(['修改','成功']);
     		}else{
@@ -115,7 +115,7 @@ class ProjectController extends Controller
     public function remove(Request $request)
     {
     	$where = $request->all();
-    	if(DB::table($this->db)->where($where)->delete()){
+    	if(DB::table($this->table)->where($where)->delete()){
     		return 1;
     	}else{
     		return 0;

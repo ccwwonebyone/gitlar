@@ -109,10 +109,13 @@
 		<div class="row">
 		<ol class="breadcrumb">
 			<li><a href="{{url('support/home')}}"><span class="glyphicon glyphicon-home"></span></a></li>
-			@if(in_array($need,array_keys($getProset)))
-				<li class="active">{{$menuName[$view]}}</li>
+			<li class="active">{{$menuName[$view]}}</li>
+			@if(in_array($subColumn,array_keys($getProset)))
+				<li class="active">{{$getProset[$subColumn]}}</li>
 			@endif
-			<li class="active">{{$menuName[$need]}}</li>
+			@if(in_array($subColumn,array_keys($fontMenus)))
+				<li class="active">{{$fontMenus[$subColumn]}}</li>
+			@endif
 			@if (count($errors) > 0)
     	        @foreach ($errors->all() as $error)
     	            <li class="text-danger">{{ $error }}</li>
@@ -140,7 +143,7 @@
 		$(window).on('resize', function () {
 		  if ($(window).width() <= 767) $('#sidebar-collapse').collapse('hide')
 		})
-		$('#support_'+"{{$need}}").addClass('active');
+		$('#support_'+"{{$view}}").addClass('active');
 	})		
 	</script>
 </body>

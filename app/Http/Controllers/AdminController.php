@@ -9,6 +9,7 @@ use App\Http\Controllers\MenuController as Menu;
 use App\Http\Controllers\ProsetController as Proset;
 use App\Http\Controllers\ProjectController as Project;
 use App\Http\Controllers\CompanyController as Company;
+use App\Http\Controllers\WebsetController as Webset;
 
 class AdminController extends Controller
 {
@@ -20,13 +21,26 @@ class AdminController extends Controller
      */
     public function show(Request $request,$need='home',$subColumn='')
     {
+         //登陆界面
+        if($need=='login') 
+            return view('support.login');
+        
         $menu = new Menu;
         $project = new Project;
+        $webset = new Webset;
 
         $show_tables = $this->getTables();
-        $getProset = $this->getProset();                     //属于project的菜单
 
+        $getProset = $this->getProset();                     //属于project的菜单
         $projectUrl = array_keys($getProset);
+
+        $fontMenu = $menu->getMenu('1','1','asc');
+        $fontMenus = [];
+        foreach ($fontMenu as $value) {
+            $fontMenus[$value->url] = $value->name;          //菜单链接=>菜单名
+        }
+        $websetUrl = array_keys($fontMenus);
+
         //后端菜单
         $menus = $menu->getMenu('0','1','asc');
         $menuName = [];
@@ -35,62 +49,46 @@ class AdminController extends Controller
         }
 
         //前端启用菜单
-        $fontMenu = $menu->getMenu('1','1','asc');
-        $fontMenus = [];
-        foreach ($fontMenu as $value) {
-            $fontMenus[$value->url] = $value->name;          //菜单链接=>菜单名
-        }
-
-        $menuName = array_merge($menuName,$getProset);     
         $view = $need;
         
+        $data = $request->all();
+        $search = isset($data['search_content'])?$data['search_content']:'';
+        session(['search' => $search]);
+        $is_show = isset($data['is_show'])?$data['is_show']:'';
         //栏目配置页面
         if($need == 'project'){
             if(!empty($projectUrl)&&$subColumn==''){
-                $subColumn = $projectUrl[0];
+                $subColumn = $projectUrl[0];                           
             }
+            $info = $project->getInfo($subColumn,$is_show,$search);  
         }
         //前端菜单页面
         if($need == 'webset'){
-            if(!empty($fontMenus)&&$subColumn==''){
-                 $subColumn = $fontMenus[0];
+            if(!empty($websetUrl)&&$subColumn==''){
+                 $subColumn = $websetUrl[0];                 
             }
+            $info = $webset->getInfo($subColumn);
         }
-
-        if(in_array($need, $projectUrl) || $need == 'project'){
-            $view = 'project';          //需要显示的页面                        
-            if($need == 'project' && !empty($projectUrl)){
-                $need = $projectUrl[0];
-            }
-
-            $data = $request->all();
-            $search = isset($data['search_content'])?$data['search_content']:'';
-            session(['search' => $search]);
-            $is_show = isset($data['is_show'])?$data['is_show']:'';
-            $info = $project->getInfo($need,$is_show,$search);
-        }
-
         if($need=='company'){
             $company = new Company;
             $info = $company -> edit();
         }
         if(isset($search) && $search!=''){
             //传到common视图数据 
-            //view 包含的视图文件    由于project 视图的复用 不能使view等同于need
-            //info project 显示数据
+            //view 包含的视图文件
+            //info 显示数据
             //menuName 菜单url=>name
             //need 菜单中文名,project视图设置归属项
+            //menus 菜单生成 common
             //show_tables 所有数据表名 用于菜单管理的选择项
-            //menus 菜单列表用于生成菜单 common
             //fontMenus 前端菜单
-            return view('support.common',compact('view','info','menuName','need','show_tables','menus','getProset','fontMenus'))
+            //subColumn 二级菜单显示
+            return view('support.common',compact('view','info','menus','menuName','show_tables','getProset','fontMenus','subColumn'))
                     ->withErrors(['搜索',$search]);
         }else{
-            return view('support.common',compact('view','info','menuName','need','show_tables','menus','getProset','fontMenus'));
+            return view('support.common',compact('view','info','menus','menuName','show_tables','getProset','fontMenus','subColumn'));
         }
-        //登陆界面
-        if($need=='login') 
-            return view('support.login');   	
+          	
     }
     /**
      * 获取当前数据库中的所有表 除去数据库,数据表前缀的影响
@@ -107,19 +105,6 @@ class AdminController extends Controller
             $show_tables[] = str_replace($prefix,'',$table['Tables_in_'.$database]);
         }
         return $show_tables;
-    }
-    /**
-     * 获取属于project数据表的菜单
-     * @return array 
-     */
-    public function getProMenu()
-    {
-        $proMenus = DB::table('menu')->select('url')->where('table','project')->get();
-        $proMenu = array();
-        foreach ($proMenus as $value) {
-            $proMenu[] = $value->url;
-        }
-        return $proMenu;
     }
     /**
      * 获取proset的菜单

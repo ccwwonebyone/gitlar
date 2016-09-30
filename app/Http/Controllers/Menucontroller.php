@@ -86,7 +86,9 @@ class Menucontroller extends Controller
         unset($data['_token']);
         unset($data['id']);
         $this->validate($request,$this->menuRule);
-        if(DB::table($this->table)->insert($data)){
+        $websetId = DB::table($this->table)->insertGetId($data);
+        if($websetId){
+            DB::table('webset')->insert(['menu-belong'=>$websetId]);
             return redirect()->back()->withErrors(['保存','成功']);
         }else{
              return redirect()->back()->withErrors(['保存','失败']);
@@ -98,6 +100,7 @@ class Menucontroller extends Controller
         $id = $data['id'];
         $ids = explode(',', $id);
         if(DB::table($this->table)->whereIn('id',$ids)->delete()){
+            DB::table('webset')->whereIn('menu-belong',$ids)->delete();
             return 'success';
         }else{
             return 'fail';
