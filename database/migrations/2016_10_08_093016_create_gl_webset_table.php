@@ -12,7 +12,7 @@ class CreateGlWebsetTable extends Migration {
 	 */
 	public function up()
 	{
-		Schema::create('gl_webset', function(Blueprint $table)
+		Schema::create('webset', function(Blueprint $table)
 		{
 			$table->increments('id');
 			$table->integer('menu-belong')->nullable();

@@ -12,7 +12,7 @@ class CreateGlCityTable extends Migration {
 	 */
 	public function up()
 	{
-		Schema::create('gl_city', function(Blueprint $table)
+		Schema::create('city', function(Blueprint $table)
 		{
 			$table->bigInteger('CityID')->primary();
 			$table->string('CityName', 50)->nullable();

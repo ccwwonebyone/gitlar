@@ -12,7 +12,7 @@ class CreateGlDistrictTable extends Migration {
 	 */
 	public function up()
 	{
-		Schema::create('gl_district', function(Blueprint $table)
+		Schema::create('district', function(Blueprint $table)
 		{
 			$table->bigInteger('DistrictID')->primary();
 			$table->string('DistrictName', 50)->nullable();

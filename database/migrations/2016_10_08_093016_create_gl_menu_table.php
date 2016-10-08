@@ -12,7 +12,7 @@ class CreateGlMenuTable extends Migration {
 	 */
 	public function up()
 	{
-		Schema::create('gl_menu', function(Blueprint $table)
+		Schema::create('menu', function(Blueprint $table)
 		{
 			$table->increments('id');
 			$table->string('name', 10);

@@ -12,7 +12,7 @@ class CreateGlCompanyTable extends Migration {
 	 */
 	public function up()
 	{
-		Schema::create('gl_company', function(Blueprint $table)
+		Schema::create('company', function(Blueprint $table)
 		{
 			$table->increments('id');
 			$table->char('name')->nullable();

@@ -12,7 +12,7 @@ class CreateGlProsetTable extends Migration {
 	 */
 	public function up()
 	{
-		Schema::create('gl_proset', function(Blueprint $table)
+		Schema::create('proset', function(Blueprint $table)
 		{
 			$table->increments('id');
 			$table->string('name')->nullable();
