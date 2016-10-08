@@ -67,7 +67,11 @@
 	    	<div class="panel-body">
 	    	    {{$project->content}}
 	    	</div>
-	    	<div class="panel-footer"><img src="{{asset($project->img)}}" class="img-responsive" alt="{{$project->title}}" ></div>
+	    	<div class="panel-footer">
+	    		@foreach(explode(',',$project->img) as $imges)
+	    			<img src="{{asset($imges)}}" class="img-responsive" alt="{{$project->title}}">
+				@endforeach
+	    	</div>
 			</div>
 		</div>
 	</div>
@@ -120,9 +124,8 @@
    	 					                        	<input type="file" id="file" name="file" />
    	 					                        </div><div class="clear"></div> -->
    	 					    <div class="col-md-10">
-   	 					    	<input type="file" class="form-control" name="image" id="image">
-   	 					    </div>  	 						
-   	 					    
+   	 					    	<input type="file" class="form-control" id="image" name="image[]" multiple >
+   	 					    </div>
    	 					</div>
 					  <div class="form-group">
    	 					<label for="name" class="col-md-2 control-label">显示：</label>

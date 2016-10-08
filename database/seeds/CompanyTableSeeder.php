@@ -23,7 +23,7 @@ class CompanyTableSeeder extends Seeder
                 'name' => 'GITLAR',
                 'tel' => '13824382438',
                 'address' => '伤年街',
-                'qq' => '1484384',
+                'qq' => '1438438',
                 'weixin' => '二的不一般',
                 'sina' => '想你所想',
                 'belong' => 'づsんáηɡ年、悤悤惘惘',

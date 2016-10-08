@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Http\Controllers\ProjectController as Project;
+use App\Http\Controllers\WebsetController as Webset;
 use Illuminate\Http\Request;
 use App\Http\Requests;
 use DB;
@@ -10,6 +11,7 @@ use DB;
 
 class IndexController extends Controller
 {
+    private $belong = 'webset';
 	/**
 	 * 展示首页
 	 * @return void 
@@ -17,7 +19,18 @@ class IndexController extends Controller
     public function index()
     {
         $project = new Project;
+        //滑块专属       
         $slides = $project->getInfo('slider',1);
+        //网站配置
+        $webset = new Webset;
+        $indexInfo = $webset->getInfo('index');
+
+        $indexHeaderName = $indexInfo['menu-header-name'];
+        //获取头部信息
+        $indexHeaderInfo = $this->showInfo('header');
+
+        print_r($indexHeaderInfo);
+        exit;
     	$company = [
     		'top' => ['title' => '简介',
     				  'content' => '爱家智能家居主营智能家居产品、电动窗帘、报警系统、监控系统、智能灯光、弱电工程、电动卷帘窗等。在智能家居行业，公司秉承“保证一流质量，保持一级信誉”的经营理念，坚持“客户第一”的原则为广大客户提供优质的服务。欢迎来电洽谈业务！'],
@@ -53,5 +66,14 @@ class IndexController extends Controller
     		'url' =>'#'] 
     	];
     	return view('index',compact('slides','menus','company','picture','project','pros','companyInfo'));
+    }
+    public function showInfo($part)
+    {
+        $webset = new Webset;
+        $project = new Project;      
+        $partInfo = $webset->getInfo('index');
+        $url= DB::table('proset')->where('name',$partInfo['menu-'.$part])->value('url');        
+        $info = $project->getInfo($url,1);
+        return $info;
     }
 }

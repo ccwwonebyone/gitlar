@@ -93,7 +93,7 @@
                 <label for="name" class="col-md-2 control-label">{{$fontMenus[$subColumn]}}-背景1：</label>
                 <div class="col-md-4">
                  <input type="text" id="is_change1" name="is_change1" style="display: none" value="unchange">
-                 <input type="text" id="background1" name="background1" style="display: none" value="{{$info['background2']}}">
+                 <input type="text" id="background1" name="background1" style="display: none" value="{{$info['background1']}}">
                   <input type="file" class="form-control" name="image1" id="image1">
                 </div>
                 <label for="name" class="col-md-2 control-label">{{$fontMenus[$subColumn]}}-背景2：</label>
@@ -112,6 +112,7 @@
     </div>
 </div>
 <script>
+  //初始化预览
   $("#image1").fileinput({
       initialPreview: [
           "{{$info['background1']?asset($info['background1']):''}}"
@@ -124,6 +125,7 @@
       initialCaption: "{{$fontMenus[$subColumn]}}"+'背景1',
       showUpload:false
   });
+  //初始化预览
   $("#image2").fileinput({
     initialPreview: [
           "{{$info['background2']?asset($info['background2']):''}}"
@@ -136,20 +138,26 @@
       initialCaption: "{{$fontMenus[$subColumn]}}"+'背景2',
       showUpload:false
   });
-  $('#image1').on('change', function(event) {
-     $('#is_change1').val('change');
-  });
+  
+  //移除第一个的时候 第二个也一起移除
   $('#image1').on('fileclear', function(event) {
     $('#is_change1').val('remove');
     $('#is_change2').val('remove');
     $('#image2').fileinput('clear');
   });
+
+  $('#image2').on('fileclear', function(event) {
+  $('#is_change2').val('remove');
+  });
+
+  $('#image1').on('change', function(event) {
+     $('#is_change1').val('change');
+  });
+
   $('#image2').on('change', function(event) {
       $('#is_change2').val('change');
   });
-  $('#image2').on('fileclear', function(event) {
-    $('#is_change2').val('remove');
-  });
+
   $('#sure').click(function(){
     $('#websetform').submit();
   });

@@ -27,24 +27,29 @@ class ProjectController extends Controller
     {
     		
     	if ($request->hasFile('image')) {
-    		$file = $request->file('image');
-    		if ($file->isValid()){
-                $belong = $request->input('belong');
-    			$filename = $file -> getClientOriginalName();
-    			$this->validate($request,$this->projectRule);   			
-    			$fileName = date('YmdHis').$file->getClientOriginalName();
-    			$request->file('image')->move(public_path().'/images\/project\/'.$belong.'\/', $fileName);
-    			$data['title'] = $request->input('title');
-    			$data['content'] = $request->input('content');
-    			$data['is_show'] = $request->input('is_show');
-                $data['is_show'] = $request->input('is_show'); 
-    			$data['img'] = 'images/project/'.$belong.'/'.$fileName;
-    			$data['create_time'] = date('Y-m-d H:i:s');
-    			$data['belong'] = $belong;
-    			if(DB::table($this->table)->insert($data)){
-    				return redirect()->back()->withErrors(['保存','成功']);
-    			}   			
-			}
+    		$files = $request->file('image');
+            //多文件上传
+            foreach ($files as $file) {
+                if ($file->isValid()){
+                    $belong = $request->input('belong');
+                    $filename = $file -> getClientOriginalName();                                  
+                    $fileName = date('YmdHis').$file->getClientOriginalName();
+                    $file->move(public_path().'/images\/project\/'.$belong.'\/', $fileName);
+                    $allImage[] = 'images/project/'.$belong.'/'.$fileName;                         
+                }
+            }
+            $data['img'] = implode(',', $allImage);
+            //$this->validate($request,$this->projectRule);
+            $data['title'] = $request->input('title');
+            $data['content'] = $request->input('content');
+            $data['is_show'] = $request->input('is_show');
+            $data['is_show'] = $request->input('is_show');
+            $data['create_time'] = date('Y-m-d H:i:s');
+            $data['belong'] = $belong; 
+            print_r($data);
+            if(DB::table($this->table)->insert($data)){
+                return redirect()->back()->withErrors(['保存','成功']);
+            }
 		}
     }
     /**
@@ -69,7 +74,7 @@ class ProjectController extends Controller
 
     	}else{
     		$data = DB::table($this->table)->where($where)->get();
-    	}    	
+    	}
     	return $data;
     }
     /**
@@ -86,15 +91,17 @@ class ProjectController extends Controller
     	unset($data['id']);
 
     	if ($request->hasFile('image')) {
-    		$file = $request->file('image');
-    		if ($file->isValid()){
-                $belong = $request->input('belong');
-    			$filename = $file -> getClientOriginalName();
-    			$this->validate($request,$this->projectRule);   			
-    			$fileName = date('YmdHis').$file->getClientOriginalName();
-    			$request->file('image')->move(public_path().'/images\/project\/'.$belong.'\/', $fileName);
-    			$data['img'] = 'images/project/'.$belong.'/'.$fileName;
-    		}
+    		$files = $request->file('image');
+            foreach ($files as $file) {
+                if ($file->isValid()){
+                    $belong = $request->input('belong');
+                    $filename = $file -> getClientOriginalName();                                  
+                    $fileName = date('YmdHis').$file->getClientOriginalName();
+                    $file->move(public_path().'/images\/project\/'.$belong.'\/', $fileName);              
+                    $allImage[] = 'images/project/'.$belong.'/'.$fileName;                         
+                }
+            }
+            $data['img'] = implode(',', $allImage);
     	}else{
     		$newRule = $this->projectRule;
     		if(isset($data['title'])){
