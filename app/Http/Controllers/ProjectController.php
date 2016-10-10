@@ -10,9 +10,9 @@ class ProjectController extends Controller
 {
 	private $projectRule = [												//验证规则
 					'title' =>'required|between:1,10',
-    				'content' => 'required',
-            		'image' => 'required|image|mimes:jpeg,png,jpg,gif,svg|max:20480',
+    				'content' => 'required'
         		  ];
+    private $types = ['image/jpeg','image/png','image/jpg','image/gif'];
     private $projectPro = [
                             'slider'=>'slider',                         //滑块栏
                             'wonder'=>'wonder'
@@ -25,28 +25,30 @@ class ProjectController extends Controller
     */
     public function add(Request $request)
     {
-    		
+    	$this->validate($request,$this->projectRule);	
     	if ($request->hasFile('image')) {
     		$files = $request->file('image');
             //多文件上传
             foreach ($files as $file) {
                 if ($file->isValid()){
                     $belong = $request->input('belong');
-                    $filename = $file -> getClientOriginalName();                                  
+                    $filename = $file -> getClientOriginalName(); 
+                    $type = $file ->getClientMimeType();
+                    if(!in_array($type, $this->types)) {
+                        return redirect()->back()->withErrors(['类型','错误']);  
+                    }                               
                     $fileName = date('YmdHis').$file->getClientOriginalName();
                     $file->move(public_path().'/images\/project\/'.$belong.'\/', $fileName);
                     $allImage[] = 'images/project/'.$belong.'/'.$fileName;                         
                 }
             }
             $data['img'] = implode(',', $allImage);
-            //$this->validate($request,$this->projectRule);
+            
             $data['title'] = $request->input('title');
             $data['content'] = $request->input('content');
             $data['is_show'] = $request->input('is_show');
-            $data['is_show'] = $request->input('is_show');
             $data['create_time'] = date('Y-m-d H:i:s');
-            $data['belong'] = $belong; 
-            print_r($data);
+            $data['belong'] = $belong;
             if(DB::table($this->table)->insert($data)){
                 return redirect()->back()->withErrors(['保存','成功']);
             }
@@ -95,6 +97,10 @@ class ProjectController extends Controller
             foreach ($files as $file) {
                 if ($file->isValid()){
                     $belong = $request->input('belong');
+                    $type = $file ->getClientMimeType();
+                    if(!in_array($type, $this->types)) {
+                        return redirect()->back()->withErrors(['类型','错误']);  
+                    }
                     $filename = $file -> getClientOriginalName();                                  
                     $fileName = date('YmdHis').$file->getClientOriginalName();
                     $file->move(public_path().'/images\/project\/'.$belong.'\/', $fileName);              

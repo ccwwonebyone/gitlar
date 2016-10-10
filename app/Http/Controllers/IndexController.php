@@ -23,57 +23,21 @@ class IndexController extends Controller
         $slides = $project->getInfo('slider',1);
         //网站配置
         $webset = new Webset;
-        $indexInfo = $webset->getInfo('index');
+        $info = $webset->getInfo('index');
 
-        $indexHeaderName = $indexInfo['menu-header-name'];
+        $header['name'] = $info['menu-header-name'];
         //获取头部信息
-        $indexHeaderInfo = $this->showInfo('header');
+        $header['info'] = $this->showInfo('header','index');
 
-        print_r($indexHeaderInfo);
-        exit;
-    	$company = [
-    		'top' => ['title' => '简介',
-    				  'content' => '爱家智能家居主营智能家居产品、电动窗帘、报警系统、监控系统、智能灯光、弱电工程、电动卷帘窗等。在智能家居行业，公司秉承“保证一流质量，保持一级信誉”的经营理念，坚持“客户第一”的原则为广大客户提供优质的服务。欢迎来电洽谈业务！'],
-    		'buttom' =>['title' => '简介',
-    				  'content' => '爱家智能家居主营智能家居产品、电动窗帘、报警系统、监控系统、智能灯光、弱电工程、电动卷帘窗等。在智能家居行业，公司秉承“保证一流质量，保持一级信誉”的经营理念，坚持“客户第一”的原则为广大客户提供优质的服务。欢迎来电洽谈业务！',
-    				  'img'=>asset('images/3.jpg')],
-    	];
-    	$picture = [
-    		'company' => [
-    			asset('images/ic.png'),
-    			asset('images/ic1.png'),
-    			asset('images/ic2.png'),
-    			asset('images/ic3.png')
-    		]
-    	];
-    	$project = '服务项目';
-    	$pros = [
-    		['title' => '精致生活',
-    		'content' =>'每个人都希望自己能有所作为，能成就一番事业。但这个过程是漫长而艰巨的，挺过来了就是胜利。',
-    		'img' =>asset('images/te.jpg'),
-    		'url' =>'#'],
-    		['title' => '精致生活',
-    		'content' =>'每个人都希望自己能有所作为，能成就一番事业。但这个过程是漫长而艰巨的，挺过来了就是胜利。',
-    		'img' =>asset('images/te1.jpg'),
-    		'url' =>'#'],
-    		['title' => '精致生活',
-    		'content' =>'每个人都希望自己能有所作为，能成就一番事业。但这个过程是漫长而艰巨的，挺过来了就是胜利。',
-    		'img' =>asset('images/te2.jpg'),
-    		'url' =>'#'],
-    		['title' => '精致生活',
-    		'content' =>'每个人都希望自己能有所作为，能成就一番事业。但这个过程是漫长而艰巨的，挺过来了就是胜利。',
-    		'img' =>asset('images/te3.jpg'),
-    		'url' =>'#'] 
-    	];
-    	return view('index',compact('slides','menus','company','picture','project','pros','companyInfo'));
+        $middle['name'] = $info['menu-middle-name'];
+        //获取中部信息
+        $middle['info'] = $this->showInfo('middle','index');
+
+    	$footer['name'] = $info['menu-footer-name'];
+        //获取中部信息
+        $footer['info'] = $this->showInfo('footer','index');
+
+    	return view('index',compact('slides','header','middle','footer'));
     }
-    public function showInfo($part)
-    {
-        $webset = new Webset;
-        $project = new Project;      
-        $partInfo = $webset->getInfo('index');
-        $url= DB::table('proset')->where('name',$partInfo['menu-'.$part])->value('url');        
-        $info = $project->getInfo($url,1);
-        return $info;
-    }
+
 }

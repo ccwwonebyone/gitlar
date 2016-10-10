@@ -19,16 +19,16 @@
 <!--gallery-->
 	<div class="gallery">
 		<div class="container">
-			<h3>{{$project}}</h3>
+			<h3>{{$middle['name']}}</h3>
 			<section>
 				<ul id="da-thumbs" class="da-thumbs">
-				@foreach($brilliants as $brilliant)
+				@foreach($middle['info'] as $brilliant)
 					<li>
-						<a href="{{$brilliant['img']}}" rel="title" class="b-link-stripe b-animate-go  thickbox">
-							<img src="{{$brilliant['img']}}" alt="" />
+						<a href="{{$brilliant->url}}" rel="title" class="b-link-stripe b-animate-go  thickbox">
+							<img src="{{$brilliant->img}}" alt="" />
 							<div>
-								<h5>{{$brilliant['title']}}</h5>
-								<span>{{$brilliant['content']}}</span>
+								<h5>{{$brilliant->title}}</h5>
+								<span>{{$brilliant->content}}</span>
 							</div>
 						</a>
 					</li>

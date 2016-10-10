@@ -43,59 +43,18 @@
 		<!--content-top-->
 
 		<div class="content-top">
-			<?php $count = count($picture['company']);?>
+			<?php $count = count($header['info'][0]->img);?>
 			<div class="col-md-{{ $count>0 ? 7 : '12' }} content-top1">
-				<h3>{{$company['top']['title']}}</h3>
-				<p>{{$company['top']['content']}}</p>
+				<h3>{{$header['name']}}</h3>
+				<p>{{$header['info'][0]->content}}</p>
 			</div>
-			@if($count>0)
-				<div class="col-md-5 top-col">
-				@if($count < 3)
-					@foreach($picture['company'] as $compic)
-						<div class="col1">
-							<div class="col-md-12 col{{rand(2,5)}}">
-								<img src="{{$compic}}" alt="" >
-							</div>
-						</div>
-						<div class="clearfix"> </div>
-					@endforeach
-				@elseif ($count < 4)
-						<div class="col1">
-						@for ($i = 0; $i < 2; $i++)
-							<div class="col-md-6 col{{rand(2,5)}}">
-								<img src="{{$picture['company'][$i]}}" alt="" >
-							</div>
-						@endfor
-						<div class="clearfix"> </div>
-						</div>
-						<div class="col1">
-							<div class="col-md-12 col{{rand(2,5)}}">
-								<img src="{{$picture['company'][2]}}" alt="" >
-							</div>
-						</div>
-						<div class="clearfix"> </div>					
-				}
-				@else
-					<div class="col1">
-						@for ($i = 0; $i < 2; $i++)
-							<div class="col-md-6 col{{rand(2,5)}}">
-								<img src="{{$picture['company'][$i]}}" alt="" >
-							</div>
-						@endfor
-						<div class="clearfix"> </div>					
-					</div>
-					<div class="col1">
-						@for ($i = 2; $i < 4; $i++)
-							<div class="col-md-6 col{{rand(2,5)}}">
-								<img src="{{$picture['company'][$i]}}" alt="" >
-							</div>
-						@endfor
-						<div class="clearfix"> </div>					
-					</div>					
-				}
-				@endif
-				</div>
-			}
+			@if($count > 0)
+			<div class="col-md-5 top-col">
+				@foreach(explode(',',$header['info'][0]->img) as $img)
+				<img src="{{asset($img)}}" class="img-responsive {{ count(explode(',',$header['info'][0]->img))>1 ? 'col-md-6' : '' }}">
+				@endforeach
+				<div class="clearfix"> </div>
+			</div>
 			@endif
 			<div class="clearfix"> </div>
 		</div>
@@ -131,23 +90,23 @@
 			<div class="clearfix"> </div>
 		</div> -->
 		<!--content-mid-->
-	@if(isset($project))
+	@if(isset($middle))
 		<div class="content-middle">
 			<div class="container">
 				<div class="content-mid-top">
-					<h3>{{$project}}</h3>
+					<h3>{{$middle['name']}}</h3>
 				</div>
 				<div class="news">
-					@foreach($pros as $pro)
+					@foreach($middle['info'] as $pro)
 						<div class="col-md-3 new-more">
 							<div class=" new-more1">
 								<div class="col-md-2 six">						
-									<img class="img-responsive" src="{{$pro['img']}}" alt="">
+									<img class="img-responsive" src="{{$pro->img}}" alt="">
 								</div>
 								<div class="col-md-10 six1">
-									<h5>{{$pro['title']}}</h5>
-									<p>{{$pro['content']}}</p>
-								<a href="{{$pro['url']}}"><i class="glyphicon glyphicon-circle-arrow-right"></i></a>
+									<h5>{{$pro->title}}</h5>
+									<p>{{$pro->content}}</p>
+								<a href="{{$pro->url}}"><i class="glyphicon glyphicon-circle-arrow-right"></i></a>
 								</div>
 								<div class="clearfix"> </div>
 							</div>
@@ -160,16 +119,20 @@
 	<!---->
 	<div class="content-bottom">
 		<div class="container">
-			<div class="content-bottom-top">
-				<div class="col-md-6 content-bottom-top1">
-					<h3>{{$company['buttom']['title']}}</h3>
-					<p>{{$company['buttom']['content']}}</p>
-				</div>
-				<div class="col-md-6 bottom-co1">
-					<img class="img-responsive" src="{{$company['buttom']['img']}}" alt="">
-
-				</div>
+			<?php $count = count($footer['info'][0]->img);?>
+			<div class="col-md-{{ $count>0 ? 7 : '12' }} content-top1">
+				<h3>{{$footer['name']}}</h3>
+				<p>{{$footer['info'][0]->content}}</p>
 			</div>
+			@if($count > 0)
+			<div class="col-md-5 top-col">
+				@foreach(explode(',',$footer['info'][0]->img) as $img)
+				<img src="{{asset($img)}}" class="img-responsive {{ count(explode(',',$footer['info'][0]->img))>1 ? 'col-md-6' : '' }}">
+				@endforeach
+				<div class="clearfix"> </div>
+			</div>
+			@endif
+			<div class="clearfix"> </div>
 		</div>
 	</div>
 	<!---->

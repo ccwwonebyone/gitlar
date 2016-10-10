@@ -67,9 +67,9 @@
 	    	<div class="panel-body">
 	    	    {{$project->content}}
 	    	</div>
-	    	<div class="panel-footer">
-	    		@foreach(explode(',',$project->img) as $imges)
-	    			<img src="{{asset($imges)}}" class="img-responsive" alt="{{$project->title}}">
+	    	<div class="panel-footer col-md-12">
+				@foreach(explode(',',$project->img) as $imges)
+	    			<img src="{{asset($imges)}}" class="img-responsive {{count(explode(',',$project->img))>1 ? 'col-md-6' : ''}}" alt="{{$project->title}}">
 				@endforeach
 	    	</div>
 			</div>
