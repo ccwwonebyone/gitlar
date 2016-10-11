@@ -2,15 +2,29 @@
 
 namespace App\Http\Controllers;
 
+use App\Http\Controllers\WebsetController as Webset;
 use Illuminate\Http\Request;
-
 use App\Http\Requests;
 
 class BlogController extends Controller
 {
-    public function index()
+    private $belong = 'blog';
+
+    public function index(Request $request)
     {
-    	$subject = '词条';
+        $infos = $request->all();
+        $id = isset($infos['id'])?$infos['id']:'';
+        //网站配置
+        $webset = new Webset;
+        $info = $webset->getInfo($this->belong);
+
+        $middle['name'] = $info['menu-middle-name'];
+        //获取中部信息
+        $middle['info'] = $this->showInfo('middle',$this->belong);
+
+        return view('blog',compact('middle','id'));
+
+    	/*$subject = '词条';
     	$details = ['完美','精彩','生活','你想要的','走过的'];
     	$showDetail = $details[0];
     	$showContent = [
@@ -18,6 +32,6 @@ class BlogController extends Controller
     		'img'=>asset('images/b1.jpg'),
     		'content'=>'每个人都希望自己能有所作为，能成就一番事业。但这个过程是漫长而艰巨的，挺过来了就是胜利。不是每个人都能风声水起，都能扭转乾坤的。所以当你遭遇挫折和失败的时候，你该怎么做：是不停的抱怨是怨恨他人；怨恨自己；怨恨老天爷不公；是继续坚持还是就此放弃。其实老天爷对每个人都很公平的，机会人人平等就看你是否能抓住。'
     	];
-    	return view('blog',compact('subject','details','showDetail','showContent'));
+    	return view('blog',compact('subject','details','showDetail','showContent'));*/
     }
 }

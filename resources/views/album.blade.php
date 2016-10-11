@@ -4,13 +4,13 @@
 <script src="js/modernizr.custom.97074.js"></script>
 <!--script-->
 <script src="js/jquery.chocolat.js"></script>
-		<link rel="stylesheet" href="css/chocolat.css" type="text/css" media="screen" charset="utf-8">
-		<!--light-box-files -->
-		<script type="text/javascript" charset="utf-8">
-		$(function() {
-			$('.gallery a').Chocolat();
-		});
-		</script>
+<link rel="stylesheet" href="css/chocolat.css" type="text/css" media="screen" charset="utf-8">
+<!--light-box-files -->
+<script type="text/javascript" charset="utf-8">
+$(function() {
+	$('.gallery a').Chocolat();
+});
+</script>
 @endsection
 @section('header-main')
 	header-main

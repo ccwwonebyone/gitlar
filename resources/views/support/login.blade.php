@@ -21,22 +21,22 @@
 	<div class="row">
 		<div class="col-xs-10 col-xs-offset-1 col-sm-8 col-sm-offset-2 col-md-4 col-md-offset-4">
 			<div class="login-panel panel panel-default">
-				<div class="panel-heading">Log in</div>
+				<div class="panel-heading">登录</div>
 				<div class="panel-body">
 					<form role="form">
 						<fieldset>
 							<div class="form-group">
-								<input class="form-control" placeholder="E-mail" name="email" type="email" autofocus="">
+								<input class="form-control" placeholder="用户名" name="email" type="email" autofocus="">
 							</div>
 							<div class="form-group">
-								<input class="form-control" placeholder="Password" name="password" type="password" value="">
+								<input class="form-control" placeholder="密码" name="password" type="password" value="">
 							</div>
 							<div class="checkbox">
 								<label>
-									<input name="remember" type="checkbox" value="Remember Me">Remember Me
+									<input name="remember" type="checkbox" value="1">记住我
 								</label>
 							</div>
-							<a href="index.html" class="btn btn-primary">Login</a>
+							<button class="btn btn-primary"><span class="glyphicon glyphicon-user"></span>登录</button>
 						</fieldset>
 					</form>
 				</div>

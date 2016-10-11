@@ -8,7 +8,7 @@ use App\Http\Requests;
 
 class AlbumController extends Controller
 {
-    private $belong = 'webset';
+    private $belong = 'album';
     /**
      * 展示首页
      * @return void 
@@ -17,7 +17,7 @@ class AlbumController extends Controller
     {
         //网站配置
         $webset = new Webset;
-        $info = $webset->getInfo('album');
+        $info = $webset->getInfo($this->belong);
 
         //$ablumHeader['name'] = $indexInfo['menu-header-name'];
         //获取头部信息
@@ -25,7 +25,7 @@ class AlbumController extends Controller
 
         $middle['name'] = $info['menu-middle-name'];
         //获取中部信息
-        $middle['info'] = $this->showInfo('middle','album');
+        $middle['info'] = $this->showInfo('middle',$this->belong);
 
         //$ablumFooter['name'] = $indexInfo['menu-footer-name'];
         //获取中部信息
