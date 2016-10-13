@@ -25,19 +25,19 @@ class IndexController extends Controller
         $webset = new Webset;
         $info = $webset->getInfo($this->belong);
 
-        $header['name'] = $info['menu-header-name'];
+        //网站背景
+        $background = $info['background1'];
         //获取头部信息
+        $header['name'] = $info['menu-header-name'];        
         $header['info'] = $this->showInfo('header',$this->belong);
-
-        $middle['name'] = $info['menu-middle-name'];
         //获取中部信息
+        $middle['name'] = $info['menu-middle-name'];       
         $middle['info'] = $this->showInfo('middle',$this->belong);
-
-    	$footer['name'] = $info['menu-footer-name'];
-        //获取中部信息
+        //获取尾部信息
+    	$footer['name'] = $info['menu-footer-name'];       
         $footer['info'] = $this->showInfo('footer',$this->belong);
 
-    	return view('index',compact('slides','header','middle','footer'));
+    	return view($this->web().'.index',compact('slides','header','middle','footer','background'));
     }
 
 }

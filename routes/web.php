@@ -23,11 +23,14 @@ Route::get('typo', 'EventController@index');
 /*Route::resource('menu', 'MenuController');*/
 
 //后台页面
-Route::get('support/{need}/{subColumn?}', 'AdminController@show')->name('support');
+Route::get('support/{need?}/{subColumn?}', 'AdminController@show')->name('support');
 
 Route::get('support', function () {
-    return redirect()->route('support',['need' => 'home']);
+    return redirect()->route('support',['need' => '']);
 });
+//登陆请求
+Route::post('login','LoginController@index');
+Route::get('loginOut','LoginController@loginOut');
 //菜单请求
 Route::group(['prefix' => 'menu'], function () {
     Route::get('getallData', 'MenuController@getallData');

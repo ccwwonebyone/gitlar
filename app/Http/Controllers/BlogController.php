@@ -22,7 +22,7 @@ class BlogController extends Controller
         //获取中部信息
         $middle['info'] = $this->showInfo('middle',$this->belong);
 
-        return view('blog',compact('middle','id'));
+        return view($this->web().'.blog',compact('middle','id'));
 
     	/*$subject = '词条';
     	$details = ['完美','精彩','生活','你想要的','走过的'];

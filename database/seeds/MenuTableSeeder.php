@@ -61,9 +61,9 @@ class MenuTableSeeder extends Seeder
                 'icon' => 'calendar',
                 'order' => 4,
                 'belong' => 1,
-                'table' => NULL,
+                'table' => '',
                 'pid' => 0,
-                'is_show' => 1,
+                'is_show' => 0,
             ),
             4 => 
             array (
@@ -73,9 +73,9 @@ class MenuTableSeeder extends Seeder
                 'icon' => 'dashboard',
                 'order' => 1,
                 'belong' => 0,
-                'table' => NULL,
+                'table' => '',
                 'pid' => 0,
-                'is_show' => 1,
+                'is_show' => 0,
             ),
             5 => 
             array (
@@ -95,7 +95,7 @@ class MenuTableSeeder extends Seeder
                 'name' => '前端配置',
                 'url' => 'webset',
                 'icon' => 'cog',
-                'order' => 2,
+                'order' => 3,
                 'belong' => 0,
                 'table' => 'webset',
                 'pid' => 0,
@@ -107,7 +107,7 @@ class MenuTableSeeder extends Seeder
                 'name' => '公司信息',
                 'url' => 'company',
                 'icon' => 'chevron-right',
-                'order' => 3,
+                'order' => 2,
                 'belong' => 0,
                 'table' => 'company',
                 'pid' => 0,
@@ -147,7 +147,7 @@ class MenuTableSeeder extends Seeder
                 'belong' => 0,
                 'table' => '',
                 'pid' => 0,
-                'is_show' => 1,
+                'is_show' => 0,
             ),
             11 => 
             array (
@@ -159,7 +159,7 @@ class MenuTableSeeder extends Seeder
                 'belong' => 0,
                 'table' => '',
                 'pid' => 0,
-                'is_show' => 1,
+                'is_show' => 0,
             ),
             12 => 
             array (
@@ -171,7 +171,7 @@ class MenuTableSeeder extends Seeder
                 'belong' => 0,
                 'table' => '',
                 'pid' => 0,
-                'is_show' => 1,
+                'is_show' => 0,
             ),
             13 => 
             array (

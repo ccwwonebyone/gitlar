@@ -16,7 +16,7 @@ class AppServiceProvider extends ServiceProvider
     {
         //视图数据
         View::composer(
-            ['index','blog','album','typo','admin'],
+            ['layouts.master'],
             'App\Http\Composers\CompanyComposer'
         );
         View::share('status',['default','primary','success','warning','info','danger']);

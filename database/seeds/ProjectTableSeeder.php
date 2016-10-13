@@ -87,45 +87,11 @@ class ProjectTableSeeder extends Seeder
             array (
                 'id' => 16,
                 'title' => '心的追随',
-                'content' => '追随
-
-远去的身影
-
-带走了无限的不舍与思念
-
-留下的是惜日光辉，未来方向
-
-决然的离去，透射多少的无奈
-
-背影的潇洒
-
-只是精神上的依托
-
-而那“泪”也只能悄然潸下
-
-面对地无奈的苍桑
-
-必需是阳光般的笑容
-
-因为脆弱只能背对
-
-前面，是我们要走的路
-
-总不能让泪雨代替
-
-踏着你们历史的脚印
-
-更进一步的跨越
-
-愿我们能超越你们的境界
-
-散发你们的光辉
-
-在诸多的不舍与回忆中我只能说上一声“珍重”',
-                'img' => 'images/project/soul/20161008054832carousel1.jpg,images/project/soul/20161008054832carousel2.jpg,images/project/soul/20161008054832carousel3.jpg,images/project/soul/20161008054832carousel4.jpg',
+                'content' => '追随远去的身影带走了无限的不舍与思念留下的是惜日光辉，未来方向决然的离去，透射多少的无奈背影的潇洒只是精神上的依托而那“泪”也只能悄然潸下面对地无奈的苍桑必需是阳光般的笑容因为脆弱只能背对前面，是我们要走的路总不能让泪雨代替踏着你们历史的脚印更进一步的跨越愿我们能超越你们的境界散发你们的光辉在诸多的不舍与回忆中我只能说上一声“珍重”',
+                'img' => 'images/project/soul/20161011012311carousel1.jpg,images/project/soul/20161011012311carousel2.jpg,images/project/soul/20161011012311carousel3.jpg,images/project/soul/20161011012311carousel4.jpg',
                 'url' => NULL,
                 'belong' => 'soul',
-                'create_time' => '2016-10-08 05:48:32',
+                'create_time' => '2016-10-11 01:23:11',
                 'is_show' => 1,
             ),
             7 => 

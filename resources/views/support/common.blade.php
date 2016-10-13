@@ -44,12 +44,7 @@
 				<a class="navbar-brand" href="#"><span>GIT</span>LAR</a>
 				<ul class="user-menu">
 					<li class="dropdown pull-right">
-						<a href="#" class="dropdown-toggle" data-toggle="dropdown"><span class="glyphicon glyphicon-user"></span> User <span class="caret"></span></a>
-						<ul class="dropdown-menu" role="menu">
-							<li><a href="#"><span class="glyphicon glyphicon-user"></span> Profile</a></li>
-							<li><a href="#"><span class="glyphicon glyphicon-cog"></span> Settings</a></li>
-							<li><a href="#"><span class="glyphicon glyphicon-log-out"></span> Logout</a></li>
-						</ul>
+						<a href="{{url('loginOut')}}"><span class="glyphicon glyphicon-log-out"></span> 登出</a>
 					</li>
 				</ul>
 			</div>
@@ -57,11 +52,11 @@
 	</nav>
 		
 	<div id="sidebar-collapse" class="col-sm-3 col-lg-2 sidebar">
-		<form role="search">
+		<!-- <form role="search">
 			<div class="form-group">
 				<input type="text" class="form-control" placeholder="Search">
 			</div>
-		</form>
+		</form> -->
 		<ul class="nav menu">
 			@foreach($menus as $menu)
 			<li id="support_{{$menu->url}}">
@@ -99,8 +94,8 @@
 					</li>
 				</ul>
 			</li> -->
-			<li role="presentation" class="divider"></li>
-			<li><a href="{{url('support/login')}}"><span class="glyphicon glyphicon-user"></span>登陆界面</a></li>
+			<!-- <li role="presentation" class="divider"></li>
+			<li><a href="{{url('support/login')}}"><span class="glyphicon glyphicon-user"></span>登陆界面</a></li> -->
 		</ul>
 		<div class="attribution">版权所有© <a href="http://gitlar.com/support" target="_blank" title="gitlar">gitlar</a> - 详情联系 <a href="http://gitlar.com/support" title="gitlar" target="_blank">gitlar</a></div>
 	</div><!--/.sidebar-->

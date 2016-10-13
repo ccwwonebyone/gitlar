@@ -19,12 +19,29 @@ class AdminController extends Controller
      * @param  menu  $need    需要请求的链接
      * @return void           view
      */
-    public function show(Request $request,$need='home',$subColumn='')
+    public function show(Request $request,$need='',$subColumn='')
     {
-         //登陆界面
-        if($need=='login') 
+        //登陆验证
+        session_start();       
+        if(isset($_COOKIE['username'])){
+            $_SESSION['username'] = $_COOKIE['username'];
+        }
+        $num = 0;
+        if(isset($_SESSION['username'])){
+            $num = DB::table('user')->where('username',$_SESSION['username'])->count('id');
+            if($num != 1){
+                $need = 'login';
+            }
+        }else{
+            $need = 'login';
+        }
+        if($need == 'login' && $num == 1) 
+            $need = '';
+
+        //登陆界面
+        if($need == 'login' && $num != 1) 
             return view('support.login');
-        
+
         $menu = new Menu;
         $project = new Project;
         $webset = new Webset;
@@ -48,6 +65,10 @@ class AdminController extends Controller
             $menuName[$value->url] = $value->name;          //菜单链接=>菜单名
         }
 
+        if($need == ''){
+            $need = $menus[0]->url;
+        }
+
         //前端启用菜单
         $view = $need;
         
@@ -57,23 +78,24 @@ class AdminController extends Controller
         $is_show = isset($data['is_show'])?$data['is_show']:'';
         //栏目配置页面
         if($need == 'project'){
-            if(!empty($projectUrl)&&$subColumn==''){
+            if(!empty($projectUrl)&&$subColumn == ''){
                 $subColumn = $projectUrl[0];                           
             }
             $info = $project->getInfo($subColumn,$is_show,$search);  
         }
         //前端菜单页面
         if($need == 'webset'){
-            if(!empty($websetUrl)&&$subColumn==''){
+            if(!empty($websetUrl)&&$subColumn == ''){
                  $subColumn = $websetUrl[0];                 
             }
             $info = $webset->getInfo($subColumn);
         }
-        if($need=='company'){
+        if($need == 'company'){
             $company = new Company;
             $info = $company -> edit();
+            $webs = $company -> web();
         }
-        if(isset($search) && $search!=''){
+        if(isset($search) && $search != ''){
             //传到common视图数据 
             //view 包含的视图文件
             //info 显示数据
@@ -83,10 +105,10 @@ class AdminController extends Controller
             //show_tables 所有数据表名 用于菜单管理的选择项
             //fontMenus 前端菜单
             //subColumn 二级菜单显示
-            return view('support.common',compact('view','info','menus','menuName','show_tables','getProset','fontMenus','subColumn'))
+            return view('support.common',compact('view','info','menus','menuName','show_tables','getProset','fontMenus','subColumn','webs'))
                     ->withErrors(['搜索',$search]);
         }else{
-            return view('support.common',compact('view','info','menus','menuName','show_tables','getProset','fontMenus','subColumn'));
+            return view('support.common',compact('view','info','menus','menuName','show_tables','getProset','fontMenus','subColumn','webs'));
         }
           	
     }

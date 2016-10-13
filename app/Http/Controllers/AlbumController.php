@@ -31,7 +31,7 @@ class AlbumController extends Controller
         //获取中部信息
         //$ablumFooter['info'] = $this->showInfo('footer','ablum');
 
-        return view('album',compact('middle'));
+        return view($this->web().'.album',compact('middle'));
     }
 
     /*public function index()

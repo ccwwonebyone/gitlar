@@ -38,6 +38,13 @@ class ProsetTableSeeder extends Seeder
                 'url' => 'soul',
                 'is_show' => 1,
             ),
+            3 => 
+            array (
+                'id' => 6,
+                'name' => '详细设置',
+                'url' => 'detail',
+                'is_show' => 1,
+            ),
         ));
         
         

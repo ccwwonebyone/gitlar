@@ -29,6 +29,8 @@ class CompanyTableSeeder extends Seeder
                 'belong' => 'づsんáηɡ年、悤悤惘惘',
                 'create_time' => '2016-09-14',
                 'recommend' => '最美的不过是你想的',
+                'background' => 'images/2016101301430114122510166557.jpg',
+                'web' => '1',
             ),
         ));
         

@@ -51,7 +51,7 @@
 @if(count($info)>0)
 	@foreach($info as $project)
 	<div class="showProject">
-		@include('projectHideForm')
+		@include('support.projectHideForm')
 		<div class="col-md-4">
 			<div class="panel panel-{{$status[rand(0,5)]}}">
 	    	<div class="panel-heading">

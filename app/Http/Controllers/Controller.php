@@ -23,4 +23,10 @@ class Controller extends BaseController
         $info = $project->getInfo($url,1);
         return $info;
     }
+
+    public function web()
+    {
+       $data = DB::table('company')->leftJoin('web','company.web','=','web.id')->value('web.web_type');
+       return $data;
+    }
 }

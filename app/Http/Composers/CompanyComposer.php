@@ -24,7 +24,7 @@ class CompanyComposer
     public function getCompanyInfo()
     {
         $company = DB::table('company')->first();
-        $companyInfo = ['name'=>$company->name,'create_time'=>$company->create_time];
+        $companyInfo = get_object_vars($company);
         return $companyInfo;
     }
     /**
@@ -44,5 +44,4 @@ class CompanyComposer
         }
         return $menus;
     }
- 
 }

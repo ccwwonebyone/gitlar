@@ -3,15 +3,15 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<title>Forms</title>
+<title>gitlar-登录</title>
 
 <link href="{{asset('admin/css/bootstrap.min.css')}}" rel="stylesheet">
 <link href="{{asset('admin/css/datepicker3.css')}}" rel="stylesheet">
 <link href="{{asset('admin/css/styles.css')}}" rel="stylesheet">
 
 <!--[if lt IE 9]>
-<script src="js/html5shiv.js"></script>
-<script src="js/respond.min.js"></script>
+<script src="{{asset('js/html5shiv.js')}}"></script>
+<script src="{{asset('admin/js/respond.min.js')}}"></script>
 <![endif]-->
 
 </head>
@@ -21,52 +21,34 @@
 	<div class="row">
 		<div class="col-xs-10 col-xs-offset-1 col-sm-8 col-sm-offset-2 col-md-4 col-md-offset-4">
 			<div class="login-panel panel panel-default">
-				<div class="panel-heading">登录</div>
-				<div class="panel-body">
-					<form role="form">
+				<div class="panel-heading"><a class="navbar-brand" href="#"><span>GIT</span>LAR--登录</a></div>
+				<div class="panel-body text-center">
+					<form role="form" action="{{url('login')}}" method="post">
+						{!! csrf_field() !!}
 						<fieldset>
 							<div class="form-group">
-								<input class="form-control" placeholder="用户名" name="email" type="email" autofocus="">
+								<input class="form-control" placeholder="用户名" name="username" type="text" autofocus="">
 							</div>
 							<div class="form-group">
 								<input class="form-control" placeholder="密码" name="password" type="password" value="">
 							</div>
 							<div class="checkbox">
 								<label>
-									<input name="remember" type="checkbox" value="1">记住我
+									<input name="remember" type="checkbox" value="1" checked="true">记住我
 								</label>
-							</div>
-							<button class="btn btn-primary"><span class="glyphicon glyphicon-user"></span>登录</button>
+							</div>							
 						</fieldset>
+						<button class="btn btn-primary"><span class="glyphicon glyphicon-user"></span>登录</button>
 					</form>
+					
 				</div>
 			</div>
 		</div><!-- /.col-->
 	</div><!-- /.row -->	
-	
-		
-
 	<script src="{{asset('admin/js/jquery-1.11.1.min.js')}}"></script>
 	<script src="{{asset('admin/js/bootstrap.min.js')}}"></script>
-	<script src="{{asset('admin/js/chart.min.js')}}"></script>
-	<script src="{{asset('admin/js/chart-data.js')}}"></script>
-	<script src="{{asset('admin/js/easypiechart.js')}}"></script>
-	<script src="{{asset('admin/js/easypiechart-data.js')}}"></script>
-	<script src="{{asset('admin/js/bootstrap-datepicker.js')}}"></script>
 	<script>
-		!function ($) {
-			$(document).on("click","ul.nav li.parent > a > span.icon", function(){		  
-				$(this).find('em:first').toggleClass("glyphicon-minus");	  
-			}); 
-			$(".sidebar span.icon").find('em:first').addClass("glyphicon-plus");
-		}(window.jQuery);
 
-		$(window).on('resize', function () {
-		  if ($(window).width() > 768) $('#sidebar-collapse').collapse('show')
-		})
-		$(window).on('resize', function () {
-		  if ($(window).width() <= 767) $('#sidebar-collapse').collapse('hide')
-		})
 	</script>	
 </body>
 

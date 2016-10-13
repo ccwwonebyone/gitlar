@@ -12,14 +12,17 @@ class CompanyController extends Controller
     private $sliderRule = [                                             //验证规则
                     'name' =>'required|between:1,10'
                   ];
-    /**
-     * Display a listing of the resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
-    public function index()
+
+    public function web()
     {
-        
+         $data = DB::table('web')->get();
+         if($data == '')
+            return false;
+
+         foreach ($data as $value) {
+             $webs[$value->id] = $value->web_type;
+         }
+         return $webs;
     }
 
     /**
@@ -40,16 +43,32 @@ class CompanyController extends Controller
      */
     public function store(Request $request)
     {
-       $data = $request->all();
-       $where['id'] = $data['id'];
-       unset($data['id']);
-       unset($data['_token']);
-       $this->validate($request,$this->sliderRule);  
-       if(DB::table($this->db)->where($where)->update($data)){
-            return redirect()->back()->withErrors(['保存','成功']);
-       }else{
+        $data = $request->all();
+        $where['id'] = $data['id'];
+        unset($data['id']);
+        unset($data['_token']);
+        $this->validate($request,$this->sliderRule);
+        //当有背景时
+        if($request->hasFile('background')){
+            $this->validate($request,['background' => 'required|image|mimes:jpeg,png,jpg,gif,svg|max:20480']);
+            $file = $request->file('background');
+            if ($file->isValid()){              
+                $fileName = date('YmdHis').$file->getClientOriginalName();
+                $file->move(public_path().'/images\/', $fileName);
+                $data['background'] = 'images/'.$fileName;
+            }
+        }
+
+        if($data['is_change'] == 'remove'){
+            $data['background'] = '';
+        }
+        $is_change = $data['is_change'];
+        unset($data['is_change']);
+        if(DB::table($this->db)->where($where)->update($data)){
+             return redirect()->back()->withErrors(['保存','成功']);
+        }else{
             return redirect()->back()->withErrors(['保存','失败']);
-       }
+        }
 
     }
 

@@ -19,5 +19,7 @@ class DatabaseSeeder extends Seeder
         $this->call('ProjectTableSeeder');
         $this->call('ProsetTableSeeder');
         $this->call('WebsetTableSeeder');
+        $this->call('WebTableSeeder');
+        $this->call('UserTableSeeder');
     }
 }
