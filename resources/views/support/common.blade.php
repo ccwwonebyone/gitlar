@@ -63,39 +63,6 @@
 				<a href="{{url('support/'.$menu->url)}}"><span class="glyphicon glyphicon-{{$menu->icon}}"></span> {{$menu->name}}</a>
 			</li>
 			@endforeach
-			<!-- <li id="support_webset"><a href="{{url('support/webset')}}"><span class="glyphicon glyphicon-cog"></span> 前端配置</a></li>
-			<li id="support_company"><a href="{{url('support/company')}}"><span class="glyphicon glyphicon-chevron-right"></span> 公司信息</a></li>
-			<li id="support_widgets"><a href="{{url('support/widgets')}}"><span class="glyphicon glyphicon-th"></span> 统计管理</a></li>
-			<li id="support_slider"><a href="{{url('support/slider')}}"><span class="glyphicon glyphicon-film"></span> 滑块管理</a></li>
-			<li id="support_slider"><a href="{{url('support/wonder')}}"><span class="glyphicon glyphicon-film"></span> 精彩配置</a></li>
-			<li id="support_charts"><a href="{{url('support/charts')}}"><span class="glyphicon glyphicon-stats"></span> 内容管理</a></li>
-			<li id="support_menu"><a href="{{url('support/menu')}}"><span class="glyphicon glyphicon-list-alt"></span> 菜单管理</a></li>
-			<li id="support_forms"><a href="{{url('support/forms')}}"><span class="glyphicon glyphicon-list"></span> 细节管理</a></li>
-			<li class="support_panels"><a href="{{url('support/panels')}}"><span class="glyphicon glyphicon-info-sign"></span> 面板显示</a></li> 
-			<li class="parent ">
-				<a href="#">
-					<span class="glyphicon glyphicon-list"></span> 展示管理 <span data-toggle="collapse" href="#sub-item-1" class="icon pull-right"><em class="glyphicon glyphicon-s glyphicon-plus"></em></span> 
-				</a>
-				<ul class="children collapse" id="sub-item-1">
-					<li id="support_slider">
-						<a href="{{url('support/slider')}}">
-							<span class="glyphicon glyphicon-film"></span> 滑块
-						</a>
-					</li>
-					<li>
-						<a class="" href="#">
-							<span class="glyphicon glyphicon-share-alt"></span> Sub Item 2
-						</a>
-					</li>
-					<li>
-						<a class="" href="#">
-							<span class="glyphicon glyphicon-share-alt"></span> Sub Item 3
-						</a>
-					</li>
-				</ul>
-			</li> -->
-			<!-- <li role="presentation" class="divider"></li>
-			<li><a href="{{url('support/login')}}"><span class="glyphicon glyphicon-user"></span>登陆界面</a></li> -->
 		</ul>
 		<div class="attribution">版权所有© <a href="http://gitlar.com/support" target="_blank" title="gitlar">gitlar</a> - 详情联系 <a href="http://gitlar.com/support" title="gitlar" target="_blank">gitlar</a></div>
 	</div><!--/.sidebar-->
@@ -103,7 +70,7 @@
 	<div class="col-sm-9 col-sm-offset-3 col-lg-10 col-lg-offset-2 main">
 		<div class="row">
 		<ol class="breadcrumb">
-			<li><a href="{{url('support/home')}}"><span class="glyphicon glyphicon-home"></span></a></li>
+			<li><a href="{{url('support/'.$menus[0]->url)}}"><span class="glyphicon glyphicon-{{$menus[0]->icon}}"></span></a></li>
 			<li class="active">{{$menuName[$view]}}</li>
 			@if(in_array($subColumn,array_keys($getProset)))
 				<li class="active">{{$getProset[$subColumn]}}</li>

@@ -13,8 +13,10 @@
 /*Route::group(['prefix' => 'index'], function () {
     Route::get('/', 'IndexController@index');
 });*/
-Route::get('/','IndexController@index');
-Route::get('index','IndexController@index');
+Route::get('/',function () {
+    return redirect()->route('index');
+});
+Route::get('index','IndexController@index')->name('index');
 
 Route::get('album', 'AlbumController@index');
 Route::get('blog', 'BlogController@index');

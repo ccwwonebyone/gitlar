@@ -1,29 +1,35 @@
 <!--header-->
-<div class="header @yield('header-main')">
+<div class="header">
 	<div class="container">
-			<div class="header-top">
-				<div class="logo">
-					<h1><a href="{{action('IndexController@index')}}">{{$companyInfo['name']}}</a></h1>
-				</div>
-				<div class="top-nav">
-					<span class="menu"><img src="{{asset('images/menu.png')}}" alt=""> </span>
-					<ul>
-						@foreach($menus as $menu)
-							<li ><a href="{{$menu['url']}}" class="hvr-sweep-to-bottom color">
-							<i class="glyphicon glyphicon-{{$menu['icon']}}"></i>{{$menu['name']}}</a></li>
-						@endforeach
-					<div class="clearfix"> </div>
-					</ul>
-					<!--script-->
-				<script>
-					$("span.menu").click(function(){
-						$(".top-nav ul").slideToggle(500, function(){
-						});
-					});
-			</script>				
-				</div>
-			<div class="clearfix"> </div>
+		<div class="header-top">
+			<div class="logo">
+				<a href="{{action('IndexController@index')}}">
+				@if(mb_strlen($companyInfo['name'])%2==0)
+					{{substr($companyInfo['name'],0,mb_strlen($companyInfo['name'])/2)}}
+				@else
+					{{substr($companyInfo['name'],0,(mb_strlen($companyInfo['name'])/2)+1)}}
+				@endif
+				<span>{{substr($companyInfo['name'],-mb_strlen($companyInfo['name'])/2)}}</span></a>
+			</div>
+			<div class="top-menu">
+				<span class="menu"><img src="images/nav.png" alt=""/> </span>
+				<ul>
+					@foreach($menus as $menu)
+						<li>
+							<i class="glyphicon glyphicon-{{$menu['icon']}}" style="color: #fff"></i> 
+							<a href="{{$menu['url']}}" class="{{url()->current()==$menu['url']?'active':''}}">{{$menu['name']}}</a>
+						</li>
+					@endforeach
+				</ul>
+			</div>
+			 <!--script-nav-->
+			 <script>
+			 $("span.menu").click(function(){
+			 	$(".top-menu ul").slideToggle("slow" , function(){
+			 	});
+			 });
+			 </script>
+			<div class="clerfix"></div>
 		</div>
-		@yield('slides')
 	</div>
 </div>

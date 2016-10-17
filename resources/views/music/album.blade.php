@@ -1,5 +1,4 @@
 @extends('layouts.master')
-@section('title','展示')
 @section('js')
 <script src="{{asset('font-music/js/modernizr.custom.97074.js')}}"></script>
 <!--script-->
@@ -39,13 +38,10 @@ $(function() {
 			<script type="text/javascript" src="{{asset('font-music/js/jquery.hoverdir.js')}}"></script>	
 		<script type="text/javascript">
 			$(function() {
-			
 				$(' #da-thumbs > li ').each( function() { $(this).hoverdir(); } );
-
 			});
 		</script>
-        </div>
-		
+        </div>		
 	</div>
 <!--//gallery-->
 @endsection

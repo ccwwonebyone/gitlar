@@ -1,5 +1,4 @@
 @extends('layouts.master')
-@section('title','详情')
 @section('header-main')
 	header-main
 @endsection

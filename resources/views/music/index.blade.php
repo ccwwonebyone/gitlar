@@ -93,7 +93,6 @@
 		</div> -->
 		<!--content-mid-->
 	@if(isset($middle))
-/*--//content-mid--*/
 <style>
 	.content-middle{
 		background: url({{asset($background)}}) no-repeat bottom;
@@ -119,7 +118,7 @@
 								<div class="col-md-10 six1">
 									<h5>{{$pro->title}}</h5>
 									<p>{{$pro->content}}</p>
-								<a href="{{$pro->url}}"><i class="glyphicon glyphicon-circle-arrow-right"></i></a>
+								<!-- <a href="{{$pro->url}}"><i class="glyphicon glyphicon-circle-arrow-right"></i></a> -->
 								</div>
 								<div class="clearfix"> </div>
 							</div>
