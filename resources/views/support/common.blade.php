@@ -28,7 +28,8 @@
 <!--tagsinput -->
 <script src="{{asset('git-lar/bootstrap-tagsinput/dist/bootstrap-tagsinput.min.js')}}"></script>
 <!-- 文件上传 -->
-<script src="{{asset('git-lar/bootstrap-fileinput/js/fileinput.js')}}"></script>
+<script src="{{asset('js/fileinput.js')}}"></script>
+
 </head>
 
 <body>
@@ -108,6 +109,7 @@
 		$('#support_'+"{{$view}}").addClass('active');
 	})		
 	</script>
+
 </body>
 
 </html>
