@@ -19,7 +19,7 @@ class CompanyTableSeeder extends Seeder
         \DB::table('company')->insert(array (
             0 => 
             array (
-                'id' => 2,
+                'id' => 1,
                 'name' => 'GITLAR',
                 'tel' => '13824382438',
                 'address' => '伤年街',

@@ -1,5 +1,5 @@
 <!--header-->
-<div class="header">
+<div class="header @yield('header-main')">
 	<div class="container">
 		<div class="header-top">
 			<div class="logo">
@@ -31,5 +31,6 @@
 			 </script>
 			<div class="clerfix"></div>
 		</div>
+		@yield('slides')
 	</div>
 </div>
