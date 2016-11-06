@@ -105,8 +105,7 @@ class AdminController extends Controller
             //show_tables 所有数据表名 用于菜单管理的选择项
             //fontMenus 前端菜单
             //subColumn 二级菜单显示
-            return view('support.common',compact('view','info','menus','menuName','show_tables','getProset','fontMenus','subColumn','webs'))
-                    ->withErrors(['搜索',$search]);
+            return view('support.common',compact('view','info','menus','menuName','show_tables','getProset','fontMenus','subColumn','webs'))->withErrors(['搜索',$search]);
         }else{
             return view('support.common',compact('view','info','menus','menuName','show_tables','getProset','fontMenus','subColumn','webs'));
         }
@@ -123,7 +122,7 @@ class AdminController extends Controller
         $prefix = config('database.connections.mysql.prefix');
         $show_tables = [];
         foreach ($tables as $table) {
-            $table = get_object_vars($table);
+            $table = get_object_vars($table);           //将对象转换为有效数组
             $show_tables[] = str_replace($prefix,'',$table['Tables_in_'.$database]);
         }
         return $show_tables;
@@ -134,11 +133,11 @@ class AdminController extends Controller
      */
     public function getProset()
     {
-         $prosets = DB::table('proset')->where('is_show',1)->get();
-         $proset = array();
-         foreach ($prosets as $value) {
-             $proset[$value->url] = $value->name;
-         }
-         return $proset;
+        $prosets = DB::table('proset')->where('is_show',1)->get();
+        $proset = array();
+        foreach ($prosets as $value) {
+            $proset[$value->url] = $value->name;
+        }
+        return $proset;
     }
 }

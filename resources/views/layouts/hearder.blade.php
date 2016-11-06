@@ -3,13 +3,11 @@
 	<div class="container">
 		<div class="header-top">
 			<div class="logo">
-				<a href="{{action('IndexController@index')}}">
-				@if(mb_strlen($companyInfo['name'])%2==0)
-					{{substr($companyInfo['name'],0,mb_strlen($companyInfo['name'])/2)}}
-				@else
-					{{substr($companyInfo['name'],0,(mb_strlen($companyInfo['name'])/2)+1)}}
-				@endif
-				<span>{{substr($companyInfo['name'],-mb_strlen($companyInfo['name'])/2)}}</span></a>
+				<a href="{{action('IndexController@index')}}">			
+					{{mb_substr($companyInfo['name'],0,round(mb_strlen($companyInfo['name'])/2))}}		
+				<span>
+					{{mb_substr($companyInfo['name'],-mb_strlen($companyInfo['name'])/2)}}
+				</span></a>
 			</div>
 			<div class="top-menu">
 				<span class="menu"><img src="images/nav.png" alt=""/> </span>

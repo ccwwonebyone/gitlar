@@ -83,7 +83,7 @@ class WebsetController extends Controller
     		if($data['background1']=='' && !$request->hasFile('image1')){
     			$this->validate($request,['image1' => 'required|image|mimes:jpeg,png,jpg,gif,svg|max:20480']);
     		}   		
-    		if ($file->isValid()){ 			
+    		if ($file->isValid()){
     			$fileName = date('YmdHis').$file->getClientOriginalName();
     			$file->move(public_path().'/images\/webset\/'.$where['menu-belong'].'\/', $fileName);
     			$image['background2'] = 'images/webset/'.$where['menu-belong'].'/'.$fileName;    			
