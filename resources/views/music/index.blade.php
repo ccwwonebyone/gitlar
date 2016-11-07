@@ -8,7 +8,8 @@
              			<ul class="slides">
              				@foreach($slides as $slide)
 							<li>
-								<div class="banner-matter" style="background: url({{asset($slide->img)}}) no-repeat">
+								<div class="banner-matter">
+								<!-- style="background: url({{asset($slide->img)}}) no-repeat" -->
 									<div >
 										<h3 class="text-danger">{{$slide->title}}</h3>
 										<p class="text-success">{{$slide->content}}</p>
