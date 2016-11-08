@@ -1,4 +1,4 @@
-footer-->
+<!--footer-->
 <div class="footer">
 	<div class="container">
 		<h2><a href="#">{{$companyInfo['name']}}</a></h2>
