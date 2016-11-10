@@ -16,7 +16,7 @@ class CreateGlCompanyTable extends Migration {
 		{
 			$table->increments('id');
 			$table->char('name')->nullable();
-			$table->char('tel', 20)->nullable();
+			$table->char('tel')->nullable();
 			$table->char('address')->nullable();
 			$table->char('qq')->nullable();
 			$table->char('weixin')->nullable();
