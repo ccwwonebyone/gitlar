@@ -22,7 +22,18 @@ class ProsetController extends Controller
 	 */
     public function prosetData($where='',$data,$search)
     {
-        if($where!=''){
+        $init_db = DB::table($this->table);
+        
+        $init_db = $where!='' ? $init_db->where($where) : $init_db;
+        $total = $init_db->count();
+        $rows  = $init_db->orderBy($data['sort'],$data['order'])
+                         ->skip($data['offset'])->take($data['limit'])
+                         ->where(function($query) use ($search){
+                            $query->orWhere('name','like','%'.$search.'%');
+                         })
+                         ->get()->toArray();
+                         
+        /*if($where!=''){
             $total = DB::table($this->table)->where($where)->count();
             $rows = DB::table($this->table)
                          ->where($where)
@@ -41,7 +52,7 @@ class ProsetController extends Controller
                             $query->orWhere('name','like','%'.$search.'%');
                          })
                          ->get()->toArray();          
-        }
+        }*/
         $prosetData['total'] = $total? $total : 0;
         $prosetData['rows'] = $rows? $rows :'';
     	return $prosetData;
