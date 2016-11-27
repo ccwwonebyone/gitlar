@@ -16,6 +16,7 @@
 Route::get('/',function () {
     return redirect()->route('index');
 });
+Route::get('check_url','AdminController@check_url');
 Route::get('index','IndexController@index')->name('index');
 
 Route::get('album', 'AlbumController@index');
