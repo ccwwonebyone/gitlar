@@ -16,11 +16,7 @@ class CreateGlCompanyTable extends Migration {
 		{
 			$table->increments('id');
 			$table->char('name')->nullable();
-			$table->char('tel')->nullable();
 			$table->char('address')->nullable();
-			$table->char('qq')->nullable();
-			$table->char('weixin')->nullable();
-			$table->char('sina')->nullable();
 			$table->char('belong')->nullable();
 			$table->date('create_time')->nullable();
 			$table->text('recommend', 65535)->nullable();
@@ -32,6 +28,7 @@ class CreateGlCompanyTable extends Migration {
 
 	/**
 	 * Reverse the migrations.
+	 *
 	 * @return void
 	 */
 	public function down()

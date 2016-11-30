@@ -19,17 +19,13 @@ class CompanyTableSeeder extends Seeder
         \DB::table('company')->insert(array (
             0 => 
             array (
-                'id' => 1,
-                'name' => 'GITLAR',
-                'tel' => '13824382438',
-                'address' => '伤年街',
-                'qq' => '1438438',
-                'weixin' => '二的不一般',
-                'sina' => '想你所想',
+                'id' => 2,
+                'name' => '最美不过你',
+                'address' => '伤年',
                 'belong' => 'づsんáηɡ年、悤悤惘惘',
                 'create_time' => '2016-09-14',
                 'recommend' => '最美的不过是你想的',
-                'background' => 'images/2016101301430114122510166557.jpg',
+                'background' => 'images/20161130070740background295368.jpg',
                 'web' => '1',
             ),
         ));

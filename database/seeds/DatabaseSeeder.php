@@ -22,5 +22,6 @@ class DatabaseSeeder extends Seeder
         $this->call('WebTableSeeder');
         $this->call('UserTableSeeder');
         $this->call('DreamTableSeeder');
+        $this->call('ContactTableSeeder');
     }
 }
