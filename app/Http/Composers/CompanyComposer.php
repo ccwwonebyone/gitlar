@@ -15,7 +15,7 @@ class CompanyComposer
      */
     public function compose(View $view)
     {
-       $view->with('companyInfo', $this->getCompanyInfo())->with('menus',$this->getMenu());
+       $view->with('companyInfo', $this->getCompanyInfo())->with('menus',$this->getMenu())->with('contacts',$this->getContacts());
     }
     /**
      * 获取网站公司信息
@@ -43,5 +43,10 @@ class CompanyComposer
             $menu = '';
         }
         return $menus;
+    }
+    public function getContacts()
+    {
+        $contacts = DB::table('contact')->get();
+        return $contacts;
     }
 }

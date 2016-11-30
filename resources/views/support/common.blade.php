@@ -13,6 +13,7 @@
 <!-- <link rel="stylesheet" href="{{asset('admin/css/file.css')}}"> -->
 <link href="{{asset('git-lar/bootstrap-tagsinput/dist/bootstrap-tagsinput.css')}}" rel="stylesheet">
 <link href="{{asset('git-lar/bootstrap-fileinput/css/fileinput.min.css')}}" rel="stylesheet">
+<link href="{{asset('font-icon/iconfont.css')}}" rel="stylesheet" type="text/css" media="all" />
 <!--[if lt IE 9]>
 <script src="{{asset('admin/js/html5shiv.js')}}"></script>
 <script src="{{asset('admin/js/respond.min.js')}}"></script>

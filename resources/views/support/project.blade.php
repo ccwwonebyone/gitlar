@@ -89,7 +89,7 @@
         <div class="modal-content">
             <div class="modal-header">
                 <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
-                <h4 class="modal-title " id="myModalLabel"><span class="label label-info"><i class="glyphicon glyphicon-plus"></i>滑块</span></h4>
+                <h4 class="modal-title " id="myModalLabel"><span class="label label-info"><i class="glyphicon glyphicon-plus"></i></span></h4>
             </div>
             <div class="modal-body">
             	<form action="{{url('project/add')}}" class="form-horizontal" id="projectform" role="form" method="post" enctype="multipart/form-data">

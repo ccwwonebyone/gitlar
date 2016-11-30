@@ -48,7 +48,7 @@ class CompanyController extends Controller
         unset($data['id']);
         unset($data['_token']);
         $this->validate($request,$this->sliderRule);       
-        $check_img = ['qq_img','tel_img','sina_img','weixin_img','background'];
+        $check_img = ['background'];
         //当有背景时
         foreach ($check_img as $value) {
             if($request->hasFile($value)){
@@ -75,27 +75,12 @@ class CompanyController extends Controller
                 $data['background'] = 'images/'.$fileName;
             }
         }*/
-        $check_change = ['qq_change','tel_change','sina_change','weixin_change'];
-        foreach ($check_change as $value) {
-            if($data[$value]!='remove'&&$data[$value]!='change'){
-                $contact = explode('_', $value)[0];
-                $data[$contact] .= ','.$data[$value];
-            }
-        }
         if($data['is_change'] == 'remove'){
             $data['background'] = '';
         }
         $is_change = $data['is_change'];
 
         unset($data['is_change']);
-        unset($data['qq_img']);
-        unset($data['sina_img']);
-        unset($data['tel_img']);
-        unset($data['weixin_img']);
-        unset($data['qq_change']);
-        unset($data['weixin_change']);
-        unset($data['tel_change']);
-        unset($data['sina_change']);
         if(DB::table($this->db)->where($where)->update($data)){
              return redirect()->back()->withErrors(['保存','成功']);
         }else{

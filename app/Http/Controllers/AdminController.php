@@ -7,9 +7,10 @@ use App\Http\Requests;
 use Illuminate\Http\Request;
 use App\Http\Controllers\MenuController as Menu;
 use App\Http\Controllers\ProsetController as Proset;
+use App\Http\Controllers\WebsetController as Webset;
 use App\Http\Controllers\ProjectController as Project;
 use App\Http\Controllers\CompanyController as Company;
-use App\Http\Controllers\WebsetController as Webset;
+use App\Http\Controllers\ContactController as Contact;
 
 class AdminController extends Controller
 {
@@ -95,6 +96,10 @@ class AdminController extends Controller
             $company = new Company;
             $info = $company -> edit();
             $webs = $company -> web();
+        }
+        if($need == 'contact'){
+            $contact = new Contact;
+            $info = $contact->getinfo($search);
         }
         if(isset($search) && $search != ''){
             //传到common视图数据 

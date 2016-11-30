@@ -96,12 +96,12 @@
 	@if(isset($middle))
 <style>
 	.content-middle{
-		background: url({{asset($background)}}) no-repeat bottom;
-	  width: 100%;
-	  min-height: 674px;
-	  display: block;
-	  background-size: cover;
-	  padding: 3em 0 4em;
+		background: url("{{asset($background)}}") no-repeat bottom;
+	  	width: 100%;
+	  	min-height: 674px;
+	 	display: block;
+	  	background-size: cover;
+	  	padding: 3em 0 4em;
 	}
 </style>
 		<div class="content-middle">

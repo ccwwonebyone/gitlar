@@ -50,6 +50,13 @@ Route::group(['prefix' => 'proset'], function () {
     Route::post('remove', 'ProsetController@remove');
     Route::post('edit', 'ProsetController@edit');
 });
+//联系请求
+Route::group(['prefix' => 'contact'], function () {
+    Route::get('getallData', 'ContactController@getallData');
+    Route::post('add', 'ContactController@add');
+    Route::post('remove', 'ContactController@remove');
+    Route::post('edit', 'ContactController@edit');
+});
 //project请求
 Route::group(['prefix' => 'project'], function () {
     Route::any('add', 'ProjectController@add');
