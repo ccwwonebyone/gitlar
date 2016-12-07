@@ -11,7 +11,7 @@ class WebsetController extends Controller
 	/**
 	 * 获取webset的信息
 	 * @param  string $subColumn 属于webset的id的菜单链接
-	 * @return array         相关链接的webset信息   
+	 * @return array         相关链接的webset信息
 	 */
     public function getInfo($subColumn)
     {
@@ -28,7 +28,7 @@ class WebsetController extends Controller
     			}else{
     				$data[$key.'-name'] = '';
     			}
-    			
+
     		}
     		if($key=='background'){
     			if($value!=''){
@@ -38,7 +38,7 @@ class WebsetController extends Controller
     					$data[$key.'2'] = null;
     				}else{
     					$data[$key.'2'] = $info[1];
-    				}   				
+    				}
     				unset($data[$key]);
     			}else{
     				$data[$key.'1'] = null;
@@ -51,7 +51,7 @@ class WebsetController extends Controller
     /**
      * 编辑修改网站配置
      * @param  Request $request 配置数据
-     * @return viod           
+     * @return viod
      */
     public function edit(Request $request)
     {
@@ -70,7 +70,7 @@ class WebsetController extends Controller
     	if($request->hasFile('image1')){
     		$this->validate($request,['image1' => 'required|image|mimes:jpeg,png,jpg,gif,svg|max:20480']);
     		$file = $request->file('image1');
-    		if ($file->isValid()){  			
+    		if ($file->isValid()){
     			$fileName = date('YmdHis').$file->getClientOriginalName();
     			$file->move(public_path().'/images\/webset\/'.$where['menu-belong'].'\/', $fileName);
     			$image['background1'] = 'images/webset/'.$where['menu-belong'].'/'.$fileName;
@@ -82,16 +82,16 @@ class WebsetController extends Controller
     		$this->validate($request,['image2' => 'required|image|mimes:jpeg,png,jpg,gif,svg|max:20480']);
     		if($data['background1']=='' && !$request->hasFile('image1')){
     			$this->validate($request,['image1' => 'required|image|mimes:jpeg,png,jpg,gif,svg|max:20480']);
-    		}   		
+    		}
     		if ($file->isValid()){
     			$fileName = date('YmdHis').$file->getClientOriginalName();
     			$file->move(public_path().'/images\/webset\/'.$where['menu-belong'].'\/', $fileName);
-    			$image['background2'] = 'images/webset/'.$where['menu-belong'].'/'.$fileName;    			
-    		}    			
+    			$image['background2'] = 'images/webset/'.$where['menu-belong'].'/'.$fileName;
+    		}
     	}
     	//上传了图片1没有上传图片2
     	if(isset($image['background1']) && !isset($image['background2'])){
-    			$saveData['background'] = $image['background1'].','.$data['background2'];	
+    			$saveData['background'] = $image['background1'].','.$data['background2'];
     	}
     	//上传了图片2
     	if(isset($image['background2'])){
@@ -101,15 +101,15 @@ class WebsetController extends Controller
     		}else{
     			$saveData['background'] = $data['background1'].','.$image['background2'];
     		}
-    		
+
     	}
-    	
+
     	$saveData['menu-header'] =  $data['menu-header'].','.$data['menu-header-name'];
     	$saveData['menu-middle'] =  $data['menu-middle'].','.$data['menu-middle-name'];
     	$saveData['menu-footer'] =  $data['menu-footer'].','.$data['menu-footer-name'];
 
     	if(DB::table($this->table)->where($where)->update($saveData)){
-    		return redirect()->back()->withErrors(['保存','成功']);   		        
+    		return redirect()->back()->withErrors(['保存','成功']);
         }else{
         	return redirect()->back()->withErrors(['保存','失败']);
         }

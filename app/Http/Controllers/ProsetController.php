@@ -23,7 +23,7 @@ class ProsetController extends Controller
     public function prosetData($where='',$data,$search)
     {
         $init_db = DB::table($this->table);
-        
+
         $init_db = $where!='' ? $init_db->where($where) : $init_db;
         $total = $init_db->count();
         $rows  = $init_db->orderBy($data['sort'],$data['order'])
@@ -32,32 +32,9 @@ class ProsetController extends Controller
                             $query->orWhere('name','like','%'.$search.'%');
                          })
                          ->get()->toArray();
-                         
-        /*if($where!=''){
-            $total = DB::table($this->table)->where($where)->count();
-            $rows = DB::table($this->table)
-                         ->where($where)
-                         ->orderBy($data['sort'],$data['order'])
-                         ->skip($data['offset'])->take($data['limit'])
-                         ->where(function($query) use ($search){
-                            $query->orWhere('name','like','%'.$search.'%');
-                         })
-    					 ->get()->toArray();
-        }else{
-            $total = DB::table($this->table)->count();
-            $rows = DB::table($this->table)
-                         ->orderBy($data['sort'],$data['order'])
-                         ->skip($data['offset'])->take($data['limit'])
-                         ->where(function($query) use ($search){
-                            $query->orWhere('name','like','%'.$search.'%');
-                         })
-                         ->get()->toArray();          
-        }*/
         $prosetData['total'] = $total? $total : 0;
         $prosetData['rows'] = $rows? $rows :'';
     	return $prosetData;
-       
-    	//return json_encode($menuDatas);
     }
     /**
      * 获取表格数据
@@ -73,7 +50,7 @@ class ProsetController extends Controller
 	/**
 	 * 增加proset
 	 * @param Request $request 请求参数
-	 * @return void           
+	 * @return void
 	 */
     public function add(Request $request)
     {
@@ -90,7 +67,7 @@ class ProsetController extends Controller
     /**
      * 删除proset
      * @param  Request $request 请求参数
-     * @return void           
+     * @return void
      */
     public function remove(Request $request)
     {
@@ -106,7 +83,7 @@ class ProsetController extends Controller
     /**
      * 编辑proset
      * @param  Request $request 请求参数
-     * @return void           
+     * @return void
      */
     public function edit(Request $request)
     {

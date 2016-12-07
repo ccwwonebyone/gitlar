@@ -8,6 +8,7 @@ use Illuminate\Http\Request;
 use App\Http\Controllers\MenuController as Menu;
 use App\Http\Controllers\ProsetController as Proset;
 use App\Http\Controllers\WebsetController as Webset;
+use App\Http\Controllers\WebconController as Webcon;
 use App\Http\Controllers\ProjectController as Project;
 use App\Http\Controllers\CompanyController as Company;
 use App\Http\Controllers\ContactController as Contact;
@@ -24,7 +25,7 @@ class AdminController extends Controller
     {
         $this->check_url($need);
         //登陆验证
-        session_start();       
+        session_start();
         if(isset($_COOKIE['username'])){
             $_SESSION['username'] = $_COOKIE['username'];
         }
@@ -37,16 +38,17 @@ class AdminController extends Controller
         }else{
             $need = 'login';
         }
-        if($need == 'login' && $num == 1) 
+        if($need == 'login' && $num == 1)
             $need = '';
 
         //登陆界面
-        if($need == 'login' && $num != 1) 
+        if($need == 'login' && $num != 1)
             return view('support.login');
 
         $menu = new Menu;
         $project = new Project;
         $webset = new Webset;
+        $webcon = new Webcon;
 
         $show_tables = $this->getTables();
 
@@ -58,7 +60,7 @@ class AdminController extends Controller
         foreach ($fontMenu as $value) {
             $fontMenus[$value->url] = $value->name;          //菜单链接=>菜单名
         }
-        $websetUrl = array_keys($fontMenus);
+        $webUrl = array_keys($fontMenus);
 
         //后端菜单
         $menus = $menu->getMenu('0','1','asc');
@@ -73,7 +75,7 @@ class AdminController extends Controller
 
         //前端启用菜单
         $view = $need;
-        
+
         $data = $request->all();
         $search = isset($data['search_content'])?$data['search_content']:'';
         session(['search' => $search]);
@@ -81,16 +83,22 @@ class AdminController extends Controller
         //栏目配置页面
         if($need == 'project'){
             if(!empty($projectUrl)&&$subColumn == ''){
-                $subColumn = $projectUrl[0];                           
+                $subColumn = $projectUrl[0];
             }
-            $info = $project->getInfo($subColumn,$is_show,$search);  
+            $info = $project->getInfo($subColumn,$is_show,$search);
         }
         //前端菜单页面
         if($need == 'webset'){
-            if(!empty($websetUrl)&&$subColumn == ''){
-                 $subColumn = $websetUrl[0];                 
+            if(!empty($webUrl)&&$subColumn == ''){
+                 $subColumn = $webUrl[0];
             }
             $info = $webset->getInfo($subColumn);
+        }
+        if($need == 'webcon'){
+            if(!empty($webUrl)&&$subColumn == ''){
+                 $subColumn = $webUrl[0];
+            }
+            $info = $webcon->getInfo($subColumn);
         }
         if($need == 'company'){
             $company = new Company;
@@ -102,7 +110,7 @@ class AdminController extends Controller
             $info = $contact->getinfo($search);
         }
         if(isset($search) && $search != ''){
-            //传到common视图数据 
+            //传到common视图数据
             //view 包含的视图文件
             //info 显示数据
             //menuName 菜单url=>name
@@ -115,7 +123,7 @@ class AdminController extends Controller
         }else{
             return view('support.common',compact('view','info','menus','menuName','show_tables','getProset','fontMenus','subColumn','webs'));
         }
-          	
+
     }
     /**
      * 获取当前数据库中的所有表 除去数据库,数据表前缀的影响
@@ -135,7 +143,7 @@ class AdminController extends Controller
     }
     /**
      * 获取proset的菜单
-     * @return array 
+     * @return array
      */
     public function getProset()
     {

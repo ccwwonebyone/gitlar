@@ -24,7 +24,7 @@ class Menucontroller extends Controller
     public function menuData($where='',$data,$search)
     {
         $init_db = DB::table($this->table);
-        
+
         $init_db = $where!='' ? $init_db->where($where) : $init_db;
         $total = $init_db->count();
         $rows  = $init_db->orderBy($data['sort'],$data['order'])
@@ -33,38 +33,10 @@ class Menucontroller extends Controller
                             $query->orWhere('name','like','%'.$search.'%');
                          })
                          ->get()->toArray();
-        /*if($where!=''){
-            //$total = DB::table($this->table)->where($where)->count();
-            $rows = DB::table($this->table)
-                         ->where($where)
-                         ->orderBy($data['sort'],$data['order'])
-                         ->skip($data['offset'])->take($data['limit'])
-                         ->where(function($query) use ($search){
-                            $query->orWhere('name','like','%'.$search.'%');
-                         })
-    					 ->get()->toArray();
-        }else{
-            //$total = DB::table($this->table)->count();
-            $rows = DB::table($this->table)
-                         ->orderBy($data['sort'],$data['order'])
-                         ->skip($data['offset'])->take($data['limit'])
-                         ->where(function($query) use ($search){
-                            $query->orWhere('name','like','%'.$search.'%');
-                         })
-                         ->get()->toArray();          
-        }*/
-/*        foreach ($rows as $key=>$row) {
-            if($row->pid ==0){
-                $rows[$key]->pid_name = '主菜单';
-            }else{
-                $pid_name = DB::table($this->table)->where('id',$row->pid)->value('name');
-                $rows[$key]->pid_name = $pid_name;
-            }           
-        }*/
         $menuData['total'] = $total? $total : 0;
         $menuData['rows'] = $rows? $rows :'';
     	return $menuData;
-       
+
     	//return json_encode($menuDatas);
     }
     /**

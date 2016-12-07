@@ -24,13 +24,13 @@
                 <label for="name" class="col-md-2 control-label">id：</label>
                 <div class="col-md-10">
                   <input type="text" class="form-control" name="id" id="id" value="{{$info['id']}}">
-                </div>                
+                </div>
               </div>
               <div class="form-group" style="display: none;">
                 <label for="name" class="col-md-2 control-label">归属菜单：</label>
                 <div class="col-md-10">
                     <input type="text" class="form-control" name="menu-belong" id="menu-belong" value="{{$info['menu-belong']}}">
-                </div>                
+                </div>
               </div>
               <div class="form-group">
               <label for="name" class="col-md-2 control-label">{{$fontMenus[$subColumn]}}-头部：</label>
@@ -49,7 +49,7 @@
               <label for="name" class="col-md-2 control-label">头部-名称：</label>
               <div class="col-md-4">
                 <input type="text" class="form-control" name="menu-header-name" id="menu-header-name" value="{{$info['menu-header-name']}}">
-              </div>                 
+              </div>
               </div>
               <div class="form-group">
               <label for="name" class="col-md-2 control-label">{{$fontMenus[$subColumn]}}-中部：</label>
@@ -68,7 +68,7 @@
               <label for="name" class="col-md-2 control-label">中部-名称：</label>
               <div class="col-md-4">
                 <input type="text" class="form-control" name="menu-middle-name" id="menu-middle-name" value="{{$info['menu-middle-name']}}">
-              </div>                
+              </div>
               </div>
               <div class="form-group">
               <label for="name" class="col-md-2 control-label">{{$fontMenus[$subColumn]}}-尾部：</label>
@@ -87,7 +87,7 @@
               <label for="name" class="col-md-2 control-label">尾部-名称：</label>
               <div class="col-md-4">
                 <input type="text" class="form-control" name="menu-footer-name" id="menu-footer-name" value="{{$info['menu-footer-name']}}">
-              </div>                
+              </div>
               </div>
               <div class="form-group">
                 <label for="name" class="col-md-2 control-label">{{$fontMenus[$subColumn]}}-背景1：</label>
@@ -138,7 +138,7 @@
       initialCaption: "{{$fontMenus[$subColumn]}}"+'背景2',
       showUpload:false
   });
-  
+
   //移除第一个的时候 第二个也一起移除
   $('#image1').on('fileclear', function(event) {
     $('#is_change1').val('remove');

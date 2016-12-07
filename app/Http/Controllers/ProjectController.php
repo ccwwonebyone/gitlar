@@ -16,7 +16,7 @@ class ProjectController extends Controller
     private $projectPro = [
                             'slider'=>'slider',                         //滑块栏
                             'wonder'=>'wonder'
-                            ];								
+                            ];
     private $table = 'project';											//数据表
     /**
     * 添加滑块
@@ -25,25 +25,25 @@ class ProjectController extends Controller
     */
     public function add(Request $request)
     {
-    	$this->validate($request,$this->projectRule);	
+    	$this->validate($request,$this->projectRule);
     	if ($request->hasFile('image')) {
     		$files = $request->file('image');
             //多文件上传
             foreach ($files as $file) {
                 if ($file->isValid()){
                     $belong = $request->input('belong');
-                    $filename = $file -> getClientOriginalName(); 
+                    $filename = $file -> getClientOriginalName();
                     $type = $file ->getClientMimeType();
                     if(!in_array($type, $this->types)) {
-                        return redirect()->back()->withErrors(['类型','错误']);  
-                    }                               
+                        return redirect()->back()->withErrors(['类型','错误']);
+                    }
                     $fileName = date('YmdHis').$file->getClientOriginalName();
-                    $file->move(public_path().'/images\/project\/'.$belong.'\/', $fileName);
-                    $allImage[] = 'images/project/'.$belong.'/'.$fileName;                         
+                    $file->move(public_path().'/images\/project\/'.$belong.'\/', sha1($fileName));
+                    $allImage[] = 'images/project/'.$belong.'/'.$fileName;
                 }
             }
             $data['img'] = implode(',', $allImage);
-            
+
             $data['title'] = $request->input('title');
             $data['content'] = $request->input('content');
             $data['is_show'] = $request->input('is_show');
@@ -99,12 +99,12 @@ class ProjectController extends Controller
                     $belong = $request->input('belong');
                     $type = $file ->getClientMimeType();
                     if(!in_array($type, $this->types)) {
-                        return redirect()->back()->withErrors(['类型','错误']);  
+                        return redirect()->back()->withErrors(['类型','错误']);
                     }
-                    $filename = $file -> getClientOriginalName();                                  
+                    $filename = $file -> getClientOriginalName();
                     $fileName = date('YmdHis').$file->getClientOriginalName();
-                    $file->move(public_path().'/images\/project\/'.$belong.'\/', $fileName);              
-                    $allImage[] = 'images/project/'.$belong.'/'.$fileName;                         
+                    $file->move(public_path().'/images\/project\/'.$belong.'\/', sha1($fileName));
+                    $allImage[] = 'images/project/'.$belong.'/'.$fileName;
                 }
             }
             $data['img'] = implode(',', $allImage);
@@ -122,7 +122,7 @@ class ProjectController extends Controller
     			return redirect()->back()->withErrors(['修改','成功']);
     		}else{
     			return response()->json($data);
-    		}          
+    		}
         }
     }
     public function remove(Request $request)

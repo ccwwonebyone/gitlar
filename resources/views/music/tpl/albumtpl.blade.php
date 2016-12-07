@@ -17,9 +17,9 @@
 				<div class="clearfix"> </div>
 			</ul>
 		</section>
-    </div>		
+    </div>
 </div>
-<script type="text/javascript" src="{{asset('font-music/js/jquery.hoverdir.js')}}"></script>	
+<script type="text/javascript" src="{{asset('font-music/js/jquery.hoverdir.js')}}"></script>
 <script type="text/javascript">
 	$(function() {
 		$(' #da-thumbs > li ').each( function() { $(this).hoverdir(); } );

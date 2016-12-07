@@ -10,7 +10,7 @@
 				<ul>
 					@foreach($menus as $menu)
 						<li>
-							<i class="glyphicon glyphicon-{{$menu['icon']}}" style="color: #fff"></i> 
+							<i class="glyphicon glyphicon-{{$menu['icon']}}" style="color: #fff"></i>
 							<a href="{{$menu['url']}}" class="{{url()->current()==$menu['url']?'active':''}}">{{$menu['name']}}</a>
 						</li>
 					@endforeach
@@ -20,7 +20,7 @@
 			 <script>
 			 $("span.menu").click(function(){
 			 	$(".top-menu ul").slideToggle("slow" , function(){
-			 	}); 
+			 	});
 			 });
 			 </script>
 			<div class="clerfix"></div>

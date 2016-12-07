@@ -12,7 +12,7 @@ class ContactController extends Controller
                     'type' =>'required|between:1,10',
                     'content' => 'required'
                   ];
-    private $types = ['image/jpeg','image/png','image/jpg','image/gif'];                             
+    private $types = ['image/jpeg','image/png','image/jpg','image/gif'];
     private $table = 'contact';                                         //数据表
     /**
     * 添加滑块
@@ -21,19 +21,19 @@ class ContactController extends Controller
     */
     public function add(Request $request)
     {
-        $this->validate($request,$this->contactRule);   
+        $this->validate($request,$this->contactRule);
         if ($request->hasFile('image')) {
             $file = $request->file('image');
             if ($file->isValid()){
                 $belong = $request->input('belong');
-                $filename = $file -> getClientOriginalName(); 
+                $filename = $file -> getClientOriginalName();
                 $type = $file ->getClientMimeType();
                 if(!in_array($type, $this->types)) {
-                    return redirect()->back()->withErrors(['类型','错误']);  
-                }                               
+                    return redirect()->back()->withErrors(['类型','错误']);
+                }
                 $fileName = date('YmdHis').$file->getClientOriginalName();
                 $file->move(public_path().'/images\/contact\/'.$belong.'\/', $fileName);
-                $allImage = 'images/contact/'.$belong.'/'.$fileName;                         
+                $allImage = 'images/contact/'.$belong.'/'.$fileName;
             }
             $data['img'] = $allImage;
             $data['icon'] = $request->input('icon');
@@ -81,12 +81,12 @@ class ContactController extends Controller
                 $belong = $request->input('belong');
                 $type = $file ->getClientMimeType();
                 if(!in_array($type, $this->types)) {
-                    return redirect()->back()->withErrors(['类型','错误']);  
+                    return redirect()->back()->withErrors(['类型','错误']);
                 }
-                $filename = $file -> getClientOriginalName();                                  
+                $filename = $file -> getClientOriginalName();
                 $fileName = date('YmdHis').$file->getClientOriginalName();
-                $file->move(public_path().'/images\/contact\/'.$belong.'\/', $fileName);              
-                $allImage = 'images/contact/'.$belong.'/'.$fileName;                         
+                $file->move(public_path().'/images\/contact\/'.$belong.'\/', $fileName);
+                $allImage = 'images/contact/'.$belong.'/'.$fileName;
             }
             $data['img'] = $allImage;
         }else{
@@ -102,7 +102,7 @@ class ContactController extends Controller
                 return redirect()->back()->withErrors(['修改','成功']);
             }else{
                 return response()->json($data);
-            }          
+            }
         }
     }
     public function remove(Request $request)

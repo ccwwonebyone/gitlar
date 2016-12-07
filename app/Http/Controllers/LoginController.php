@@ -28,16 +28,16 @@ class LoginController extends Controller
             }
     		return redirect()->route('support',['need' => '']);
     	}else{
-    		return redirect()->back()->withErrors('账号或密码错误'); 
+    		return redirect()->back()->withErrors('账号或密码错误');
     	}
     }
     public function loginOut()
     {
-        session_start();       
+        session_start();
         if(isset($_COOKIE['username'])){
             setcookie("username",$_SESSION['username'],time()-1);
-        } 
-        session_unset('username');       
+        }
+        session_unset('username');
         return redirect()->route('support',['need' => 'login']);
     }
 }

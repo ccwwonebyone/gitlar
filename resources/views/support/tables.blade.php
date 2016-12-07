@@ -4,14 +4,14 @@
 				<li class="active">菜单</li>
 			</ol>
 		</div><!--/.row-->
-		
+
 		<div class="row">
 			<div class="col-lg-12">
 				<h1 class="page-header">菜单</h1>
 			</div>
 		</div><!--/.row-->
-				
-		
+
+
 		<div class="row">
 			<div class="col-lg-12">
 				<div class="panel panel-default">
@@ -48,10 +48,10 @@
         							]
     							});
 						    });
-						
+
 						    function rowStyle(row, index) {
 						        var classes = ['active', 'success', 'info', 'warning', 'danger'];
-						
+
 						        if (index % 2 === 0 && index / 2 < classes.length) {
 						            return {
 						                classes: classes[index / 2]
@@ -61,7 +61,7 @@
 						    }
 
 						    $('#hover, #striped, #condensed').click(function () {
-						         var classes = 'table';			
+						         var classes = 'table';
 						         if ($('#hover').prop('checked')) {
 						             classes += ' table-hover';
 						         }

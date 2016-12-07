@@ -17,7 +17,7 @@
 </head>
 
 <body>
-	
+
 	<div class="row">
 		<div class="col-xs-10 col-xs-offset-1 col-sm-8 col-sm-offset-2 col-md-4 col-md-offset-4">
 			<div class="login-panel panel panel-default">
@@ -36,20 +36,20 @@
 								<label>
 									<input name="remember" type="checkbox" value="1" checked="true">记住我
 								</label>
-							</div>							
+							</div>
 						</fieldset>
 						<button class="btn btn-primary"><span class="glyphicon glyphicon-user"></span>登录</button>
 					</form>
-					
+
 				</div>
 			</div>
 		</div><!-- /.col-->
-	</div><!-- /.row -->	
+	</div><!-- /.row -->
 	<script src="{{asset('admin/js/jquery-1.11.1.min.js')}}"></script>
 	<script src="{{asset('admin/js/bootstrap.min.js')}}"></script>
 	<script>
 
-	</script>	
+	</script>
 </body>
 
 </html>

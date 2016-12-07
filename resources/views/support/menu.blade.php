@@ -11,7 +11,7 @@
 <div id="toolbar">
 	<button id="add" class="btn btn-success"> <i class="glyphicon glyphicon-plus"></i> 增加</button>
 	<button id="edit" class="btn btn-warning"><i class="glyphicon glyphicon-pencil"></i> 修改</button>
-    <button id="remove" class="btn btn-danger"><i class="glyphicon glyphicon-remove"></i> 删除</button>       	
+    <button id="remove" class="btn btn-danger"><i class="glyphicon glyphicon-remove"></i> 删除</button>
 </div>
 
 
@@ -30,25 +30,25 @@
               <label for="name" class="col-md-2 control-label">id：</label>
               <div class="col-md-10">
                 <input type="text" class="form-control" name="id" id="id">
-              </div>                
+              </div>
               </div>
               <div class="form-group">
               <label for="name" class="col-md-2 control-label">菜单名：</label>
               <div class="col-md-10">
                 <input type="text" class="form-control" name="name" id="name" value="">
-              </div>                
+              </div>
               </div>
                   <div class="form-group">
               <label for="name" class="col-md-2 control-label">链接：</label>
               <div class="col-md-10">
                 <input type="text" class="form-control" name="url" id="url">
-              </div>                
+              </div>
               </div>
               <div class="form-group">
               <label for="name" class="col-md-2 control-label">排序：</label>
               <div class="col-md-10">
                 <input type="text" class="form-control" name="order" id="order">
-              </div>                
+              </div>
               </div>
               <div class="form-group">
               <label for="name" class="col-md-2 control-label">属于：</label>
@@ -61,7 +61,7 @@
               <label>
                 <input type="radio" name="belong" value="0">后台
               </label>
-            </div>                
+            </div>
               </div>
               <!-- <div class="form-group">
               <label for="name" class="col-md-2 control-label">归属：</label>
@@ -79,7 +79,7 @@
               <label>
                 <input type="radio" name="belong" value="0">内容
               </label>
-                          </div>                
+                          </div>
               </div> -->
               <div class="form-group">
               <label for="name" class="col-md-2 control-label">归属表：</label>
@@ -90,19 +90,19 @@
                     <option value="{{$table}}">{{$table}}</option>
                   @endforeach
                 </select>
-              </div>                
+              </div>
               </div>
               <div class="form-group">
               <label for="name" class="col-md-2 control-label">图标：</label>
               <div class="col-md-1"><i id="show-icon"></i></div>
               <div class="col-md-7">
-                
+
                 <input type="text" class="form-control" name="icon" id="icon" placeholder="glyphicon glyphicon-">
               </div>
               <div class="col-md-2">
                 <a href="http://www.runoob.com/try/demo_source/bootstrap-glyph-customization.htm" class="btn btn-danger" target="_blank">可用图标</a>
-              </div>                
-              </div>  
+              </div>
+              </div>
             <div class="form-group">
               <label for="name" class="col-md-2 control-label">显示：</label>
               <div class="radio col-md-2">
@@ -114,7 +114,7 @@
               <label>
                 <input type="radio" name="is_show" value="0">隐藏
               </label>
-            </div>                
+            </div>
               </div>
               </form>
             </div>
@@ -263,11 +263,11 @@
 
                   });
 						    });
-						
+
 						    function rowStyle(row, index) {
 
 						        var classes = ['active', 'success', 'info', 'warning', 'danger'];
-								
+
 						        if (index % 2 === 0 && index / 2 < classes.length) {
 						            return {
 						                classes: classes[index / 2]
@@ -306,7 +306,7 @@
 						    }*/
 
 						    $('#hover, #striped, #condensed').click(function () {
-						         var classes = 'table';			
+						         var classes = 'table';
 						         if ($('#hover').prop('checked')) {
 						             classes += ' table-hover';
 						         }

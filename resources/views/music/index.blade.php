@@ -13,14 +13,14 @@
 									<div >
 										<h3 class="text-danger">{{$slide->title}}</h3>
 										<p class="text-success">{{$slide->content}}</p>
-									</div>									
+									</div>
 								</div>
 							</li>
 							@endforeach
 						</ul>
 					</div>
 				</section>
-			</div>	
+			</div>
 			<!--FlexSlider-->
 		<script defer src="{{asset('font-music/js/jquery.flexslider.js')}}"></script>
 		<script type="text/javascript">
@@ -35,7 +35,7 @@
 	        }
 	      });
 	    });
-	  </script>	
+	  </script>
 		@endif
 @endsection
 
@@ -113,7 +113,7 @@
 					@foreach($middle['info'] as $pro)
 						<div class="col-md-3 new-more">
 							<div class=" new-more1">
-								<div class="col-md-2 six">						
+								<div class="col-md-2 six">
 									<img class="img-responsive" src="{{$pro->img}}" alt="">
 								</div>
 								<div class="col-md-10 six1">
@@ -123,7 +123,7 @@
 								</div>
 								<div class="clearfix"> </div>
 							</div>
-						</div>					
+						</div>
 					@endforeach
 				</div>
 			</div>

@@ -34,7 +34,7 @@
 		    </ul>
 		</div>
 
-		<button type="button" class="btn btn-success" id="add" style="float: right;"><span class="glyphicon glyphicon-plus"></span> 增加</button>	
+		<button type="button" class="btn btn-success" id="add" style="float: right;"><span class="glyphicon glyphicon-plus"></span> 增加</button>
 		<div class="col-md-4" style="float: right;">
 			<form action="{{url('support/'.$view.'/'.$subColumn)}}" id="searchProject" method="get">
 			{!! csrf_field() !!}
@@ -44,7 +44,7 @@
         		         <button class="btn btn-primary" type="button" id="search"><span class="glyphicon glyphicon-search"></span> 搜索</button>
         		     </span>
         		 </div><!-- /input-group -->
-    		</form>			
+    		</form>
 		</div>
 	</div>
 </div><!--/.row-->
@@ -57,11 +57,11 @@
 	    	<div class="panel-heading">
 	    	    <div class="panel-title">
 	    	       <h4 class="col-md-6">{{$project->title}}</h4>
-	    	       <div style="float: right;margin: 17px 0 0 0;">   	       	   	
-	    	       		<small class="btn btn-xs btn-warning is_show" title="点击切换">{{$project->is_show?'显示':'隐藏'}}</small>&nbsp&nbsp   	       	
+	    	       <div style="float: right;margin: 17px 0 0 0;">
+	    	       		<small class="btn btn-xs btn-warning is_show" title="点击切换">{{$project->is_show?'显示':'隐藏'}}</small>&nbsp&nbsp
 	 	  	       		<span class="btn btn-xs btn-info glyphicon glyphicon-edit edit" title="编辑"></span>
-	    	       		<span class="btn btn-xs btn-danger glyphicon glyphicon-remove remove" title="删除"></span> 
-	    	       </div>	           	       
+	    	       		<span class="btn btn-xs btn-danger glyphicon glyphicon-remove remove" title="删除"></span>
+	    	       </div>
 	    	    </div>
 	    	</div>
 	    	<div class="panel-body">
@@ -76,7 +76,7 @@
 		</div>
 	</div>
 	@endforeach
-@else	
+@else
 	<div class="jumbotron">
 	     <h1 class="text-center">目前没有这类型信息</h1>
 	     <p class="text-center">点击<span class="btn btn-success btn-md" id="oadd">增加</span>添加</p>
@@ -98,25 +98,25 @@
    	 					<label for="name" class="col-md-2 control-label">id：</label>
    	 					<div class="col-md-10">
    	 						<input type="text" class="form-control" name="id" id="id">
-   	 					</div>   	 						
+   	 					</div>
   					  </div>
   					  <div class="form-group" style="display: none;">
    	 					<label for="name" class="col-md-2 control-label">属于：</label>
    	 					<div class="col-md-10">
    	 						<input type="text" class="form-control" name="belong" id="belong" value="{{$subColumn}}">
-   	 					</div>   	 						
+   	 					</div>
   					  </div>
             		  <div class="form-group">
    	 					<label for="name" class="col-md-2 control-label">标题：</label>
    	 					<div class="col-md-10">
    	 						<input type="text" class="form-control" name="title" id="title">
-   	 					</div>   	 						
+   	 					</div>
   					  </div>
   					  <div class="form-group">
    	 					<label for="name" class="col-md-2 control-label">内容：</label>
    	 					<div class="col-md-10">
    	 						<textarea class="form-control" rows="3" name="content" id="content"></textarea>
-   	 					</div>   	 						
+   	 					</div>
   					  </div>
   					  <div class="form-group">
    	 					<label for="name" class="col-md-2 control-label">图片：</label>
@@ -138,7 +138,7 @@
 							<label>
 								<input type="radio" name="is_show" value="0">隐藏
 							</label>
-						</div>  	 						
+						</div>
   					  </div>
             	</form>
             </div>
@@ -158,7 +158,7 @@ $(function(){
 	//增加滑块
 	$('#add,#oadd').click(function(){
 		$('#id').val('');
-		$('input:radio[name=is_show]')[0].checked = true;			
+		$('input:radio[name=is_show]')[0].checked = true;
 		$('#content').val('');
 
 		$('#title').val('');
@@ -187,11 +187,11 @@ $(function(){
 			success:function(data){
        			data = eval(data);
        			thisObiect.parents('.showProject').find('.project_is_show').val(data.is_show);
-       			var changeInfo = data.is_show==0?'隐藏':'显示';				
+       			var changeInfo = data.is_show==0?'隐藏':'显示';
        			thisObiect.text(changeInfo);
 			}
 		});
-		
+
 	});
 	//修改滑块
 	$('.edit').click(function(){
@@ -207,7 +207,7 @@ $(function(){
 
 		$('#title').val(title);
 		$('#projectform').attr('action',"{{url('project/edit')}}");
-		$('#addModal').modal('show');		
+		$('#addModal').modal('show');
 	});
 	//删除滑块
 	$('.remove').click(function(){

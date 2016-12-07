@@ -17,9 +17,9 @@ class Controller extends BaseController
     public function showInfo($part,$menu)
     {
         $webset = new Webset;
-        $project = new Project;      
+        $project = new Project;
         $partInfo = $webset->getInfo($menu);
-        $url= DB::table('proset')->where('name',$partInfo['menu-'.$part])->value('url');        
+        $url= DB::table('proset')->where('name',$partInfo['menu-'.$part])->value('url');
         $info = $project->getInfo($url,1);
         return $info;
     }

@@ -1,13 +1,13 @@
 <script src="{{asset('admin/js/chart.min.js')}}"></script>
-<script src="{{asset('admin/js/chart-data.js')}}"></script>			
-		
+<script src="{{asset('admin/js/chart-data.js')}}"></script>
+
 		<div class="row">
 			<div class="col-lg-12">
 				<h1 class="page-header">Charts</h1>
-				
+
 			</div>
 		</div><!--/.row-->
-		
+
 		<div class="row">
 			<div class="col-lg-12">
 				<div class="panel panel-default">
@@ -20,7 +20,7 @@
 				</div>
 			</div>
 		</div><!--/.row-->
-		
+
 		<div class="row">
 			<div class="col-lg-12">
 				<div class="panel panel-default">
@@ -32,8 +32,8 @@
 					</div>
 				</div>
 			</div>
-		</div><!--/.row-->		
-		
+		</div><!--/.row-->
+
 		<div class="row">
 			<div class="col-md-6">
 				<div class="panel panel-default">
@@ -56,7 +56,7 @@
 				</div>
 			</div>
 		</div><!--/.row-->
-		
+
 		<div class="row">
 			<div class="col-xs-6 col-md-3">
 				<div class="panel panel-default">

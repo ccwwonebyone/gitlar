@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Http\Requests;
+use Storage;
 use DB;
 
 class CompanyController extends Controller
@@ -45,44 +46,35 @@ class CompanyController extends Controller
     {
         $data = $request->all();
         $where['id'] = $data['id'];
+        //可能会删除的文件
+        $remove_file = DB::table($this->db)->where($where)->value('background');
         unset($data['id']);
         unset($data['_token']);
-        $this->validate($request,$this->sliderRule);       
+        $this->validate($request,$this->sliderRule);
         $check_img = ['background'];
         //当有背景时
         foreach ($check_img as $value) {
             if($request->hasFile($value)){
                 $this->validate($request,[$value => 'required|image|mimes:jpeg,png,jpg,gif,svg|max:20480']);
                 $file = $request->file($value);
-                if ($file->isValid()){              
+                if ($file->isValid()){
                     $fileName = date('YmdHis').$value.$file->getClientOriginalName();
-                    $file->move(public_path().'/images\/', $fileName);
+                    //$file->move(public_path('images'), iconv("UTF-8","gb2312", $fileName));
                     if($value!='background'){
                         $contact = explode('_', $value)[0];
                         $data[$contact] .=',images/'.$fileName;
                     }else{
                         $data[$value] = 'images/'.$fileName;
-                    }                    
+                    }
                 }
             }
         }
-        /*if($request->hasFile('background')){
-            $this->validate($request,['background' => 'required|image|mimes:jpeg,png,jpg,gif,svg|max:20480']);
-            $file = $request->file('background');
-            if ($file->isValid()){              
-                $fileName = date('YmdHis').$file->getClientOriginalName();
-                $file->move(public_path().'/images\/', $fileName);
-                $data['background'] = 'images/'.$fileName;
-            }
-        }*/
         if($data['is_change'] == 'remove'){
             $data['background'] = '';
         }
-        $is_change = $data['is_change'];
-
         unset($data['is_change']);
         if(DB::table($this->db)->where($where)->update($data)){
-             return redirect()->back()->withErrors(['保存','成功']);
+            return redirect()->back()->withErrors(['保存','成功',public_path($remove_file)]);
         }else{
             return redirect()->back()->withErrors(['保存','失败']);
         }

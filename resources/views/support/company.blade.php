@@ -9,7 +9,7 @@
 				    <label for="name">id：</label>
 				    <input type="text" class="form-control" name="id" value="{{$info->id}}">
 				 </div>
-				 <div class="col-xs-4">  
+				 <div class="col-xs-4">
 				  <div class="form-group">
 				    <label for="name">公司名：</label>
 				    <input type="text" class="form-control" name="name" value="{{$info->name}}">
@@ -18,7 +18,7 @@
 				    <label for="name">公司地址：</label>
 				    <input type="text" name="address" value="{{$info->address}}" class="form-control">
 				  </div>
-				  
+
 				  <div class="form-group">
 				    <label for="name">归属人：</label>
 				    <input type="text" name="belong" class="form-control" value="{{$info->belong}}">
@@ -27,7 +27,7 @@
 				    <label for="name">成立时间：</label>
 				    <input type="text" name="create_time" class="form-control" value="{{$info->create_time}}">
 				  </div>
-				  		  
+
 				</div>
 				<div class="col-xs-1"></div>
 				<div class="col-xs-7">
@@ -52,18 +52,18 @@
 				    <label for="name">理念</label>
 				    <input type="text" class="form-control">
 				  </div> -->
-				  
+
 				</div>
 				<!-- <div class="col-xs-2"></div> -->
 			</div>
-				
+
 			<div class="row col-xs-12">
 				<div class="form-group">
 				   <label for="name">简介</label>
 				   <textarea class="form-control" name="recommend" rows="8">{{$info->recommend}}</textarea>
 				 </div>
 			</div>
-			
+
 		</form>
     </div>
     <div class="panel-footer">
@@ -81,7 +81,7 @@ $(function(){
 			case 'background':
 				previewPic = "{{ $info->background!='' ? $info->background : '' }}";
 				previewPicUrl = "{{ $info->background!='' ? asset($info->background) : '' }}";
-				text = '背景'; 
+				text = '背景';
 				break;
 		}
 		$(this).fileinput({
@@ -107,13 +107,13 @@ $(function(){
 			$('#'+contact+'_change').val('remove');
 		}else{
 			$('#is_change').val('remove');
-		}	
+		}
  	});
 
 	$('#background').on('change', function(event) {
 		var contact_type = $(this).attr('id');
-		$('#is_change').val('change');	
+		$('#is_change').val('change');
  	});
 })
-	
+
 </script>

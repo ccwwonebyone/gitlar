@@ -4,14 +4,14 @@
 				<li class="active">Elements</li>
 			</ol>
 		</div><!--/.row-->
-		
+
 		<div class="row">
 			<div class="col-lg-12">
 				<h1 class="page-header">Alerts &amp; Panels</h1>
 			</div>
 		</div><!--/.row-->
-				
-		
+
+
 		<div class="row">
 			<div class="col-lg-12">
 				<h2>Alerts</h2>
@@ -28,9 +28,9 @@
 					<span class="glyphicon glyphicon-exclamation-sign"></span> Welcome to the admin dashboard panel bootstrap template <a href="#" class="pull-right"><span class="glyphicon glyphicon-remove"></span></a>
 				</div>
 			</div>
-		</div><!--/.row-->		
-		
-		
+		</div><!--/.row-->
+
+
 		<div class="row">
 			<div class="col-lg-12">
 				<h2>Basic Panels</h2>
@@ -45,7 +45,7 @@
 					</div>
 				</div>
 			</div>
-			
+
 			<div class="col-md-4">
 				<div class="panel panel-primary">
 					<div class="panel-heading">
@@ -56,7 +56,7 @@
 					</div>
 				</div>
 			</div>
-			
+
 			<div class="col-md-4">
 				<div class="panel panel-success">
 					<div class="panel-heading">
@@ -67,9 +67,9 @@
 					</div>
 				</div>
 			</div>
-			
+
 		</div><!-- /.row -->
-			
+
 		<div class="row">
 			<div class="col-md-4">
 				<div class="panel panel-info">
@@ -103,17 +103,17 @@
 					</div>
 				</div>
 			</div>
-			
+
 		</div><!-- /.row -->
-		
-		
-		
-		
+
+
+
+
 		<div class="row">
 			<div class="col-lg-12">
 				<h2>Widget Panels</h2>
 			</div>
-			
+
 			<div class="col-md-6">
 				<div class="panel panel-blue">
 					<div class="panel-heading dark-overlay">Blue Panel</div>
@@ -122,7 +122,7 @@
 					</div>
 				</div>
 			</div><!--/.col-->
-			
+
 			<div class="col-md-6">
 				<div class="panel panel-teal">
 					<div class="panel-heading dark-overlay">Teal Panel</div>
@@ -131,7 +131,7 @@
 					</div>
 				</div>
 			</div><!--/.col-->
-			
+
 			<div class="col-md-6">
 				<div class="panel panel-orange">
 					<div class="panel-heading dark-overlay">Orange Panel</div>
@@ -140,7 +140,7 @@
 					</div>
 				</div>
 			</div><!--/.col-->
-			
+
 			<div class="col-md-6">
 				<div class="panel panel-red">
 					<div class="panel-heading dark-overlay">Red Panel</div>
@@ -149,13 +149,13 @@
 					</div>
 				</div>
 			</div><!--/.col-->
-		</div><!--/.row-->	
-			
+		</div><!--/.row-->
+
 		<div class="row">
 			<div class="col-lg-12">
 				<h2>Tab Panels</h2>
 			</div>
-			
+
 			<div class="col-md-6">
 				<div class="panel panel-default">
 					<div class="panel-body tabs">
@@ -164,7 +164,7 @@
 							<li><a href="#tab2" data-toggle="tab">Tab 2</a></li>
 							<li><a href="#tab3" data-toggle="tab">Tab 3</a></li>
 						</ul>
-		
+
 						<div class="tab-content">
 							<div class="tab-pane fade in active" id="tab1">
 								<h4>Tab 1</h4>
@@ -182,17 +182,17 @@
 					</div>
 				</div><!--/.panel-->
 			</div><!--/.col-->
-			
+
 			<div class="col-md-6">
 				<div class="panel panel-default">
 					<div class="panel-body tabs">
-					
+
 						<ul class="nav nav-pills">
 							<li class="active"><a href="#pilltab1" data-toggle="tab">Tab 1</a></li>
 							<li><a href="#pilltab2" data-toggle="tab">Tab 2</a></li>
 							<li><a href="#pilltab3" data-toggle="tab">Tab 3</a></li>
 						</ul>
-		
+
 						<div class="tab-content">
 							<div class="tab-pane fade in active" id="pilltab1">
 								<h4>Tab 1</h4>
@@ -210,5 +210,5 @@
 					</div>
 				</div><!--/.panel-->
 			</div><!-- /.col-->
-			
+
 		</div><!-- /.row -->

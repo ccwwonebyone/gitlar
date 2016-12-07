@@ -4,15 +4,15 @@
 				<li class="active">Dashboard</li>
 			</ol>
 		</div><!--/.row-->
-		
+
 		<div class="row">
 			<div class="col-lg-12">
 				<h1 class="page-header">Dashboard</h1>
 			</div>
 		</div><!--/.row-->
-        
+
         <div class="copyrights">Collect from <a href="http://www.cssmoban.com/" >网页模板</a></div>
-		
+
 		<div class="row">
 			<div class="col-xs-12 col-md-6 col-lg-3">
 				<div class="panel panel-blue panel-widget ">
@@ -67,7 +67,7 @@
 				</div>
 			</div>
 		</div><!--/.row-->
-		
+
 		<div class="row">
 			<div class="col-lg-12">
 				<div class="panel panel-default">
@@ -80,7 +80,7 @@
 				</div>
 			</div>
 		</div><!--/.row-->
-		
+
 		<div class="row">
 			<div class="col-xs-6 col-md-3">
 				<div class="panel panel-default">
@@ -119,10 +119,10 @@
 				</div>
 			</div>
 		</div><!--/.row-->
-								
+
 		<div class="row">
 			<div class="col-md-8">
-			
+
 				<div class="panel panel-default chat">
 					<div class="panel-heading" id="accordion"><span class="glyphicon glyphicon-comment"></span> Chat</div>
 					<div class="panel-body">
@@ -136,7 +136,7 @@
 										<strong class="primary-font">John Doe</strong> <small class="text-muted">32 mins ago</small>
 									</div>
 									<p>
-										Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nulla ante turpis, rutrum ut ullamcorper sed, dapibus ac nunc. Vivamus luctus convallis mauris, eu gravida tortor aliquam ultricies. 
+										Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nulla ante turpis, rutrum ut ullamcorper sed, dapibus ac nunc. Vivamus luctus convallis mauris, eu gravida tortor aliquam ultricies.
 									</p>
 								</div>
 							</li>
@@ -162,13 +162,13 @@
 										<strong class="primary-font">John Doe</strong> <small class="text-muted">32 mins ago</small>
 									</div>
 									<p>
-										Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nulla ante turpis, rutrum ut ullamcorper sed, dapibus ac nunc. Vivamus luctus convallis mauris, eu gravida tortor aliquam ultricies. 
+										Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nulla ante turpis, rutrum ut ullamcorper sed, dapibus ac nunc. Vivamus luctus convallis mauris, eu gravida tortor aliquam ultricies.
 									</p>
 								</div>
 							</li>
 						</ul>
 					</div>
-					
+
 					<div class="panel-footer">
 						<div class="input-group">
 							<input id="btn-input" type="text" class="form-control input-md" placeholder="Type your message here..." />
@@ -178,11 +178,11 @@
 						</div>
 					</div>
 				</div>
-				
+
 			</div><!--/.col-->
-			
+
 			<div class="col-md-4">
-			
+
 				<div class="panel panel-blue">
 					<div class="panel-heading dark-overlay"><span class="glyphicon glyphicon-check"></span>To-do List</div>
 					<div class="panel-body">
@@ -264,6 +264,6 @@
 						</div>
 					</div>
 				</div>
-								
+
 			</div><!--/.col-->
 		</div><!--/.row-->

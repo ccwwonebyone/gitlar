@@ -4,7 +4,7 @@
     </h1>
   </div>
   <div class="col-md-8 text-right" style="margin: 30px 0 0 0;">
-    <button type="button" class="btn btn-success" id="add" style="float: right;"><span class="glyphicon glyphicon-plus"></span> 增加</button> 
+    <button type="button" class="btn btn-success" id="add" style="float: right;"><span class="glyphicon glyphicon-plus"></span> 增加</button>
     <div class="col-md-4" style="float: right;">
       <form action="{{url('support/'.$view)}}" id="searchcontact" method="get">
       {!! csrf_field() !!}
@@ -14,7 +14,7 @@
               <button class="btn btn-primary" type="button" id="search"><span class="glyphicon glyphicon-search"></span> 搜索</button>
             </span>
         </div><!-- /input-group -->
-      </form>     
+      </form>
     </div>
   </div>
 </div><!--/.row-->
@@ -27,6 +27,7 @@
         <input type="text"  class="contact_id" value="{{$contact->id}}">
         <input type="text"  class="contact_type" value="{{$contact->type}}">
         <input type="text"  class="contact_content" value="{{$contact->content}}">
+        <input type="text"  class="contact_icon" value="{{$contact->icon}}">
         <input type="text"  class="contact_img" value="{{$contact->img}}">
       </form>
     </div>
@@ -39,10 +40,10 @@
                 {{$contact->type}}  {{$contact->content}}
                 </button>
                </h4>
-               <div style="float: right;margin: 17px 0 0 0;">        
+               <div style="float: right;margin: 17px 0 0 0;">
                   <span class="btn btn-xs btn-info glyphicon glyphicon-edit edit" title="编辑"></span>
-                  <span class="btn btn-xs btn-danger glyphicon glyphicon-remove remove" title="删除"></span> 
-               </div>                    
+                  <span class="btn btn-xs btn-danger glyphicon glyphicon-remove remove" title="删除"></span>
+               </div>
             </div>
         </div>
         <!-- <div class="panel-body">
@@ -55,7 +56,7 @@
     </div>
   </div>
   @endforeach
-@else 
+@else
   <div class="jumbotron">
        <h1 class="text-center">目前没有这类型信息</h1>
        <p class="text-center">点击<span class="btn btn-success btn-md" id="oadd">增加</span>添加</p>
@@ -76,19 +77,19 @@
               <label for="name" class="col-md-2 control-label">id：</label>
               <div class="col-md-10">
                 <input type="text" class="form-control" name="id" id="id">
-              </div>                
+              </div>
               </div>
                   <div class="form-group">
               <label for="name" class="col-md-2 control-label">类型：</label>
               <div class="col-md-10">
                 <input type="text" class="form-control" name="type" id="type">
-              </div>                
+              </div>
               </div>
               <div class="form-group">
               <label for="name" class="col-md-2 control-label">联系方式：</label>
               <div class="col-md-10">
                 <input class="form-control" name="content" id="content">
-              </div>                
+              </div>
               </div>
               <div class="form-group">
               <label for="icon" class="col-md-2 control-label">图标：</label>
@@ -101,7 +102,7 @@
               </div>
               <div class="col-md-3">
                 <a href="{{asset('font-icon/demo_symbol.html')}}" class="btn btn-danger" target="_blank">可用图标</a>
-              </div>                 
+              </div>
               </div>
               <div class="form-group">
               <label for="name" class="col-md-2 control-label">二维码：</label>
@@ -144,13 +145,13 @@ $(function(){
     var id = thisObiect.parents('.showcontact').find('.contact_id').val();
     var type = thisObiect.parents('.showcontact').find('.contact_type').val();
     var content = thisObiect.parents('.showcontact').find('.contact_content').val();
-
+    var icon = thisObiect.parents('.showcontact').find('.contact_icon').val();
     $('#id').val(id);
     $('#content').val(content);
-
+    $('#icon').val(icon);
     $('#type').val(type);
     $('#contactform').attr('action',"{{url('contact/edit')}}");
-    $('#addModal').modal('show');   
+    $('#addModal').modal('show');
   });
   //删除滑块
   $('.remove').click(function(){

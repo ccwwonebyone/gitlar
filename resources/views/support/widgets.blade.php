@@ -3,7 +3,7 @@
 				<h1 class="page-header">Widgets</h1>
 			</div>
 		</div><!--/.row-->
-									
+
 		<div class="row">
 			<div class="col-xs-12 col-md-6 col-lg-3">
 				<div class="panel panel-blue panel-widget ">
@@ -58,7 +58,7 @@
 				</div>
 			</div>
 		</div><!--/.row-->
-		
+
 		<div class="row">
 			<div class="col-md-8">
 				<div class="panel panel-default">
@@ -73,7 +73,7 @@
 									<input id="name" name="name" type="text" placeholder="Your name" class="form-control">
 									</div>
 								</div>
-							
+
 								<!-- Email input-->
 								<div class="form-group">
 									<label class="col-md-3 control-label" for="email">Your E-mail</label>
@@ -81,7 +81,7 @@
 										<input id="email" name="email" type="text" placeholder="Your email" class="form-control">
 									</div>
 								</div>
-								
+
 								<!-- Message body -->
 								<div class="form-group">
 									<label class="col-md-3 control-label" for="message">Your message</label>
@@ -89,7 +89,7 @@
 										<textarea class="form-control" id="message" name="message" placeholder="Please enter your message here..." rows="5"></textarea>
 									</div>
 								</div>
-								
+
 								<!-- Form actions -->
 								<div class="form-group">
 									<div class="col-md-12 widget-right">
@@ -100,10 +100,10 @@
 						</form>
 					</div>
 				</div>
-				
+
 				<div class="panel panel-default chat">
 					<div class="panel-heading" id="accordion"><span class="glyphicon glyphicon-comment"></span> Chat</div>
-				
+
 					<div class="panel-body">
 						<ul>
 							<li class="left clearfix">
@@ -115,7 +115,7 @@
 										<strong class="primary-font">John Doe</strong> <small class="text-muted">32 mins ago</small>
 									</div>
 									<p>
-										Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nulla ante turpis, rutrum ut ullamcorper sed, dapibus ac nunc. Vivamus luctus convallis mauris, eu gravida tortor aliquam ultricies. 
+										Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nulla ante turpis, rutrum ut ullamcorper sed, dapibus ac nunc. Vivamus luctus convallis mauris, eu gravida tortor aliquam ultricies.
 									</p>
 								</div>
 							</li>
@@ -141,13 +141,13 @@
 										<strong class="primary-font">John Doe</strong> <small class="text-muted">32 mins ago</small>
 									</div>
 									<p>
-										Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nulla ante turpis, rutrum ut ullamcorper sed, dapibus ac nunc. Vivamus luctus convallis mauris, eu gravida tortor aliquam ultricies. 
+										Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nulla ante turpis, rutrum ut ullamcorper sed, dapibus ac nunc. Vivamus luctus convallis mauris, eu gravida tortor aliquam ultricies.
 									</p>
 								</div>
 							</li>
 						</ul>
 					</div>
-					
+
 					<div class="panel-footer">
 						<div class="input-group">
 							<input id="btn-input" type="text" class="form-control input-md" placeholder="Type your message here..." />
@@ -157,18 +157,18 @@
 						</div>
 					</div>
 				</div>
-				
+
 			</div><!--/.col-->
-			
+
 			<div class="col-md-4">
-			
+
 				<div class="panel panel-red">
 					<div class="panel-heading dark-overlay"><span class="glyphicon glyphicon-calendar"></span>Calendar</div>
 					<div class="panel-body">
 						<div id="calendar"></div>
 					</div>
 				</div>
-				
+
 				<div class="panel panel-blue">
 					<div class="panel-heading dark-overlay"><span class="glyphicon glyphicon-check"></span>To-do List</div>
 					<div class="panel-body">
@@ -250,6 +250,6 @@
 						</div>
 					</div>
 				</div>
-								
+
 			</div><!--/.col-->
 		</div><!--/.row-->

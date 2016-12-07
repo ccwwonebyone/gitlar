@@ -11,7 +11,7 @@
 <div id="toolbar">
 	<button id="add" class="btn btn-success"> <i class="glyphicon glyphicon-plus"></i> 增加</button>
 	<button id="edit" class="btn btn-warning"><i class="glyphicon glyphicon-pencil"></i> 修改</button>
-    <button id="remove" class="btn btn-danger"><i class="glyphicon glyphicon-remove"></i> 删除</button>       	
+    <button id="remove" class="btn btn-danger"><i class="glyphicon glyphicon-remove"></i> 删除</button>
 </div>
 
 
@@ -30,20 +30,20 @@
               <label for="name" class="col-md-2 control-label">id：</label>
               <div class="col-md-10">
                 <input type="text" class="form-control" name="id" id="id">
-              </div>                
+              </div>
               </div>
               <div class="form-group">
               <label for="name" class="col-md-2 control-label">栏位名：</label>
               <div class="col-md-10">
                 <input type="text" class="form-control" name="name" id="name" value="">
-              </div>                
+              </div>
               </div>
                   <div class="form-group">
               <label for="name" class="col-md-2 control-label">链接：</label>
               <div class="col-md-10">
                 <input type="text" class="form-control" name="url" id="url">
-              </div>                
-              </div> 
+              </div>
+              </div>
             <div class="form-group">
               <label for="name" class="col-md-2 control-label">启用：</label>
               <div class="radio col-md-2">
@@ -55,7 +55,7 @@
               <label>
                 <input type="radio" name="is_show" value="0">隐藏
               </label>
-            </div>                
+            </div>
               </div>
               </form>
             </div>
@@ -115,7 +115,7 @@
                     $('#id').val();
                       $('#name').val('');
                       $('#url').val('');
-                      $('input:radio[name=is_show]')[0].checked = true;                   
+                      $('input:radio[name=is_show]')[0].checked = true;
     								  $('#addModal').modal('show');
     							});
                   $('#sure').click(function(){
@@ -165,8 +165,8 @@
                     }else{
                       var formData = data[0];
                       $('#id').val(formData.id);
-                      $('#name').val(formData.name);                                        
-                      $('#url').val(formData.url);                     
+                      $('#name').val(formData.name);
+                      $('#url').val(formData.url);
                       $('input:radio[name=is_show]')[formData.is_show==1?0:1].checked = true;
                       $('#addModal').modal('show');
                       $('#prosetform').attr('action',"{{url('proset/edit')}}");
@@ -174,11 +174,11 @@
 
                   });
 						    });
-						
+
 						    function rowStyle(row, index) {
 
 						        var classes = ['active', 'success', 'info', 'warning', 'danger'];
-								
+
 						        if (index % 2 === 0 && index / 2 < classes.length) {
 						            return {
 						                classes: classes[index / 2]
@@ -192,7 +192,7 @@
 						    	return value==1 ?'√' :'×';
 						    }
 						    $('#hover, #striped, #condensed').click(function () {
-						         var classes = 'table';			
+						         var classes = 'table';
 						         if ($('#hover').prop('checked')) {
 						             classes += ' table-hover';
 						         }
