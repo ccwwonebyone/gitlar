@@ -25,15 +25,15 @@ class ContactController extends Controller
         if ($request->hasFile('image')) {
             $file = $request->file('image');
             if ($file->isValid()){
-                $belong = $request->input('belong');
+                //$belong = $request->input('belong');
                 $filename = $file -> getClientOriginalName();
                 $type = $file ->getClientMimeType();
                 if(!in_array($type, $this->types)) {
                     return redirect()->back()->withErrors(['类型','错误']);
                 }
                 $fileName = date('YmdHis').$file->getClientOriginalName();
-                $file->move(public_path().'/images\/contact\/'.$belong.'\/', $fileName);
-                $allImage = 'images/contact/'.$belong.'/'.$fileName;
+                $file->move(public_path().'/images\/contact\/', $fileName);
+                $allImage = 'images/contact/'.$fileName;
             }
             $data['img'] = $allImage;
             $data['icon'] = $request->input('icon');
@@ -78,15 +78,15 @@ class ContactController extends Controller
         if ($request->hasFile('image')) {
             $file = $request->file('image');
             if ($file->isValid()){
-                $belong = $request->input('belong');
+                //$belong = $request->input('belong');
                 $type = $file ->getClientMimeType();
                 if(!in_array($type, $this->types)) {
                     return redirect()->back()->withErrors(['类型','错误']);
                 }
                 $filename = $file -> getClientOriginalName();
                 $fileName = date('YmdHis').$file->getClientOriginalName();
-                $file->move(public_path().'/images\/contact\/'.$belong.'\/', $fileName);
-                $allImage = 'images/contact/'.$belong.'/'.$fileName;
+                $file->move(public_path().'/images\/contact\/', $fileName);
+                $allImage = 'images/contact/'.$fileName;
             }
             $data['img'] = $allImage;
         }else{

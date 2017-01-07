@@ -96,7 +96,10 @@ class Menucontroller extends Controller
         unset($data['id']);
         unset($data['_token']);
         $this->validate($request,$this->menuRule);
-        if(DB::table($this->table)->where($where)->update($data)){
+
+
+        //if(DB::table($this->table)->where($where)->update($data)){
+        if(DB::table($this->table)->where($where)->increment('pid', 5)){
             return redirect()->back()->withErrors(['修改','成功']);
         }else{
             return redirect()->back()->withErrors(['修改','失败']);
