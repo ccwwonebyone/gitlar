@@ -8,6 +8,22 @@ use DB;
 class WebsetController extends Controller
 {
 	private $table = 'webset';
+
+    public function show($request,$view,$menus,$menuName,$getProset,$fontMenus,$subColumn,$search)
+    {
+        $webUrl = array_keys($fontMenus);
+        if(!empty($webUrl)&&$subColumn == ''){
+            $subColumn = $webUrl[0];
+        }
+        $info = $this->getInfo($subColumn);
+
+        $returnView = view('support.common',compact('view','menus','menuName','getProset','fontMenus','subColumn','info'));
+        if(isset($search) && $search != ''){
+            return $returnView->withErrors(['搜索',$search]);
+        }else{
+            return $returnView;
+        }
+    }
 	/**
 	 * 获取webset的信息
 	 * @param  string $subColumn 属于webset的id的菜单链接

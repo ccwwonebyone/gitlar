@@ -13,6 +13,17 @@ class CompanyController extends Controller
     private $sliderRule = [                                             //验证规则
                     'name' =>'required|between:1,10'
                   ];
+    public function show($request,$view,$menus,$menuName,$getProset,$fontMenus,$subColumn,$search)
+    {
+        $info = $this -> edit();
+        $webs = $this -> web();
+        $returnView = view('support.common',compact('view','menus','menuName','getProset','fontMenus','subColumn','info','webs'));
+        if(isset($search) && $search != ''){
+            return $returnView->withErrors(['搜索',$search]);
+        }else{
+            return $returnView;
+        }
+    }
 
     public function web()
     {
@@ -81,16 +92,6 @@ class CompanyController extends Controller
 
     }
 
-    /**
-     * Display the specified resource.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
-    public function show($id)
-    {
-        //
-    }
 
     /**
      * 显示公司信息

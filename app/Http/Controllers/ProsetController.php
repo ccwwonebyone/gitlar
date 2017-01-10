@@ -14,6 +14,16 @@ class ProsetController extends Controller
         		  ];
 
     private $table = 'proset';
+
+    public function show($request,$view,$menus,$menuName,$getProset,$fontMenus,$subColumn,$search)
+    {
+        $returnView = view('support.common',compact('view','menus','menuName','getProset','fontMenus','subColumn'));
+        if(isset($search) && $search != ''){
+            return $returnView->withErrors(['搜索',$search]);
+        }else{
+            return $returnView;
+        }
+    }
 	/**
 	 * 获取需要的菜单数据
 	 * @param  string/array $where 查询条件

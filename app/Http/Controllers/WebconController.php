@@ -9,6 +9,22 @@ class WebconController extends Controller
 {
 	private $table = 'webcon';
     private $link_table = 'template';
+
+    public function show($request,$view,$menus,$menuName,$getProset,$fontMenus,$subColumn,$search)
+    {
+        $webUrl = array_keys($fontMenus);
+        if(!empty($webUrl)&&$subColumn == ''){
+            $subColumn = $webUrl[0];
+        }
+        $info = $this->getInfo($subColumn);
+
+        $returnView = view('support.common',compact('view','menus','menuName','getProset','fontMenus','subColumn','info'));
+        if(isset($search) && $search != ''){
+            return $returnView->withErrors(['搜索',$search]);
+        }else{
+            return $returnView;
+        }
+    }
 	/**
 	 * 获取webset的信息
 	 * @param  string $subColumn 属于webcon的菜单链接

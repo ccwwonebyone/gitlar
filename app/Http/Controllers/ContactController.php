@@ -14,6 +14,17 @@ class ContactController extends Controller
                   ];
     private $types = ['image/jpeg','image/png','image/jpg','image/gif'];
     private $table = 'contact';                                         //数据表
+
+    public function show($request,$view,$menus,$menuName,$getProset,$fontMenus,$subColumn,$search)
+    {
+        $info = $this->getInfo($search);
+        $returnView = view('support.common',compact('view','menus','menuName','getProset','fontMenus','subColumn','info'));
+        if(isset($search) && $search != ''){
+            return $returnView->withErrors(['搜索',$search]);
+        }else{
+            return $returnView;
+        }
+    }
     /**
     * 添加滑块
     *form表单post的值

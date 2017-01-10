@@ -15,6 +15,18 @@ class Menucontroller extends Controller
 
 	private $table = 'menu';
 
+
+    public function show($request,$view,$menus,$menuName,$getProset,$fontMenus,$subColumn,$search)
+    {
+        $show_tables = $this->getTables();
+        $returnView = view('support.common',compact('view','menus','menuName','show_tables','getProset','fontMenus','subColumn'));
+        if(isset($search) && $search != ''){
+            return $returnView->withErrors(['搜索',$search]);
+        }else{
+            return $returnView;
+        }
+    }
+
 	/**
 	 * 获取需要的菜单数据
 	 * @param  string/array $where 查询条件
@@ -98,8 +110,8 @@ class Menucontroller extends Controller
         $this->validate($request,$this->menuRule);
 
 
-        //if(DB::table($this->table)->where($where)->update($data)){
-        if(DB::table($this->table)->where($where)->increment('pid', 5)){
+        if(DB::table($this->table)->where($where)->update($data)){
+        //if(DB::table($this->table)->where($where)->increment('pid', 5)){
             return redirect()->back()->withErrors(['修改','成功']);
         }else{
             return redirect()->back()->withErrors(['修改','失败']);
@@ -111,5 +123,21 @@ class Menucontroller extends Controller
         $where['is_show'] = $is_show;
         $data = DB::table($this->table)->where($where)->orderBy('order',$order)->get();
         return $data;
+    }
+    /**
+     * 获取当前数据库中的所有表 除去数据库,数据表前缀的影响
+     * @return array 数据表数组
+     */
+    public function getTables()
+    {
+        $tables = DB::select("show tables");
+        $database = env('DB_DATABASE');
+        $prefix = config('database.connections.mysql.prefix');
+        $show_tables = [];
+        foreach ($tables as $table) {
+            $table = get_object_vars($table);           //将对象转换为有效数组
+            $show_tables[] = str_replace($prefix,'',$table['Tables_in_'.$database]);
+        }
+        return $show_tables;
     }
 }
