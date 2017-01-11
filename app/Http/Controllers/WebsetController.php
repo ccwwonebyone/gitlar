@@ -2,6 +2,8 @@
 
 namespace App\Http\Controllers;
 
+use App\Http\Controllers\ProsetController as Proset;
+use App\Http\Controllers\MenuController as Menu;
 use Illuminate\Http\Request;
 use App\Http\Requests;
 use DB;
@@ -9,15 +11,25 @@ class WebsetController extends Controller
 {
 	private $table = 'webset';
 
-    public function show($request,$view,$menus,$menuName,$getProset,$fontMenus,$subColumn,$search)
+    public function show($request,$view,$menus,$menuName,$subColumn,$search)
     {
-        $webUrl = array_keys($fontMenus);
+        $menu = new Menu;
+        $fontMenu = $menu->getMenu('1','1','asc');
+        $subMenu = [];
+        foreach ($fontMenu as $value) {
+            $subMenu[$value->url] = $value->name;          //菜单链接=>菜单名
+        }
+
+        $webUrl = array_keys($subMenu);
         if(!empty($webUrl)&&$subColumn == ''){
             $subColumn = $webUrl[0];
         }
+        $proset = new Proset;
+        $getProset = $proset->getProset();
+
         $info = $this->getInfo($subColumn);
 
-        $returnView = view('support.common',compact('view','menus','menuName','getProset','fontMenus','subColumn','info'));
+        $returnView = view('support.common',compact('view','menus','menuName','subMenu','getProset','subColumn','info'));
         if(isset($search) && $search != ''){
             return $returnView->withErrors(['搜索',$search]);
         }else{

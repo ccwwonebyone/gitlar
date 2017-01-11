@@ -34,7 +34,7 @@
  </script>
 <div class="row">
    	<ul class="nav nav-tabs nav-justified">
-	  	@foreach($fontMenus as $key=>$value)
+	  	@foreach($subMenu as $key=>$value)
             <li class="{{$subColumn==$key?'active':''}}"><a href="{{url('support/'.$view.'/'.$key)}}">{{$value}}</a></li>
         @endforeach
 	</ul>

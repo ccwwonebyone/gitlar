@@ -15,14 +15,29 @@ class ProsetController extends Controller
 
     private $table = 'proset';
 
-    public function show($request,$view,$menus,$menuName,$getProset,$fontMenus,$subColumn,$search)
+    public function show($request,$view,$menus,$menuName,$subColumn,$search)
     {
-        $returnView = view('support.common',compact('view','menus','menuName','getProset','fontMenus','subColumn'));
+        $subMenu = $this->getProset();
+        $returnView = view('support.common',compact('view','menus','menuName','subMenu','subColumn'));
         if(isset($search) && $search != ''){
             return $returnView->withErrors(['搜索',$search]);
         }else{
             return $returnView;
         }
+    }
+
+    /**
+     * 获取proset的菜单
+     * @return array
+     */
+    public function getProset()
+    {
+        $prosets = DB::table($this->table)->where('is_show',1)->get();
+        $proset = array();
+        foreach ($prosets as $value) {
+            $proset[$value->url] = $value->name;
+        }
+        return $proset;
     }
 	/**
 	 * 获取需要的菜单数据

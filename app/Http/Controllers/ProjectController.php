@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Http\Controllers\ProsetController as Proset;
 use Illuminate\Http\Request;
 use App\Http\Requests;
 use DB;
@@ -19,18 +20,21 @@ class ProjectController extends Controller
                             ];
     private $table = 'project';											//数据表
 
-    public function show($request,$view,$menus,$menuName,$getProset,$fontMenus,$subColumn,$search)
+    public function show($request,$view,$menus,$menuName,$subColumn,$search)
     {
         $data = $request->all();
         $is_show = isset($data['is_show'])?$data['is_show']:'';
 
+        $proset = new Proset;
+        $getProset = $proset->getProset();
+        $subMenu = $getProset;
         $projectUrl = array_keys($getProset);
         if(!empty($projectUrl)&&$subColumn == ''){
             $subColumn = $projectUrl[0];
         }
         $info = $this->getInfo($subColumn,$is_show,$search);
 
-        $returnView = view('support.common',compact('view','menus','menuName','getProset','fontMenus','subColumn','info'));
+        $returnView = view('support.common',compact('view','menus','menuName','subColumn','subMenu','getProset','info'));
         if(isset($search) && $search != ''){
             return $returnView->withErrors(['搜索',$search]);
         }else{

@@ -3,10 +3,10 @@
     <h1 class="page-header">
       <div class="btn-group">
           <button type="button" class="btn btn-primary btn-lg dropdown-toggle" data-toggle="dropdown">
-            {{$fontMenus[$subColumn]}} <span class="caret"></span>
+            {{$subMenu[$subColumn]}} <span class="caret"></span>
           </button>
         <ul class="dropdown-menu" role="menu">
-            @foreach($fontMenus as $key=>$value)
+            @foreach($subMenu as $key=>$value)
               <li><a href="{{url('support/'.$view.'/'.$key)}}">{{$value}}</a></li>
             @endforeach
           </ul>
@@ -15,7 +15,7 @@
   </div>
     <div class="panel panel-info" style="margin: 100px 0 0 0;">
     <div class="panel-heading">
-      {{$fontMenus[$subColumn]}}前端详细配置
+      {{$subMenu[$subColumn]}}前端详细配置
     </div>
         <div class="panel-body">
             <form action="{{url('webset/edit')}}" class="form-horizontal" id="websetform" role="form" method="post" enctype="multipart/form-data">
@@ -33,7 +33,7 @@
                 </div>
               </div>
               <div class="form-group">
-              <label for="name" class="col-md-2 control-label">{{$fontMenus[$subColumn]}}-头部：</label>
+              <label for="name" class="col-md-2 control-label">{{$subMenu[$subColumn]}}-头部：</label>
               <div class="col-md-4">
                 <select name="menu-header" id="menu-header" class="form-control">
                 <option value="">无</option>
@@ -52,7 +52,7 @@
               </div>
               </div>
               <div class="form-group">
-              <label for="name" class="col-md-2 control-label">{{$fontMenus[$subColumn]}}-中部：</label>
+              <label for="name" class="col-md-2 control-label">{{$subMenu[$subColumn]}}-中部：</label>
               <div class="col-md-4">
                 <select name="menu-middle" id="menu-middle" class="form-control">
                 <option value="">无</option>
@@ -71,7 +71,7 @@
               </div>
               </div>
               <div class="form-group">
-              <label for="name" class="col-md-2 control-label">{{$fontMenus[$subColumn]}}-尾部：</label>
+              <label for="name" class="col-md-2 control-label">{{$subMenu[$subColumn]}}-尾部：</label>
               <div class="col-md-4">
                 <select name="menu-footer" id="menu-footer" class="form-control">
                 <option value="">无</option>
@@ -90,13 +90,13 @@
               </div>
               </div>
               <div class="form-group">
-                <label for="name" class="col-md-2 control-label">{{$fontMenus[$subColumn]}}-背景1：</label>
+                <label for="name" class="col-md-2 control-label">{{$subMenu[$subColumn]}}-背景1：</label>
                 <div class="col-md-4">
                  <input type="text" id="is_change1" name="is_change1" style="display: none" value="unchange">
                  <input type="text" id="background1" name="background1" style="display: none" value="{{$info['background1']}}">
                   <input type="file" class="form-control" name="image1" id="image1">
                 </div>
-                <label for="name" class="col-md-2 control-label">{{$fontMenus[$subColumn]}}-背景2：</label>
+                <label for="name" class="col-md-2 control-label">{{$subMenu[$subColumn]}}-背景2：</label>
                 <div class="col-md-4">
                   <input type="text" id="is_change2" name="is_change2" style="display: none">
                   <input type="text" id="background2" name="background2" style="display: none" value="{{$info['background2']}}">
@@ -122,7 +122,7 @@
             {caption: "{{$info['background1']}}", showDelete:false}
       ],
       overwriteInitial: true,
-      initialCaption: "{{$fontMenus[$subColumn]}}"+'背景1',
+      initialCaption: "{{$subMenu[$subColumn]}}"+'背景1',
       showUpload:false
   });
   //初始化预览
@@ -135,7 +135,7 @@
             {caption: "{{$info['background2']}}", showDelete:false}
       ],
       overwriteInitial: true,
-      initialCaption: "{{$fontMenus[$subColumn]}}"+'背景2',
+      initialCaption: "{{$subMenu[$subColumn]}}"+'背景2',
       showUpload:false
   });
 

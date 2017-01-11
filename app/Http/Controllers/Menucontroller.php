@@ -16,10 +16,10 @@ class Menucontroller extends Controller
 	private $table = 'menu';
 
 
-    public function show($request,$view,$menus,$menuName,$getProset,$fontMenus,$subColumn,$search)
+    public function show($request,$view,$menus,$menuName,$subColumn,$search)
     {
         $show_tables = $this->getTables();
-        $returnView = view('support.common',compact('view','menus','menuName','show_tables','getProset','fontMenus','subColumn'));
+        $returnView = view('support.common',compact('view','menus','menuName','show_tables','subColumn'));
         if(isset($search) && $search != ''){
             return $returnView->withErrors(['搜索',$search]);
         }else{

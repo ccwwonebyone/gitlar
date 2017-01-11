@@ -74,11 +74,10 @@
 		<ol class="breadcrumb">
 			<li><a href="{{url('support/'.$menus[0]->url)}}"><span class="glyphicon glyphicon-{{$menus[0]->icon}}"></span></a></li>
 			<li class="active">{{$menuName[$view]}}</li>
-			@if(in_array($subColumn,array_keys($getProset)))
-				<li class="active">{{$getProset[$subColumn]}}</li>
-			@endif
-			@if(in_array($subColumn,array_keys($fontMenus)))
-				<li class="active">{{$fontMenus[$subColumn]}}</li>
+			@if(isset($subMenu))
+				@if(in_array($subColumn,array_keys($subMenu)))
+					<li class="active">{{$subMenu[$subColumn]}}</li>
+				@endif
 			@endif
 			@if (count($errors) > 0)
     	        @foreach ($errors->all() as $error)

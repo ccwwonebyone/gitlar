@@ -39,16 +39,9 @@ class AdminController extends Controller
         if($need == 'login' && $num != 1)
             return view('support.login');
 
-        $getProset = $this->getProset();                     //属于project的菜单
-
-        $menu = new Menu;
-        $fontMenu = $menu->getMenu('1','1','asc');
-        $fontMenus = [];
-        foreach ($fontMenu as $value) {
-            $fontMenus[$value->url] = $value->name;          //菜单链接=>菜单名
-        }
 
         //后端菜单
+        $menu = new Menu;
         $menus = $menu->getMenu('0','1','asc');
         $menuName = [];
         foreach ($menus as $value) {
@@ -69,25 +62,10 @@ class AdminController extends Controller
         //view 包含的视图文件
         //menuName 菜单url=>name
         //menus 菜单生成 common
-        //fontMenus 前端菜单
         //subColumn 二级菜单显示
-        //getProset 栏位菜单
-        return $controller->show($request,$view,$menus,$menuName,$getProset,$fontMenus,$subColumn,$search);
+        return $controller->show($request,$view,$menus,$menuName,$subColumn,$search);
     }
 
-    /**
-     * 获取proset的菜单
-     * @return array
-     */
-    public function getProset()
-    {
-        $prosets = DB::table('proset')->where('is_show',1)->get();
-        $proset = array();
-        foreach ($prosets as $value) {
-            $proset[$value->url] = $value->name;
-        }
-        return $proset;
-    }
     /**
      * 检查链接是否存在
      * @param  string $need 请求连接
