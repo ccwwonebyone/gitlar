@@ -61,7 +61,7 @@ class ProjectController extends Controller
                         return redirect()->back()->withErrors(['类型','错误']);
                     }
                     $fileName = date('YmdHis').$file->getClientOriginalName();
-                    $file->move(public_path().'/images/project/'.$belong.'/', sha1($fileName));
+                    $file->move(public_path().'/images/project/'.$belong.'/', DIRECTORY_SEPARATOR === '/' ? $fileName : iconv('UTF-8', 'gb2312', $fileName));
                     $allImage[] = 'images/project/'.$belong.'/'.$fileName;
                 }
             }
