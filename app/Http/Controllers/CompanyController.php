@@ -70,7 +70,7 @@ class CompanyController extends Controller
                 $file = $request->file($value);
                 if ($file->isValid()){
                     $fileName = date('YmdHis').$value.$file->getClientOriginalName();
-                    //$file->move(public_path('images'), iconv("UTF-8","gb2312", $fileName));
+                    $file->move(public_path('images'),DIRECTORY_SEPARATOR === '/' ? $fileName : iconv('UTF-8', 'gb2312', $fileName));
                     if($value!='background'){
                         $contact = explode('_', $value)[0];
                         $data[$contact] .=',images/'.$fileName;

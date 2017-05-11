@@ -100,7 +100,7 @@ class WebsetController extends Controller
     		$file = $request->file('image1');
     		if ($file->isValid()){
     			$fileName = date('YmdHis').$file->getClientOriginalName();
-    			$file->move(public_path().'/images\/webset\/'.$where['menu-belong'].'\/', $fileName);
+    			$file->move(public_path().'/images/webset/'.$where['menu-belong'].'/', DIRECTORY_SEPARATOR === '/' ? $fileName : iconv('UTF-8', 'gb2312', $fileName));
     			$image['background1'] = 'images/webset/'.$where['menu-belong'].'/'.$fileName;
     		}
     	}
@@ -113,7 +113,7 @@ class WebsetController extends Controller
     		}
     		if ($file->isValid()){
     			$fileName = date('YmdHis').$file->getClientOriginalName();
-    			$file->move(public_path().'/images\/webset\/'.$where['menu-belong'].'\/', $fileName);
+    			$file->move(public_path().'/images/webset/'.$where['menu-belong'].'/', $fileName);
     			$image['background2'] = 'images/webset/'.$where['menu-belong'].'/'.$fileName;
     		}
     	}
