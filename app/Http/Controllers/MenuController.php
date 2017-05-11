@@ -14,7 +14,7 @@ class Menucontroller extends Controller
                   ];
 
 	private $table = 'menu';
-
+    
 
     public function show($request,$view,$menus,$menuName,$subColumn,$search)
     {

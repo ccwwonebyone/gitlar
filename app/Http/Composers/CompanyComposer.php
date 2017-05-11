@@ -36,11 +36,11 @@ class CompanyComposer
         $menuData = DB::table('menu')->where('is_show',1)->where('belong',1)->get();
         $menus = [];
         foreach ($menuData as $data) {
+            $menu = [];
             $menu['name'] = $data->name;
             $menu['url']  = url($data->url);
             $menu['icon']  = $data->icon;
             $menus[] = $menu;
-            $menu = '';
         }
         return $menus;
     }
