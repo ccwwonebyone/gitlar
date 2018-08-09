@@ -19,7 +19,7 @@ class LoginController extends Controller
     	$this->validate($request,$this->rule);
     	$data = $request->all();
     	$dataDb['username'] = $data['username'];
-    	$dataDb['password'] = md5($data['username']);
+    	$dataDb['password'] = md5($data['password']);
     	$num = DB::table($this->table)->where($dataDb)->count('id');
     	if($num == 1){
     		$_SESSION['username'] = $dataDb['username'];
